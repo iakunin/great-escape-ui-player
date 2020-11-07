@@ -31,4 +31,13 @@ jobs:
           PR_NUM: ${{ github.event.number }}
         run: |-
           echo "$EVENT"
-          echo "PR_NUM"
+          echo "$PR_NUM"
+          
+      - name: Test push
+        if: ${{ github.event.push }}
+        run: |-
+          export MY_VAR="lalala"
+          echo $MY_VAR 
+          echo $MY_VAR >> $GITHUB_ENV
+          
+          
