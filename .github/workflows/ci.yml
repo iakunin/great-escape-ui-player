@@ -7,7 +7,7 @@ on:
 
 env:
   PROJECT_ID: great-escape-294716
-  IMAGE: great-escape-ui-player
+  IMAGE: ui-player
 
 jobs:
   build:
@@ -34,6 +34,6 @@ jobs:
             --build-arg GITHUB_REF="$GITHUB_REF" \
             .
 
-      # - name: Publish docker image
-      #   run: |-
-      #     docker push "eu.gcr.io/$PROJECT_ID/$IMAGE:$GITHUB_SHA"
+      - name: Publish docker image
+        run: |-
+          docker push "eu.gcr.io/$PROJECT_ID/$IMAGE:$GITHUB_SHA"
