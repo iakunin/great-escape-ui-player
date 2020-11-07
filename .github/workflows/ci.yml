@@ -1,0 +1,39 @@
+name: ci
+
+on:
+  pull_request:
+    branches: [ master ]
+  workflow_dispatch:
+
+env:
+  PROJECT_ID: great-escape-294716
+  IMAGE: great-escape-ui-player
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v2
+
+      - name: Setup GCP CLI
+        uses: GoogleCloudPlatform/github-actions/setup-gcloud@0.1.3
+        with:
+          service_account_key: ${{ secrets.GCP_DEPLOY_SA_KEY }}
+          project_id: ${{ env.PROJECT_ID }}
+
+      - name: Configure GCP docker registry
+        run: |-
+          gcloud --quiet auth configure-docker
+
+      - name: Build
+        run: |-
+          docker build \
+            --tag "eu.gcr.io/$PROJECT_ID/$IMAGE:$GITHUB_SHA" \
+            --build-arg GITHUB_SHA="$GITHUB_SHA" \
+            --build-arg GITHUB_REF="$GITHUB_REF" \
+            .
+
+      # - name: Publish docker image
+      #   run: |-
+      #     docker push "eu.gcr.io/$PROJECT_ID/$IMAGE:$GITHUB_SHA"
