@@ -43,7 +43,6 @@ jobs:
             eu.gcr.io/$PROJECT_ID/$IMAGE:$GITHUB_SHA"
 
       - name: Docker tag pull request
-        if: github.event == "pull_request"
         run: |-
           echo ${{ github.event }}
           docker tag "$IMAGE:$GITHUB_SHA" \
