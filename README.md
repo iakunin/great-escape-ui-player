@@ -1,3 +1,3 @@
 # great-escape-ui-player
 
-Testing PR tags
+Now checking latest tag kept intact
