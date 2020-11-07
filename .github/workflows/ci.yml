@@ -62,4 +62,4 @@ jobs:
 
       - name: Publish docker image
         run: |-
-          docker push "eu.gcr.io/$PROJECT_ID/$IMAGE:$GITHUB_SHA"
+          docker push "eu.gcr.io/$PROJECT_ID/$IMAGE"
