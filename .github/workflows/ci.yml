@@ -53,7 +53,7 @@ jobs:
             "eu.gcr.io/$PROJECT_ID/$IMAGE:pr-$PR_NUMBER-$GITHUB_SHA"
 
       - name: Docker tag master image as latest
-        if: !${{ github.event.pull_request }}
+        if: !(${{ github.event.pull_request }})
         env:
           PR_NUMBER: ${{ github.event.number }}
         run: |-
