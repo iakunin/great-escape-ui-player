@@ -17,40 +17,8 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout source
-        uses: actions/checkout@v2
-
-      - name: Setup GCP CLI
-        uses: GoogleCloudPlatform/github-actions/setup-gcloud@0.1.3
-        with:
-          service_account_key: ${{ secrets.GCP_DEPLOY_SA_KEY }}
-          project_id: ${{ env.PROJECT_ID }}
-
-      - name: Configure GCP docker registry
+      - name: Test
+        env: 
+          EVENT: ${{ toJson(github.event) }}
         run: |-
-          gcloud --quiet auth configure-docker
-
-      - name: Docker build
-        run: |-
-          docker build \
-            --tag "$IMAGE:$GITHUB_SHA" \
-            --build-arg GITHUB_SHA="$GITHUB_SHA" \
-            --build-arg GITHUB_REF="$GITHUB_REF" \
-            .
-
-      - name: Docker tag default
-        run: |-
-          docker tag "$IMAGE:$GITHUB_SHA" \
-            "eu.gcr.io/$PROJECT_ID/$IMAGE:$GITHUB_SHA"
-
-      - name: Docker tag pull request
-        run: |-
-          echo ${{ github.event }}
-          docker tag "$IMAGE:$GITHUB_SHA" \
-            "eu.gcr.io/$PROJECT_ID/$IMAGE:pr-${{ github.event.number }}-latest"
-          docker tag "$IMAGE:$GITHUB_SHA" \
-            "eu.gcr.io/$PROJECT_ID/$IMAGE:pr-${{ github.event.number }}-$GITHUB_SHA"
-
-      - name: Publish docker image
-        run: |-
-          docker push "eu.gcr.io/$PROJECT_ID/$IMAGE:$GITHUB_SHA"
+          echo "$EVENT"
