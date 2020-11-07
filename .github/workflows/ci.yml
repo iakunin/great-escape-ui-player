@@ -23,3 +23,12 @@ jobs:
           EVENT: ${{ toJson(github.event) }}
         run: |-
           echo "$EVENT"
+
+      - name: Test pr comment
+        if: ${{ github.event.pull_request }}
+        env: 
+          EVENT: ${{ toJson(github.event) }}
+          PR_NUM: ${{ github.event.number }}
+        run: |-
+          echo "$EVENT"
+          echo "PR_NUM"
