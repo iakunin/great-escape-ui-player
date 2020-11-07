@@ -13,6 +13,7 @@ env:
   PROJECT_ID: great-escape-294716
   IMAGE: ui-player
 
+# Test pr
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -22,3 +23,21 @@ jobs:
           EVENT: ${{ toJson(github.event) }}
         run: |-
           echo "$EVENT"
+
+      - name: Test pr comment
+        if: ${{ github.event.pull_request }}
+        env: 
+          EVENT: ${{ toJson(github.event) }}
+          PR_NUM: ${{ github.event.number }}
+        run: |-
+          echo "$EVENT"
+          echo "$PR_NUM"
+          
+      - name: Test push
+        if: ${{ github.event.push }}
+        run: |-
+          export MY_VAR="lalala"
+          echo $MY_VAR 
+          echo $MY_VAR >> $GITHUB_ENV
+          
+          
