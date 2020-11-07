@@ -2,8 +2,11 @@ name: ci
 
 on:
   pull_request:
-    branches: [ master ]
-  workflow_dispatch:
+    branches:
+      - master
+  push:
+    branches:
+      - master
 
 env:
   PROJECT_ID: great-escape-294716
@@ -26,13 +29,27 @@ jobs:
         run: |-
           gcloud --quiet auth configure-docker
 
-      - name: Build
+      - name: Docker build
         run: |-
           docker build \
-            --tag "eu.gcr.io/$PROJECT_ID/$IMAGE:$GITHUB_SHA" \
+            --tag "$IMAGE:$GITHUB_SHA" \
             --build-arg GITHUB_SHA="$GITHUB_SHA" \
             --build-arg GITHUB_REF="$GITHUB_REF" \
             .
+
+      - name: Docker tag default
+        run: |-
+          docker tag "$IMAGE:$GITHUB_SHA" \
+            eu.gcr.io/$PROJECT_ID/$IMAGE:$GITHUB_SHA"
+
+      - name: Docker tag pull request
+        if: github.event == "pull_request"
+        run: |-
+          echo ${{ github.event }}
+          docker tag "$IMAGE:$GITHUB_SHA" \
+            eu.gcr.io/$PROJECT_ID/$IMAGE:pr-${{ github.event.number }}-latest"
+          docker tag "$IMAGE:$GITHUB_SHA" \
+            eu.gcr.io/$PROJECT_ID/$IMAGE:pr-${{ github.event.number }}-$GITHUB_SHA"
 
       - name: Publish docker image
         run: |-
