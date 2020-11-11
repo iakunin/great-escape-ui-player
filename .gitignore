@@ -1,129 +1,22 @@
-######################
-# Project Specific
-######################
-/src/main/webapp/content/css/main.css
-/build/resources/main/static/**
-/src/test/javascript/coverage/
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
-######################
-# Node
-######################
-/node/
-node_tmp/
-node_modules/
-npm-debug.log.*
-/.awcache/*
-/.cache-loader/*
-
-######################
-# SASS
-######################
-.sass-cache/
-
-######################
-# Eclipse
-######################
-*.pydevproject
-.project
-.metadata
-tmp/
-tmp/**/*
-*.tmp
-*.bak
-*.swp
-*~.nib
-local.properties
-.classpath
-.settings/
-.loadpath
-.factorypath
-/src/main/resources/rebel.xml
-
-# External tool builders
-.externalToolBuilders/**
-
-# Locally stored "Eclipse launch configurations"
-*.launch
-
-# CDT-specific
-.cproject
-
-# PDT-specific
-.buildpath
-
-# STS-specific
-/.sts4-cache/*
-
-######################
 # IntelliJ
-######################
-.idea/
-*.iml
-*.iws
-*.ipr
-*.ids
-*.orig
-classes/
-out/
+/.idea
 
-######################
-# Visual Studio Code
-######################
-.vscode/
+# dependencies
+/node_modules
 
-######################
-# Package Files
-######################
-*.ear
-*.db
+# testing
+/coverage
 
-######################
-# Windows
-######################
-# Windows image file caches
-Thumbs.db
+# production
+/build
 
-# Folder config file
-Desktop.ini
-
-######################
-# Mac OSX
-######################
+# misc
 .DS_Store
-.svn
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
 
-# Thumbnails
-._*
-
-# Files that might appear on external disk
-.Spotlight-V100
-.Trashes
-
-######################
-# Directories
-######################
-/bin/
-/deploy/
-
-######################
-# Logs
-######################
-*.log*
-
-######################
-# Others
-######################
-*.class
-*.*~
-*~
-.merge_file*
-
-######################
-# ESLint
-######################
-.eslintcache
-
-######################
-# Sonar
-######################
-/.scannerwork/
+npm-debug.log*
