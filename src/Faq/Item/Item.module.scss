@@ -1,0 +1,29 @@
+.question {
+  font-size: 16px;
+  padding: 15px 0 15px 0;
+  cursor: pointer;
+  transition: 0.2s all;
+  color: #a0a0a0;
+
+  &:hover {
+    color: #b9b9b9;
+  }
+}
+
+.answer {
+  font-size: 14px;
+  display: block;
+  overflow: hidden;
+  max-width: 1010px;
+  max-height: none;
+  margin: 0 0 0 42px;
+  padding: 0;
+  transition: max-height 0.5s, padding 0.5s;
+  color: #ffffff;
+}
+
+.line {
+  height: 1px;
+  margin: 15px 0 0 0;
+  background-color: #494949;
+}

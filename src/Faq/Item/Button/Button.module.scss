@@ -1,0 +1,44 @@
+@mixin buttonBase {
+  float: left;
+  width: 23px;
+  height: 23px;
+  margin: 0 14px 0 0;
+  transition: 0.2s all;
+  border: 2px solid #ffd940;
+  border-radius: 50%;
+}
+
+.buttonInactive {
+  @include buttonBase;
+  background-color: transparent;
+}
+
+.buttonActive {
+  @include buttonBase;
+  background-color: #ffd940;
+}
+
+
+@mixin iconBase {
+  width: 10px;
+  height: 10px;
+  margin: 4px 0 0 5px;
+  transition: 0.2s max-height 0s;
+  transform: rotate(-45deg);
+}
+
+.iconInactive {
+  @include iconBase;
+  border-bottom: 2px solid #fff;
+  border-left: 2px solid #fff;
+  border-top: none;
+  border-right: none;
+}
+
+.iconActive {
+  @include iconBase;
+  border-bottom: none;
+  border-left: none;
+  border-top: 2px solid #000;
+  border-right: 2px solid #000;
+}
