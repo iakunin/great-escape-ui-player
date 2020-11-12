@@ -1,0 +1,11 @@
+.b-header {
+  position: relative;
+  min-height: 126px;
+  margin: 0 0 14px 0;
+
+  &:after {
+    content: '';
+    display: table;
+    clear: both;
+  }
+}
