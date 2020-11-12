@@ -10,11 +10,9 @@ export default function Footer() {
         <div className={styles.support}>Ответим на любые вопросы —
           <a href="mailto:info@great-escape.ru">info@great&#8209;escape.ru</a>
         </div>
-        <nav className={styles.navigation}>
-          <ul>
-            <SocialButtons/>
-          </ul>
-        </nav>
+        <div className={styles.socialButtons}>
+          <SocialButtons/>
+        </div>
       </div>
     </footer>
   );
