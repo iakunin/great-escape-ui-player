@@ -1,38 +1,58 @@
-.App {
-  text-align: center;
-}
+#wrapper {
+  position: relative;
+  width: 100%;
+  min-height: 100%;
+  margin: 0;
+  padding: 0 0 100px;
+  min-width: 1100px;
+  background-size: cover;
+  background: linear-gradient(to bottom, rgba(46, 46, 46, 1) 0%, rgba(24, 24, 24, 1) 53%, rgba(24, 24, 24, 1) 100%) fixed;
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+  // @TODO: check if it's really needed
+  &:before,
+  &:after {
+    content: '';
+    display: table;
+    clear: both;
   }
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.container {
+  width: 100%;
+  min-width: 1000px;
+  max-width: 1980px;
+  min-height: 100%;
+  margin: 0 auto;
+  padding: 0 15px 20px;
+
+  &:before,
+  &:after {
+    content: '';
+    display: table;
+    clear: both;
+  }
 }
 
-.App-link {
-  color: #61dafb;
+// @TODO: think of getting rid of this class
+.hidden {
+  display: none;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+// @TODO: think of getting rid of this class
+.clearfix {
+  &:before,
+  &:after {
+    content: '';
+    display: table;
+    clear: both;
   }
-  to {
-    transform: rotate(360deg);
-  }
+}
+
+a {
+  color: #848484;
+  text-decoration: none;
+}
+
+ul {
+  list-style: none;
 }
