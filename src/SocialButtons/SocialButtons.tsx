@@ -6,17 +6,29 @@ export default function SocialButtons() {
     <div className={styles.main}>
       <ul>
         <li>
-          <a href="https://vk.com/greatescape_project">
+          <a
+            href="https://vk.com/greatescape_project"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             <span className={styles.vk}/>
           </a>
         </li>
         <li>
-          <a href="https://instagram.com/greatescape_project">
+          <a
+            href="https://instagram.com/greatescape_project"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             <span className={styles.instagram}/>
           </a>
         </li>
         <li>
-          <a href="https://www.facebook.com/Great-Escape-Project-844307092273179">
+          <a
+            href="https://www.facebook.com/Great-Escape-Project-844307092273179"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             <span className={styles.facebook}/>
           </a>
         </li>
