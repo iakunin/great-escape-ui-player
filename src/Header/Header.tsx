@@ -1,7 +1,6 @@
 import React from 'react';
 import styles from './Header.module.scss';
 import Navigation from "./Navigation";
-import TopRightMenu from "./TopRightMenu";
 import Logo from "./Logo";
 
 export default function Header() {
@@ -9,7 +8,7 @@ export default function Header() {
     <div className={styles.main}>
       <Logo/>
       <Navigation/>
-      <TopRightMenu/>
+      {/* <TopRightMenu/> */}
     </div>
   );
 }

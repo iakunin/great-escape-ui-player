@@ -1,5 +1,5 @@
 import React from 'react';
-import './TopRightMenu.scss'
+import styles from './TopRightMenu.module.scss'
 import cabinetIcon from './icons/cabinet.png';
 import logoutIcon from './icons/logout.png';
 import loginIcon from './icons/login.png';
@@ -23,7 +23,7 @@ export default function TopRightMenu() {
       ];
 
   return (
-    <nav className="b-header-icon-nav">
+    <nav className={styles.main}>
       <ul>
         {buttons.map(button =>
           <li>{button}</li>
