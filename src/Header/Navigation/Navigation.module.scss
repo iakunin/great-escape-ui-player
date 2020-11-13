@@ -47,25 +47,7 @@
     color: #ffffff;
     border-top: 2px solid #ffffff;
     border-bottom: 2px solid #ffffff;
-
     padding: 14px 45px 12px;
-
-    @media screen and (max-width: 1300px) {
-      padding-right: 40px;
-      padding-left: 40px;
-    }
-    @media screen and (max-width: 1250px) {
-      padding-right: 35px;
-      padding-left: 35px;
-    }
-    @media screen and (max-width: 1200px) {
-      padding-right: 30px;
-      padding-left: 30px;
-    }
-    @media screen and (max-width: 1150px) {
-      padding-right: 25px;
-      padding-left: 25px;
-    }
   }
 }
 
