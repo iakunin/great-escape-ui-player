@@ -1,16 +1,35 @@
-import React from 'react';
+import React, {Component} from 'react';
 import styles from './Navigation.module.scss';
+import {Link, NavLink} from 'react-router-dom';
+import {Routes} from "../../App/Routes";
 
-// @TODO: inject routes regardless of their names (/quests, /about, etc.)
 export default function Navigation() {
   return (
     <nav className={styles.main}>
       <ul className={styles.list}>
-        <li className=""><a href="/quests">Квесты</a></li>
-        <li className=""><a href="/about">О проекте</a></li>
-        <li className={styles.active}><a href="/faq">FAQ</a></li>
-        <li className=""><a href="/contacts">Контакты</a></li>
+        <NavLink exact to={Routes.Home} activeClassName={styles.active} component={CustomNavLink}>
+          Квесты
+        </NavLink>
+        <NavLink exact to={Routes.Faq} activeClassName={styles.active} component={CustomNavLink}>
+          FAQ
+        </NavLink>
+        <NavLink exact to={Routes.Contacts} activeClassName={styles.active} component={CustomNavLink}>
+          Контакты
+        </NavLink>
       </ul>
     </nav>
+  );
+}
+
+type ComponentProps = {
+  href: string;
+  className?: string;
+};
+
+class CustomNavLink extends Component<ComponentProps> {
+  render = (): JSX.Element => (
+    <li className={this.props.className ?? ''}>
+      <Link to={this.props.href}>{this.props.children}</Link>
+    </li>
   );
 }
