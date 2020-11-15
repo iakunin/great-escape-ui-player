@@ -21,12 +21,10 @@ export default function Navigation() {
   );
 }
 
-type ComponentProps = {
+class CustomNavLink extends Component<{
   href: string;
   className?: string;
-};
-
-class CustomNavLink extends Component<ComponentProps> {
+}> {
   render = (): JSX.Element => (
     <li className={this.props.className ?? ''}>
       <Link to={this.props.href}>{this.props.children}</Link>
