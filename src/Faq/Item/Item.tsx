@@ -20,7 +20,7 @@ export default class Item extends Component<ComponentProps, ComponentState> {
     this.handleClick = this.handleClick.bind(this);
   }
 
-  handleClick(e: MouseEvent): void {
+  private handleClick(e: MouseEvent): void {
     e.preventDefault();
     this.setState(state => ({
       isOpen: !state.isOpen
