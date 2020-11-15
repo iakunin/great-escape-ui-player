@@ -10,12 +10,14 @@ const email: string = 'info@great-escape.ru';
 export default function NotFound() {
   return (
     <div className={styles.main}>
-      <img src={image} alt=""/>
-      <div className={styles.text}>
-        Упс, нам очень жаль.<br/>
-        Вы попытались открыть несуществующую страницу.<br/>
-        Попробуйте <Link to={Routes.Home}>начать с начала</Link>.<br/>
-        Или <a href={"mailto:" + email}>напишите нам</a>, если проблема повторяется регулярно.
+      <h1>Упс, нам очень жаль</h1>
+      <div className={styles.box}>
+        <img src={image} alt=""/>
+        <div className={styles.text}>
+          Вы попытались открыть несуществующую страницу.<br/>
+          Попробуйте <Link to={Routes.Home}>начать с начала</Link>.<br/>
+          Или <a href={"mailto:" + email}>напишите нам</a>, если проблема повторяется регулярно.
+        </div>
       </div>
     </div>
   );
