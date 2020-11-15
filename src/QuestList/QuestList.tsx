@@ -1,9 +1,14 @@
 import React from 'react';
+import './QuestList.scss'
+import Search from "./Search";
+import Content from "./Content";
 
 export default function QuestList() {
+
   return (
-    <h1>
-      QuestList
-    </h1>
+    <>
+      <Search/>
+      <Content/>
+    </>
   );
 }
