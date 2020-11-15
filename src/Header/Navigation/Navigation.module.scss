@@ -17,12 +17,6 @@
       @include active;
     }
 
-    &:hover {
-      a {
-        color: #ffd940;
-      }
-    }
-
     &:first-child {
       a {
         border-left: 2px solid #ffffff;
@@ -43,7 +37,6 @@
   a {
     font-size: 14px;
     display: block;
-    text-decoration: none;
     color: #ffffff;
     border-top: 2px solid #ffffff;
     border-bottom: 2px solid #ffffff;

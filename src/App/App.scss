@@ -49,8 +49,12 @@
 }
 
 a {
-  color: #848484;
   text-decoration: none;
+  color: #848484;
+
+  &:hover {
+    color: #ffd940;
+  }
 }
 
 ul {
@@ -61,7 +65,7 @@ h1 {
   font-size: 24px;
   display: block;
   padding: 0 0 5px 0;
-  margin: 0 0 50px;
+  margin: 0 0 25px;
   color: #ffffff;
   background: url('./images/headerUnderline.png') no-repeat 0 100%;
 }
