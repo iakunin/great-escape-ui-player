@@ -1,0 +1,42 @@
+.main {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 622px;
+  transform: translate(-50%, -50%);
+  padding: 30px 70px;
+  border: 3px solid #ffd93f;
+  border-radius: 20px;
+  background-color: #2a2a2a;
+}
+
+.closeButton {
+  position: absolute;
+  top: -60px;
+  right: -60px;
+  width: 34px;
+  height: 34px;
+  cursor: pointer;
+  background: url('close.png');
+
+  &:hover {
+    background: url('closeHovered.png');
+  }
+}
+
+.title {
+  font-size: 24px;
+  font-weight: 700;
+  display: block;
+  padding: 0 0 5px 0;
+  margin: 0 0 20px;
+  color: #ffffff;
+  background: url('headerUnderline.png') no-repeat 0 100%;
+}
+
+.text {
+  font-size: 14px;
+  display: block;
+  margin: 15px 0 20px;
+  color: #aaaaaa;
+}
