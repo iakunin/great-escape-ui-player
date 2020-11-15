@@ -15,6 +15,7 @@ insert_final_newline = true
 # Change these settings to your own preference
 indent_style = space
 indent_size = 4
+max_line_length = 100
 
 [*.{ts, tsx, js, jsx, json, css, scss, yml}]
 indent_size = 2
