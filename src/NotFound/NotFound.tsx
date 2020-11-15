@@ -1,6 +1,6 @@
 import React from 'react';
 import image from './notfound.png'
-import './NotFound.scss'
+import styles from './NotFound.module.scss'
 import {Link} from "react-router-dom";
 import {Routes} from "../App/Routes";
 
@@ -9,9 +9,9 @@ const email: string = 'info@great-escape.ru';
 
 export default function NotFound() {
   return (
-    <div className="auth-fail box">
+    <div className={styles.main}>
       <img src={image} alt=""/>
-      <div className="text">
+      <div className={styles.text}>
         Упс, нам очень жаль.<br/>
         Вы попытались открыть несуществующую страницу.<br/>
         Попробуйте <Link to={Routes.Home}>начать с начала</Link>.<br/>
