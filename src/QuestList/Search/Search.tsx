@@ -41,7 +41,7 @@ export default function Search() {
         </div>
 
         <div className="pay criteria">
-          <div className="tit">Можем себе позволить до</div>
+          <div className="tit">Можем себе позволить</div>
           <div id="price1000" className="btn">1000 р</div>
           <div id="price2000" className="btn">2000 р</div>
           <div id="price3000" className="btn">3000 р</div>
