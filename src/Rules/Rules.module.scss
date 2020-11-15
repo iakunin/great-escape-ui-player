@@ -1,6 +1,11 @@
 .main {
   width: 75%;
   margin: 0 auto;
+
+  ul {
+    padding-left: 20px;
+    list-style: circle inside;
+  }
 }
 
 .content {
@@ -12,4 +17,8 @@
 
 .section {
   padding: 10px 0;
+}
+
+.item {
+  margin: 10px 0;
 }
