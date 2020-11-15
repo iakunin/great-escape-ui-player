@@ -1,5 +1,5 @@
 FROM nginx:1.17.8-alpine
-COPY ./build/index.html /usr/share/nginx/html/index.html
+COPY ./build/ /usr/share/nginx/html/
 RUN rm /etc/nginx/conf.d/default.conf
 COPY .deploy/nginx.conf /etc/nginx/conf.d
 EXPOSE 80
