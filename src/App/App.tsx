@@ -12,9 +12,6 @@ import {Routes} from "./Routes";
 export default function App() {
   return (
     <>
-      {/* @TODO: maybe we can get rid of this `overlay`? */}
-      <div id="overlay"/>
-
       {/* @TODO: maybe we can get rid of this `wrapper` and/or `container`? */}
       <div id="wrapper">
         <div className="container">
