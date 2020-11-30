@@ -1,0 +1,46 @@
+.main {
+  float: left;
+  position: relative;
+  margin: 17px 106px 0 0;
+  width: 230px;
+}
+
+.image {
+  width: 113px;
+  height: 105px;
+  cursor: pointer;
+  float: left;
+  background: url('images/logo.png') center top no-repeat;
+
+  &:hover {
+    background-position: center -105px;
+  }
+
+  &:active {
+    background-position: center -210px;
+  }
+}
+
+.text {
+  float: right;
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+.textItem {
+  display: block;
+  margin-top: 35px;
+  font-size: 13px;
+  line-height: 1.1;
+  color: #ffffff;
+
+  span {
+    font-size: 17px;
+    display: block
+  }
+}
+
+.socialButtons {
+  padding-top: 14px;
+}

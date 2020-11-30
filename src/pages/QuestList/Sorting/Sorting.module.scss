@@ -1,0 +1,40 @@
+.sort {
+  font-size: 14px;
+  margin: 0 0 22px 20px;
+  color: #ffffff;
+
+  span {
+    display: inline-block;
+    margin: 0 10px 0 0;
+  }
+}
+
+.button {
+  cursor: pointer;
+  font-weight: 300;
+  display: inline-block;
+  margin: 0 10px 0 0;
+  padding: 0 0 0 18px;
+  text-decoration: none;
+  color: #ffffff;
+
+  &:hover {
+    color: #ffd940;
+  }
+}
+
+.price {
+  background: url('images/price.png') no-repeat 0 50%;
+
+  &:hover {
+    background: url('images/price_hover.png') no-repeat 0 50%;
+  }
+}
+
+.discount {
+  background: url('images/discount.png') no-repeat 0 50%;
+
+  &:hover {
+    background: url('images/discount_hover.png') no-repeat 0 50%;
+  }
+}

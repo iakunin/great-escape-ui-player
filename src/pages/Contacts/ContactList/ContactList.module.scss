@@ -1,0 +1,29 @@
+.main {
+  float: left;
+  width: 50%;
+  text-align: center;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  padding: 0 30px;
+}
+
+.list {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  display: inline-block;
+
+  li {
+    font-weight: 300;
+    margin: 0 0 20px 0;
+    padding: 0 0 0 30px;
+    color: #ffffff;
+    text-align: left;
+    background: url('images/listMarker.png') no-repeat 0 50%;
+  }
+
+  a {
+    font-weight: 400;
+    color: #ffffff;
+  }
+}
