@@ -1,21 +1,3 @@
-.main {
-  margin: 0 0 0 345px;
-}
-
-.quests {
-  text-align: justify;
-  position: relative;
-
-  &:after {
-    display: inline-block;
-    visibility: hidden;
-    overflow: hidden;
-    width: 100%;
-    height: 0;
-    content: '';
-  }
-}
-
 .info {
   position: fixed;
   top: 50%;
@@ -35,5 +17,19 @@
     display: inline-block;
     padding: 0 0 0 40px;
     color: #ffffff;
+  }
+}
+
+.quests {
+  text-align: justify;
+  position: relative;
+
+  &:after {
+    display: inline-block;
+    visibility: hidden;
+    overflow: hidden;
+    width: 100%;
+    height: 0;
+    content: '';
   }
 }
