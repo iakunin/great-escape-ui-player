@@ -12,7 +12,6 @@ type ComponentState = {
   quests: Array<Quest>;
 };
 
-
 export default class QuestList extends Component<ComponentProps, ComponentState> {
   constructor(props: ComponentProps) {
     super(props);

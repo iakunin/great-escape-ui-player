@@ -9,7 +9,7 @@ import axios, {AxiosResponse} from "axios";
 function handleClick(event: React.MouseEvent): void {
   event.preventDefault();
   trackPromise(
-    new Promise(r => setTimeout(r, 150)),
+    new Promise(r => setTimeout(r, 550)),
     Areas.QuestList
   ).then(() => {});
 }
