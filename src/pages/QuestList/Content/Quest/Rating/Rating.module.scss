@@ -1,0 +1,62 @@
+.main {
+  position: absolute;
+  right: 20px;
+  bottom: 25px;
+  width: 62.8%;
+  max-width: 220px;
+}
+
+.votesCount {
+  font-size: 12px;
+  float: left;
+  margin: 0 0 0 20px;
+  padding: 0 0 0 22px;
+  color: #ffffff;
+  background: url('images/likebox_count.png') no-repeat 0 20%;
+}
+
+.likesPercent {
+  font-size: 12px;
+  float: right;
+  margin: 0 20px 0 0;
+  color: #ffffff;
+}
+
+.minus {
+  float: left;
+  width: 11px;
+  height: 11px;
+  cursor: pointer;
+  background: url('images/likebox_minus.png');
+}
+
+.plus {
+  float: right;
+  width: 11px;
+  height: 11px;
+  cursor: pointer;
+  background: url('images/likebox_plus.png');
+}
+
+.scale {
+  float: left;
+  overflow: hidden;
+  width: 84%;
+  height: 4px;
+  margin: 5px 0 0 3%;
+  border-radius: 10px;
+  background-color: #866b00;
+}
+
+.progress {
+  height: 100%;
+  background-color: #ffd940;
+}
+
+@media screen and (max-width: 1170px) {
+  .main {
+    bottom: 18px;
+    transform: scale(0.9);
+    transform-origin: 100% 100%;
+  }
+}
