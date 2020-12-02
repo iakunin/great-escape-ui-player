@@ -1,16 +1,38 @@
-import React from 'react';
+import React, {Component} from 'react';
 // @TODO: rewrite via CSS-modules
 import './Search.scss'
 import {Quest} from "../../../models";
-import {Status} from "../Content/Content";
+import {trackPromise} from 'react-promise-tracker';
+import {Areas} from "../../../enums";
+import axios, {AxiosResponse} from "axios";
 
-export default function Search(
-  props: {
-    onQuestsChange: (quests: Array<Quest>) => void;
-    onStatusChange: (status: Status) => void;
+function handleClick(event: React.MouseEvent): void {
+  event.preventDefault();
+  trackPromise(
+    new Promise(r => setTimeout(r, 150)),
+    Areas.QuestList
+  ).then(() => {});
+}
+
+type ComponentProps = {
+  onQuestsChange: (quests: Array<Quest>) => void;
+}
+
+export default class Search extends Component<ComponentProps> {
+
+  componentDidMount = (): void => {
+    trackPromise(
+      axios.get(
+        //@TODO: extract `baseUrl` into config
+        'http://localhost:8080/api/quests'
+      )
+        .then((response: AxiosResponse<Array<Quest>>) => {
+          this.props.onQuestsChange(response.data)
+        })
+    ).then(() => {});
   }
-) {
-  return (
+
+  render = (): JSX.Element => (
     <div id="sidefilter" className="sidebar clearfix">
       <div className="cont">
 
@@ -21,7 +43,7 @@ export default function Search(
 
         <div className="theme criteria criteria-type">
           <div className="tit">Мы хотим</div>
-          <div className="btn">испугаться</div>
+          <div className="btn" onClick={handleClick}>испугаться</div>
           <div className="btn">активностей</div>
           <div className="btn">18+</div>
           <div className="btn">сходить с ребенком</div>
