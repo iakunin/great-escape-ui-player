@@ -7,8 +7,9 @@ import Contacts from "../../pages/Contacts";
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
 import QuestList from "../../pages/QuestList";
 import NotFound from "../../pages/NotFound";
-import {Routes} from "./Routes";
+import {Routes} from "../../enums";
 import Rules from "../../pages/Rules";
+import Quest from "../../pages/Quest";
 
 export default function App() {
   return (
@@ -24,6 +25,7 @@ export default function App() {
                 <Route exact path={Routes.Faq} component={Faq}/>
                 <Route exact path={Routes.Contacts} component={Contacts}/>
                 <Route exact path={Routes.Rules} component={Rules}/>
+                <Route exact path={Routes.Quest} component={Quest}/>
                 <Route component={NotFound}/>
               </Switch>
             </section>

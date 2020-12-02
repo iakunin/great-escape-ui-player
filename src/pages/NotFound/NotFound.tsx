@@ -2,7 +2,7 @@ import React from 'react';
 import image from './images/notfound.png'
 import styles from './NotFound.module.scss'
 import {Link} from "react-router-dom";
-import {Routes} from "../../components/App/Routes";
+import {Routes} from "../../enums/Routes";
 
 // @TODO: extract me to some config
 const email: string = 'info@great-escape.ru';

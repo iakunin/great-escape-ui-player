@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import styles from './Navigation.module.scss';
 import {Link, NavLink} from 'react-router-dom';
-import {Routes} from "../../App/Routes";
+import {Routes} from "../../../enums";
 
 export default function Navigation() {
   return (
