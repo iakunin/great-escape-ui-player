@@ -2,15 +2,17 @@ import React, {Component} from 'react';
 import styles from './Search.module.scss'
 import {Quest} from "../../../models";
 import {trackPromise} from 'react-promise-tracker';
-import {Areas} from "../../../enums";
+import {Areas, FearLevel, QuestType} from "../../../enums";
 import axios, {AxiosResponse} from "axios";
+import Criteria from "./Criteria";
 
 function handleClick(event: React.MouseEvent): void {
   event.preventDefault();
   trackPromise(
     new Promise(r => setTimeout(r, 550)),
     Areas.QuestList
-  ).then(() => {});
+  ).then(() => {
+  });
 }
 
 type ComponentProps = {
@@ -28,38 +30,33 @@ export default class Search extends Component<ComponentProps> {
         .then((response: AxiosResponse<Array<Quest>>) => {
           this.props.onQuestsChange(response.data)
         })
-    ).then(() => {});
+    ).then(() => {
+    });
   }
 
   render = (): JSX.Element => (
     <div className={styles.main}>
 
-        <div className={styles.criteria}>
-          <div className={styles.title}>Тип квеста</div>
+      <Criteria title={"Тип квеста"} buttons={[
+        {id: QuestType.ESCAPE.toString(), title: "Квест в реальности"},
+        {id: QuestType.PERFORMANCE.toString(), title: "Перформанс"},
+      ]}/>
 
-          <div className={styles.button}>Квест в реальности</div>
-          <div className={styles.button}>Перформанс</div>
-        </div>
+      <Criteria title={"Уровень страха"} buttons={[
+        {id: FearLevel.ABSENT.toString(), title: "Вообще не страшно"},
+        {id: FearLevel.MINIMAL.toString(), title: "Чуть-чуть"},
+        {id: FearLevel.MODERATE.toString(), title: "Умеренно"},
+        {id: FearLevel.EXTREME.toString(), title: "Экстримально"},
+      ]}/>
 
-        <div className={styles.criteria}>
-          <div className={styles.title}>Уровень страха</div>
-
-          <div className={`${styles.button} ${styles.active}`}>Вообще не страшно</div>
-          <div className={styles.button}>Чуть-чуть</div>
-          <div className={styles.button}>Умеренно</div>
-          <div className={styles.button}>Экстримально</div>
-        </div>
-
-        <div className={styles.criteria}>
-          <div className={styles.title}>Можем себе позволить</div>
-
-          <div className={styles.button}>1000 р</div>
-          <div className={styles.button}>2000 р</div>
-          <div className={styles.button}>3000 р</div>
-          <div className={styles.button}>4000 р</div>
-          <div className={styles.button}>5000 р</div>
-          <div className={styles.button}>Больше</div>
-        </div>
+      <Criteria title={"Можем себе позволить"} buttons={[
+        {id: "1000", title: "1000 ₽"},
+        {id: "2000", title: "2000 ₽"},
+        {id: "3000", title: "3000 ₽"},
+        {id: "4000", title: "4000 ₽"},
+        {id: "5000", title: "5000 ₽"},
+        {id: "more", title: "Больше"},
+      ]}/>
 
     </div>
   );
