@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
-// @TODO: rewrite via CSS-modules
-import './Search.scss'
+import styles from './Search.module.scss'
 import {Quest} from "../../../models";
 import {trackPromise} from 'react-promise-tracker';
 import {Areas} from "../../../enums";
@@ -33,61 +32,34 @@ export default class Search extends Component<ComponentProps> {
   }
 
   render = (): JSX.Element => (
-    <div id="sidefilter" className="sidebar clearfix">
-      <div className="cont">
+    <div className={styles.main}>
 
-        <form action="#" id="search-form">
-          <input type="text" placeholder="Поиск"/>
-          <input type="submit" value=""/>
-        </form>
+        <div className={styles.criteria}>
+          <div className={styles.title}>Тип квеста</div>
 
-        <div className="theme criteria criteria-type">
-          <div className="tit">Мы хотим</div>
-          <div className="btn" onClick={handleClick}>испугаться</div>
-          <div className="btn">активностей</div>
-          <div className="btn">18+</div>
-          <div className="btn">сходить с ребенком</div>
-          <div className="btn">поучаствовать в перфомансе</div>
-          <div className="btn">семейные</div>
-          <div className="btn">сходить ночью</div>
+          <div className={styles.button}>Квест в реальности</div>
+          <div className={styles.button}>Перформанс</div>
         </div>
 
-        <div className="count criteria">
-          <div className="tit">Нас будет</div>
-          <div id="personCount2" className="btn">Двое</div>
-          <div id="personCount3" className="btn">Трое</div>
-          <div id="personCount4" className="btn">Четверо</div>
-          <div id="personCount5" className="btn">Пятеро</div>
-          <div id="personCount6" className="btn">Шестеро</div>
-          <div id="personCount-1" className="btn">Больше</div>
+        <div className={styles.criteria}>
+          <div className={styles.title}>Уровень страха</div>
+
+          <div className={`${styles.button} ${styles.active}`}>Вообще не страшно</div>
+          <div className={styles.button}>Чуть-чуть</div>
+          <div className={styles.button}>Умеренно</div>
+          <div className={styles.button}>Экстримально</div>
         </div>
 
-        <div className="time criteria">
-          <div className="tit">Продолжительность квеста</div>
-          <div id="time60" className="btn btn-icon-time">60</div>
-          <div id="time90" className="btn btn-icon-time">90</div>
-          <div id="time-1" className="btn">Больше</div>
+        <div className={styles.criteria}>
+          <div className={styles.title}>Можем себе позволить</div>
+
+          <div className={styles.button}>1000 р</div>
+          <div className={styles.button}>2000 р</div>
+          <div className={styles.button}>3000 р</div>
+          <div className={styles.button}>4000 р</div>
+          <div className={styles.button}>5000 р</div>
+          <div className={styles.button}>Больше</div>
         </div>
-
-        <div className="pay criteria">
-          <div className="tit">Можем себе позволить</div>
-          <div id="price1000" className="btn">1000 р</div>
-          <div id="price2000" className="btn">2000 р</div>
-          <div id="price3000" className="btn">3000 р</div>
-          <div id="price4000" className="btn">4000 р</div>
-          <div id="price-1" className="btn">Больше</div>
-        </div>
-
-        <div className="level criteria">
-          <div className="tit">Наша команда</div>
-          <div className="btn">Начинающая</div>
-          <div className="btn">Опытная</div>
-          <div className="btn">Профессионалы</div>
-        </div>
-
-      </div>
-
-      <div className="up">Фильтр</div>
 
     </div>
   );

@@ -1,0 +1,46 @@
+.main {
+  position: relative;
+  float: left;
+  width: 314px;
+  height: auto;
+  margin: 0 auto;
+  padding: 15px 0;
+  border-radius: 5px;
+  background-color: #302c2c;
+}
+
+.criteria {
+  padding: 0 24px;
+}
+
+.title {
+  font-size: 14px;
+  padding: 12px 0;
+  color: #ffd940;
+}
+
+.button {
+  display: inline-block;
+  margin: 0 0 10px 0;
+  padding: 2px 8px;
+  cursor: pointer;
+  transition: 0.1s all;
+  color: rgba(255, 255, 255, 0.75);
+  border: 1px solid rgba(255, 255, 255, 0.75);
+  border-radius: 50px;
+  font-size: 13px;
+
+  &:not(:last-child) {
+    margin-right: 9px;
+  }
+
+  &:hover {
+    color: rgba(255, 255, 255, 1);
+    border: 1px solid #ffd940;
+  }
+
+  &.active {
+    color: #ffd940;
+    border-color: #ffd940;
+  }
+}
