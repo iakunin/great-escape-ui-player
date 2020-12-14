@@ -9,8 +9,6 @@ export type Request = {
 }
 
 export async function getQuestList(request: Request): Promise<Array<Quest>> {
-  console.log("request:" + JSON.stringify(request));
-
   const params = new URLSearchParams();
 
   if (request.fearLevel !== undefined) {
