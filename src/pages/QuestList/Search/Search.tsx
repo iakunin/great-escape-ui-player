@@ -10,7 +10,7 @@ export default function Search(props: {
   onQuestsChange: (quests: Array<Quest>) => void;
 }) {
 
-  const [request, setRequest] = useState<Request>({ololo: 1});
+  const [request, setRequest] = useState<Request>({});
 
   const {onQuestsChange} = props;
 
@@ -21,22 +21,31 @@ export default function Search(props: {
           onQuestsChange(questList)
         }),
       Areas.QuestList
-    );
+    )
   }, [onQuestsChange, request]);
 
   const onQuestTypeChange = (id?: string): void => {
-    console.log('onQuestTypeChange: ' + id);
-    setRequest({ololo: 1});
+    if (id === undefined) {
+      setRequest({...request, type: undefined});
+    } else {
+      setRequest({...request, type: QuestType[id as keyof typeof QuestType]});
+    }
   }
 
-  const onFearLevelChange = (id?: string): void  => {
-    console.log('onFearLevelChange: ' + id);
-    setRequest({ololo: 1});
+  const onFearLevelChange = (id?: string): void => {
+    if (id === undefined) {
+      setRequest({...request, fearLevel: undefined});
+    } else {
+      setRequest({...request, fearLevel: FearLevel[id as keyof typeof FearLevel]});
+    }
   }
 
-  const onMinPriceChange = (id?: string): void  => {
-    console.log('onMinPriceChange: ' + id);
-    setRequest({ololo: 1});
+  const onMinPriceChange = (id?: string): void => {
+    if (id === undefined) {
+      setRequest({...request, minPrice: undefined});
+    } else {
+      setRequest({...request, minPrice: Number(id)});
+    }
   }
 
   return (
@@ -68,7 +77,10 @@ export default function Search(props: {
           {id: "3000", title: "3000 ₽"},
           {id: "4000", title: "4000 ₽"},
           {id: "5000", title: "5000 ₽"},
-          {id: "more", title: "Больше"},
+          {id: "6000", title: "6000 ₽"},
+          {id: "7000", title: "7000 ₽"},
+          {id: "8000", title: "8000 ₽"},
+          {id: "9000", title: "9000 ₽"},
         ]}
       />
 
