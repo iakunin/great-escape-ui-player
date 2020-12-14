@@ -42,8 +42,7 @@ export default function FeedbackForm() {
 
   const onSubmit = handleSubmit((data: Inputs) => {
     axios.post(
-      //@TODO: extract `baseUrl` into config
-      'http://localhost:8080/api/feedback',
+      '/api/feedback',
       data
     )
       .then(handleSuccess, handleFailure)

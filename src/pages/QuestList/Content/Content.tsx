@@ -13,6 +13,7 @@ export default function Content(props: {
 }) {
   const {promiseInProgress} = usePromiseTracker({area: Areas.QuestList, delay: 100});
 
+  // @TODO: add infinite scroll
   return promiseInProgress
     ? (
       <div className={styles.info}>

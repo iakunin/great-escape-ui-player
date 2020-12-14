@@ -6,6 +6,10 @@ export type Request = {
   fearLevel?: FearLevel;
   type?: QuestType;
   minPrice?: number;
+  sort?: {
+    field: 'minPrice' | 'discountInPercents';
+    direction: 'asc' | 'desc';
+  }
 }
 
 export async function getQuestList(request: Request): Promise<Array<Quest>> {
@@ -23,9 +27,12 @@ export async function getQuestList(request: Request): Promise<Array<Quest>> {
     params.append('minPrice.lessThanOrEqual', request.minPrice.toString());
   }
 
+  if (request.sort !== undefined) {
+    params.append('sort', `${request.sort.field},${request.sort.direction}`);
+  }
+
   return (await axios.get(
-    //@TODO: extract `baseUrl` into config
-    'http://localhost:8080/api/quests',
+    '/api/quests',
     {params}
   )).data;
 }
