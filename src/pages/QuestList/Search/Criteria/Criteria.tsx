@@ -1,51 +1,42 @@
-import React, {Component} from 'react';
+import React, {useState} from 'react';
 import styles from './Criteria.module.scss'
 
 type Button = {
-  id: string,
-  title: string,
+  id: string;
+  title: string;
 }
 
-type ComponentProps = {
-  title: string,
-  buttons: Array<Button>
-};
+export default function Content(props: {
+  title: string;
+  buttons: Array<Button>;
+  onChange: (id?: string) => void;
+}) {
 
-type ComponentState = {
-  activeButton?: Button;
-};
+  const [activeButton, setActiveButton] = useState<Button | undefined>(undefined);
 
-export default class Criteria extends Component<ComponentProps, ComponentState> {
-  constructor(props: ComponentProps) {
-    super(props);
-    this.state = {activeButton: undefined};
-    this.handleClick = this.handleClick.bind(this);
-    this.className = this.className.bind(this);
-  }
+  const handleClick = (button: Button): void => {
+    const newValue = activeButton?.id !== button.id ? button : undefined;
+    setActiveButton(newValue);
+    props.onChange(newValue?.id);
+  };
 
-  render = (): JSX.Element => (
+  const className = (button: Button): string => (
+    button.id === activeButton?.id
+      ? `${styles.button} ${styles.active}`
+      : styles.button
+  );
+
+  return (
     <div className={styles.criteria}>
-      <div className={styles.title}>{this.props.title}</div>
+      <div className={styles.title}>{props.title}</div>
 
-      {this.props.buttons.map((button, idx) =>
-        <div key={idx} className={this.className(button)}
-             onClick={() => this.handleClick(button)}
+      {props.buttons.map((button, idx) =>
+        <div key={idx} className={className(button)}
+             onClick={() => handleClick(button)}
         >
           {button.title}
         </div>
       )}
     </div>
   );
-
-  private handleClick(button: Button): void {
-    this.setState((state) => (
-      state.activeButton !== button ? {activeButton: button} : {activeButton: undefined})
-    );
-  }
-
-  private className(button: Button): string {
-    return button === this.state.activeButton
-      ? `${styles.button} ${styles.active}`
-      : styles.button;
-  }
 }
