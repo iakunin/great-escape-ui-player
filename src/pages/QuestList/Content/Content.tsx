@@ -1,17 +1,32 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import styles from './Content.module.scss'
-import {Quest as QuestModel} from "../../../models/Quest";
-import {usePromiseTracker} from "react-promise-tracker";
+import {QuestList} from "../../../models/Quest";
+import {trackPromise, usePromiseTracker} from "react-promise-tracker";
 import {Areas} from "../../../enums";
 import loadingIcon from "./images/loading.png";
 import Sorting from "./Sorting";
 import Quest from "./Quest";
 import notFoundIcon from "./images/notfound.png";
+import {useSelector} from "react-redux";
+import {selectQuestListRequest} from "../../../redux/questListRequest.slice";
+import {getQuestList} from "../../../api/getQuestList";
 
-export default function Content(props: {
-  quests: Array<QuestModel>;
-}) {
+export default function Content() {
   const {promiseInProgress} = usePromiseTracker({area: Areas.QuestList, delay: 100});
+
+  const request = useSelector(selectQuestListRequest)
+
+  const [questList, setQuestList] = useState<QuestList>([]);
+
+  useEffect(() => {
+    trackPromise(
+      getQuestList(request)
+        .then((questList: QuestList) => {
+          setQuestList(questList)
+        }),
+      Areas.QuestList
+    )
+  }, [setQuestList, request]);
 
   // @TODO: add infinite scroll
   return promiseInProgress
@@ -21,12 +36,12 @@ export default function Content(props: {
         <span>Мы подбираем квесты: пожалуйста, подождите</span>
       </div>
     ) : (
-      props.quests.length !== 0
+      questList.length !== 0
         ? (
           <>
             <Sorting/>
             <div className={styles.quests}>
-              {props.quests.map((quest, idx) =>
+              {questList.map((quest, idx) =>
                 <Quest key={idx} quest={quest}/>
               )}
             </div>

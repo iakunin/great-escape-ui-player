@@ -1,51 +1,24 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import styles from './Search.module.scss'
-import {Quest} from "../../../models";
-import {trackPromise} from 'react-promise-tracker';
-import {Areas, FearLevel, QuestType} from "../../../enums";
+import {FearLevel, QuestType} from "../../../enums";
 import Criteria from "./Criteria";
-import {getQuestList, Request} from "../../../api/getQuestList";
+import {setFearLevel, setMinPrice, setQuestType} from '../../../redux/questListRequest.slice'
+import {useDispatch} from "react-redux";
 
-export default function Search(props: {
-  onQuestsChange: (quests: Array<Quest>) => void;
-}) {
+export default function Search() {
 
-  const [request, setRequest] = useState<Request>({});
-
-  const {onQuestsChange} = props;
-
-  useEffect(() => {
-    trackPromise(
-      getQuestList(request)
-        .then((questList: Array<Quest>) => {
-          onQuestsChange(questList)
-        }),
-      Areas.QuestList
-    )
-  }, [onQuestsChange, request]);
+  const dispatch = useDispatch();
 
   const onQuestTypeChange = (id?: string): void => {
-    if (id === undefined) {
-      setRequest({...request, type: undefined});
-    } else {
-      setRequest({...request, type: QuestType[id as keyof typeof QuestType]});
-    }
+    dispatch(setQuestType(QuestType[id as keyof typeof QuestType]));
   }
 
   const onFearLevelChange = (id?: string): void => {
-    if (id === undefined) {
-      setRequest({...request, fearLevel: undefined});
-    } else {
-      setRequest({...request, fearLevel: FearLevel[id as keyof typeof FearLevel]});
-    }
+    dispatch(setFearLevel(FearLevel[id as keyof typeof FearLevel]));
   }
 
   const onMinPriceChange = (id?: string): void => {
-    if (id === undefined) {
-      setRequest({...request, minPrice: undefined});
-    } else {
-      setRequest({...request, minPrice: Number(id)});
-    }
+    dispatch(setMinPrice(id !== undefined ? Number(id) : undefined));
   }
 
   return (

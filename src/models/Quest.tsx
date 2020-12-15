@@ -12,3 +12,4 @@ export type Quest = {
   companyTitle: string;
 };
 
+export type QuestList = Array<Quest>;

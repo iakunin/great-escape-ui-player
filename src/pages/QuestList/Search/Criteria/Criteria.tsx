@@ -8,7 +8,7 @@ type Button = {
 
 export default function Content(props: {
   title: string;
-  buttons: Array<Button>;
+  buttons: ReadonlyArray<Button>;
   onChange: (id?: string) => void;
 }) {
 

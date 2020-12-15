@@ -1,5 +1,5 @@
 import axios from "axios";
-import {Quest} from "../models/Quest";
+import {QuestList} from "../models/Quest";
 import {FearLevel, QuestType} from "../enums";
 
 export type Request = {
@@ -12,7 +12,7 @@ export type Request = {
   }
 }
 
-export async function getQuestList(request: Request): Promise<Array<Quest>> {
+export async function getQuestList(request: Request): Promise<QuestList> {
   const params = new URLSearchParams();
 
   if (request.fearLevel != null) {

@@ -7,7 +7,7 @@ import {Link} from "react-router-dom";
 export default function Quest(
   props: { quest: QuestModel; }
 ) {
-  const quest = props.quest;
+  const {quest} = props;
 
   return (
     <div
