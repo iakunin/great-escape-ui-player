@@ -4,7 +4,7 @@ import Navigation from "./Navigation";
 import Logo from "./Logo";
 import ButtonsBlock from "./ButtonsBlock";
 
-export default function Header() {
+export default function Header(): JSX.Element {
   return (
     <div className={styles.main}>
       <Logo/>

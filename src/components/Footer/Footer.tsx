@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './Footer.module.scss';
 import SocialButtons from "../SocialButtons";
 
-export default function Footer() {
+export default function Footer(): JSX.Element {
   return (
     <footer className={styles.main}>
       <div className={styles.inner}>

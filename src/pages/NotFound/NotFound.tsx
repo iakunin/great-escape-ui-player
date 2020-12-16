@@ -5,9 +5,9 @@ import {Link} from "react-router-dom";
 import {Routes} from "../../enums/Routes";
 
 // @TODO: extract me to some config
-const email: string = 'info@great-escape.ru';
+const email = 'info@great-escape.ru';
 
-export default function NotFound() {
+export default function NotFound(): JSX.Element {
   return (
     <div className={styles.main}>
       <h1>Упс, нам очень жаль</h1>

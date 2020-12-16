@@ -11,7 +11,7 @@ import {Routes} from "../../enums";
 import Rules from "../../pages/Rules";
 import Quest from "../../pages/Quest";
 
-export default function App() {
+export default function App(): JSX.Element {
   return (
     <>
       {/* @TODO: maybe we can get rid of this `wrapper` and/or `container`? */}

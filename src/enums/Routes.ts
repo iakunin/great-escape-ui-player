@@ -34,6 +34,7 @@ export class Quest extends Object {
  * params = {lineId: 1, matchId: 2}
  * return 'lineId - 1, matchId - 2'
  * */
+// eslint-disable-next-line
 function formatRoute(route: Routes, params: any = {}): string {
   return Object.keys(params)
     .reduce(

@@ -1,49 +1,40 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 import {Direction, Request} from "../api/getQuestList";
 import {FearLevel, QuestType} from "../enums";
-import {RootState} from "../config/store";
 
 const questListRequestSlice = createSlice({
   name: 'questListRequest',
   initialState: {} as Request,
   reducers: {
-    setQuestType(state, action: PayloadAction<QuestType | undefined>) {
-      return {...state, type: action.payload}
+    setQuestType(state, action: PayloadAction<QuestType | undefined>): Request {
+      return {...state, type: action.payload};
     },
-    setFearLevel(state, action: PayloadAction<FearLevel | undefined>) {
-      return {...state, fearLevel: action.payload}
+    setFearLevel(state, action: PayloadAction<FearLevel | undefined>): Request {
+      return {...state, fearLevel: action.payload};
     },
-    setMinPrice(state, action: PayloadAction<number | undefined>) {
-      return {...state, minPrice: action.payload}
+    setMinPrice(state, action: PayloadAction<number | undefined>): Request {
+      return {...state, minPrice: action.payload};
     },
-    setDiscountInPercentsSort(state, action: PayloadAction<Direction | undefined>) {
+    setDiscountSort(state, action: PayloadAction<Direction | undefined>): Request {
       return {
         ...state,
-        sort: {
-          ...state.sort,
-          discountInPercents: action.payload
-        }
-      }
+        sort: {...state.sort, discount: action.payload}
+      };
     },
-    setMinPriceSort(state, action: PayloadAction<Direction | undefined>) {
+    setMinPriceSort(state, action: PayloadAction<Direction | undefined>): Request {
       return {
         ...state,
-        sort: {
-          ...state.sort,
-          minPrice: action.payload
-        }
-      }
+        sort: {...state.sort, minPrice: action.payload}
+      };
     },
   }
 });
-
-export const selectQuestListRequest = (state: RootState) => state.questListRequest;
 
 export const {
   setQuestType,
   setFearLevel,
   setMinPrice,
-  setDiscountInPercentsSort,
+  setDiscountSort,
   setMinPriceSort,
 } = questListRequestSlice.actions;
 

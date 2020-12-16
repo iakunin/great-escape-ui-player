@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './Faq.module.scss';
 import Item from "./Item";
 
-export default function Faq() {
+export default function Faq(): JSX.Element {
   return (
     <div className={styles.main}>
       <h1>Чаще всего нас спрашивают</h1>

@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './SocialButtons.module.scss';
 
-export default function SocialButtons() {
+export default function SocialButtons(): JSX.Element {
   return (
     <div className={styles.main}>
       <ul>

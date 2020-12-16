@@ -3,7 +3,7 @@ import styles from './Navigation.module.scss';
 import {Link, NavLink} from 'react-router-dom';
 import {Routes} from "../../../enums";
 
-export default function Navigation() {
+export default function Navigation(): JSX.Element {
   return (
     <nav className={styles.main}>
       <ul className={styles.list}>

@@ -3,7 +3,7 @@ import SocialButtons from "../../SocialButtons";
 import styles from './Logo.module.scss'
 import {sample} from 'lodash';
 
-export default function Logo() {
+export default function Logo(): JSX.Element {
   return (
     <div className={styles.main}>
       <div className={styles.image}/>

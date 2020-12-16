@@ -10,7 +10,7 @@ export default function Content(props: {
   title: string;
   buttons: ReadonlyArray<Button>;
   onChange: (id?: string) => void;
-}) {
+}): JSX.Element {
 
   const [activeButton, setActiveButton] = useState<Button | undefined>(undefined);
 
@@ -32,7 +32,7 @@ export default function Content(props: {
 
       {props.buttons.map((button, idx) =>
         <div key={idx} className={className(button)}
-             onClick={() => handleClick(button)}
+             onClick={(): void => handleClick(button)}
         >
           {button.title}
         </div>

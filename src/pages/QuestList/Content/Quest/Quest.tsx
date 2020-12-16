@@ -6,7 +6,7 @@ import {Link} from "react-router-dom";
 
 export default function Quest(
   props: { quest: QuestModel; }
-) {
+): JSX.Element {
   const {quest} = props;
 
   return (

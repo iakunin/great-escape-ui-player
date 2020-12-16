@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './Rules.module.scss'
 
-export default function Rules() {
+export default function Rules(): JSX.Element {
   return (
     <div className={styles.main}>
       <h1>УСЛОВИЯ УЧАСТИЯ</h1>

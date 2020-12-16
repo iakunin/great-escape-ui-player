@@ -7,8 +7,8 @@ import registrationIcon from './images/registration.png';
 import subscriptionIcon from './images/subscription.png';
 import Button from "./Button";
 
-export default function ButtonsBlock() {
-  const isLoggedIn: boolean = false;
+export default function ButtonsBlock(): JSX.Element {
+  const isLoggedIn = false;
 
   const buttons: JSX.Element[] =
     isLoggedIn ?

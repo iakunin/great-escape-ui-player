@@ -5,7 +5,7 @@ import Criteria from "./Criteria";
 import {setFearLevel, setMinPrice, setQuestType} from '../../../redux/questListRequest.slice'
 import {useDispatch} from "react-redux";
 
-export default function Search() {
+export default function Search(): JSX.Element {
 
   const dispatch = useDispatch();
 

@@ -12,21 +12,21 @@ type Inputs = {
   text: string;
 };
 
-export default function FeedbackForm() {
+export default function FeedbackForm(): JSX.Element {
   const [isPopupOpen, setPopupOpen] = useState(false);
   const [popupContent, setPopupContent] = useState(<></>);
   const [popupTitle, setPopupTitle] = useState('');
 
   const {register, handleSubmit, errors, reset} = useForm<Inputs>();
 
-  const handleSuccess = () => {
+  const handleSuccess = (): void => {
     reset();
     setPopupTitle('Спасибо за обращение!');
     setPopupContent(<>Мы ответим вам настолько быстро, насколько это возможно.</>);
     setPopupOpen(true);
   }
 
-  const handleFailure = () => {
+  const handleFailure = (): void => {
     reset();
     setPopupTitle('К сожалению, произошла ошибка');
     setPopupContent(
@@ -85,7 +85,7 @@ export default function FeedbackForm() {
         </form>
       </div>
 
-      <Popup open={isPopupOpen} onClose={() => setPopupOpen(false)} title={popupTitle}>
+      <Popup open={isPopupOpen} onClose={(): void => setPopupOpen(false)} title={popupTitle}>
         {popupContent}
       </Popup>
     </>

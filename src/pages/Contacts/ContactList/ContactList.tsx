@@ -2,10 +2,10 @@ import React from 'react';
 import styles from './ContactList.module.scss';
 
 // @TODO: extract phone to settings
-const phone: string = '+7 (929) 605-14-50';
-const phoneNormalized: string = '+79296051450';
+const phone = '+7 (929) 605-14-50';
+const phoneNormalized = '+79296051450';
 
-export default function ContactList() {
+export default function ContactList(): JSX.Element {
   return (
     <div className={styles.main}>
       <ul className={styles.list}>
