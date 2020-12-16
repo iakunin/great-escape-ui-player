@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import styles from './Content.module.scss';
 import {QuestList} from 'models/Quest';
 import {trackPromise, usePromiseTracker} from 'react-promise-tracker';
-import {Areas} from 'enums';
+import {Areas} from 'enums/Areas';
 import loadingIcon from './images/loading.png';
 import Sorting from './Sorting';
 import notFoundIcon from './images/notfound.png';

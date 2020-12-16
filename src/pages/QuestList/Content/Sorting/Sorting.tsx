@@ -1,8 +1,8 @@
 import React, {useState} from 'react';
 import styles from './Sorting.module.scss';
 import {connect, ConnectedProps} from 'react-redux';
-import {Direction} from '../../../../api/getQuestList';
-import {setDiscountSort, setMinPriceSort} from '../../../../redux/questListRequest.slice';
+import {Direction} from 'api/getQuestList';
+import {setDiscountSort, setMinPriceSort} from 'redux/questListRequest.slice';
 
 type OptionalDirection = Direction | undefined;
 

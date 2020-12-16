@@ -1,8 +1,9 @@
 import React from 'react';
 import styles from './Search.module.scss';
-import {FearLevel, QuestType} from '../../../enums';
+import {FearLevel} from 'enums/FearLevel';
+import {QuestType} from 'enums/QuestType';
 import Criteria from './Criteria';
-import {setFearLevel, setMinPrice, setQuestType} from '../../../redux/questListRequest.slice';
+import {setFearLevel, setMinPrice, setQuestType} from 'redux/questListRequest.slice';
 import {connect, ConnectedProps} from 'react-redux';
 
 const connector = connect();

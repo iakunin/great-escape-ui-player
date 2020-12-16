@@ -1,6 +1,7 @@
 import axios from 'axios';
 import {QuestList} from 'models/Quest';
-import {FearLevel, QuestType} from 'enums';
+import {FearLevel} from 'enums/FearLevel';
+import {QuestType} from 'enums/QuestType';
 
 export type Request = {
   fearLevel?: FearLevel;

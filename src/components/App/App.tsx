@@ -7,7 +7,7 @@ import Contacts from 'pages/Contacts';
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
 import QuestList from 'pages/QuestList';
 import NotFound from 'pages/NotFound';
-import {Routes} from 'enums';
+import {Routes} from 'enums/Routes';
 import Rules from 'pages/Rules';
 import Quest from 'pages/Quest';
 

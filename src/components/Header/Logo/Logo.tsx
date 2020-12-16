@@ -1,5 +1,5 @@
 import React from 'react';
-import SocialButtons from '../../SocialButtons';
+import SocialButtons from 'components/SocialButtons';
 import styles from './Logo.module.scss';
 import {sample} from 'lodash';
 
