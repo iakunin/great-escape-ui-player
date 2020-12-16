@@ -18,6 +18,7 @@ const connector = connect(
 )
 
 function Content(props: ConnectedProps<typeof connector>): JSX.Element {
+
   const {promiseInProgress} = usePromiseTracker({area: Areas.QuestList, delay: 100});
 
   const {request} = props;
@@ -34,31 +35,35 @@ function Content(props: ConnectedProps<typeof connector>): JSX.Element {
     )
   }, [setQuestList, request]);
 
-  // @TODO: add infinite scroll
-  return promiseInProgress
-    ? (
+  if (promiseInProgress) {
+    return (
       <div className={styles.info}>
         <img src={loadingIcon} alt="loading"/>
         <span>Мы подбираем квесты: пожалуйста, подождите</span>
       </div>
-    ) : (
-      questList.length !== 0
-        ? (
-          <>
-            <Sorting/>
-            <div className={styles.quests}>
-              {questList.map((quest, idx) =>
-                <Quest key={idx} quest={quest}/>
-              )}
-            </div>
-          </>
-        ) : (
-          <div className={styles.info}>
-            <img src={notFoundIcon} alt="not found"/>
-            <span>К сожалению, мы не смогли найти квест под Ваш запрос</span>
-          </div>
-        )
     );
+  }
+
+  if (questList.length === 0) {
+    return (
+      <div className={styles.info}>
+        <img src={notFoundIcon} alt="not found"/>
+        <span>К сожалению, мы не смогли найти квест под Ваш запрос</span>
+      </div>
+    );
+  }
+
+  // @TODO: add infinite scroll
+  return (
+    <>
+      <Sorting/>
+      <div className={styles.quests}>
+        {questList.map((quest, idx) =>
+          <Quest key={idx} quest={quest}/>
+        )}
+      </div>
+    </>
+  );
 }
 
 export default connector(Content);

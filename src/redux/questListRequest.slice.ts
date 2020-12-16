@@ -2,7 +2,7 @@ import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 import {Direction, Request} from "../api/getQuestList";
 import {FearLevel, QuestType} from "../enums";
 
-const questListRequestSlice = createSlice({
+const slice = createSlice({
   name: 'questListRequest',
   initialState: {} as Request,
   reducers: {
@@ -36,6 +36,6 @@ export const {
   setMinPrice,
   setDiscountSort,
   setMinPriceSort,
-} = questListRequestSlice.actions;
+} = slice.actions;
 
-export default questListRequestSlice.reducer;
+export default slice.reducer;

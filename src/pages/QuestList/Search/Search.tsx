@@ -3,22 +3,24 @@ import styles from './Search.module.scss'
 import {FearLevel, QuestType} from "../../../enums";
 import Criteria from "./Criteria";
 import {setFearLevel, setMinPrice, setQuestType} from '../../../redux/questListRequest.slice'
-import {useDispatch} from "react-redux";
+import {connect, ConnectedProps} from "react-redux";
 
-export default function Search(): JSX.Element {
+const connector = connect();
 
-  const dispatch = useDispatch();
+function Search(
+  props: ConnectedProps<typeof connector>
+): JSX.Element {
 
   const onQuestTypeChange = (id?: string): void => {
-    dispatch(setQuestType(QuestType[id as keyof typeof QuestType]));
+    props.dispatch(setQuestType(QuestType[id as keyof typeof QuestType]));
   }
 
   const onFearLevelChange = (id?: string): void => {
-    dispatch(setFearLevel(FearLevel[id as keyof typeof FearLevel]));
+    props.dispatch(setFearLevel(FearLevel[id as keyof typeof FearLevel]));
   }
 
   const onMinPriceChange = (id?: string): void => {
-    dispatch(setMinPrice(id !== undefined ? Number(id) : undefined));
+    props.dispatch(setMinPrice(id !== undefined ? Number(id) : undefined));
   }
 
   return (
@@ -60,3 +62,5 @@ export default function Search(): JSX.Element {
     </div>
   );
 }
+
+export default connector(Search);
