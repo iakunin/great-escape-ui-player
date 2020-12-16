@@ -7,14 +7,20 @@ import loadingIcon from "./images/loading.png";
 import Sorting from "./Sorting";
 import Quest from "./Quest";
 import notFoundIcon from "./images/notfound.png";
-import {useSelector} from "react-redux";
-import {selectQuestListRequest} from "../../../redux/questListRequest.slice";
+import {connect, ConnectedProps} from "react-redux";
 import {getQuestList} from "../../../api/getQuestList";
+import {RootState} from "../../../config/store";
 
-export default function Content() {
+const connector = connect(
+  (state: RootState) => ({
+    request: state.questListRequest
+  })
+)
+
+function Content(props: ConnectedProps<typeof connector>): JSX.Element {
   const {promiseInProgress} = usePromiseTracker({area: Areas.QuestList, delay: 100});
 
-  const request = useSelector(selectQuestListRequest)
+  const {request} = props;
 
   const [questList, setQuestList] = useState<QuestList>([]);
 
@@ -54,3 +60,5 @@ export default function Content() {
         )
     );
 }
+
+export default connector(Content);

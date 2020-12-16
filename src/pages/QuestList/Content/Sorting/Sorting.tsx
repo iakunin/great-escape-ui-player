@@ -1,28 +1,34 @@
 import React, {useState} from "react";
 import styles from "./Sorting.module.scss";
-import {useDispatch} from "react-redux";
+import {connect, ConnectedProps} from "react-redux";
 import {Direction} from "../../../../api/getQuestList";
-import {setDiscountInPercentsSort, setMinPriceSort} from "../../../../redux/questListRequest.slice";
+import {setDiscountSort, setMinPriceSort} from "../../../../redux/questListRequest.slice";
 
 type OptionalDirection = Direction | undefined;
 
-export default function Sorting() {
+const connector = connect(
+  null,
+  {
+    setMinPriceSort: (direction: OptionalDirection) => (setMinPriceSort(direction)),
+    setDiscountSort: (direction: OptionalDirection) => (setDiscountSort(direction)),
+  }
+)
 
-  const [priceOrder, setPriceOrder] = useState<OptionalDirection>(undefined);
-  const [discountOrder, setDiscountOrder] = useState<OptionalDirection>(undefined);
+function Sorting(props: ConnectedProps<typeof connector>): JSX.Element {
 
-  const dispatch = useDispatch();
+  const [priceDirection, setPriceDirection] = useState<OptionalDirection>(undefined);
+  const [discountDirection, setDiscountDirection] = useState<OptionalDirection>(undefined);
 
   const handlePriceClick = (): void => {
-    const next = nextDirection(priceOrder);
-    setPriceOrder(next);
-    dispatch(setMinPriceSort(next));
+    const direction = nextDirection(priceDirection);
+    setPriceDirection(direction);
+    props.setMinPriceSort(direction);
   }
 
   const handleDiscountClick = (): void => {
-    const next = nextDirection(discountOrder);
-    setDiscountOrder(next);
-    dispatch(setDiscountInPercentsSort(next));
+    const direction = nextDirection(discountDirection);
+    setDiscountDirection(direction);
+    props.setDiscountSort(direction);
   }
 
   const nextDirection = (current: OptionalDirection): OptionalDirection => {
@@ -36,15 +42,23 @@ export default function Sorting() {
     }
   }
 
+  const className = (direction: OptionalDirection): string => (
+    direction !== undefined
+      ? `${styles.button} ${styles.price} ${styles.active}`
+      : `${styles.button} ${styles.price}`
+  );
+
   return (
     <div className={styles.sort}><span>Сортировать по:</span>
-      <div className={`${styles.button} ${styles.price}`} onClick={handlePriceClick}>
+      <div className={className(priceDirection)} onClick={handlePriceClick}>
         Цене
       </div>
 
-      <div className={`${styles.button} ${styles.discount}`} onClick={handleDiscountClick}>
+      <div className={className(discountDirection)} onClick={handleDiscountClick}>
         Размеру скидки
       </div>
     </div>
   );
 }
+
+export default connector(Sorting);
