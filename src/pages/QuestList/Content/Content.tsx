@@ -28,9 +28,7 @@ function Content(props: ConnectedProps<typeof connector>): JSX.Element {
   useEffect(() => {
     trackPromise(
       getQuestList(request)
-        .then((questList: QuestList) => {
-          setQuestList(questList)
-        }),
+        .then(questList => {setQuestList(questList)}),
       Areas.QuestList
     )
   }, [setQuestList, request]);
