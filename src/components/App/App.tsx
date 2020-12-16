@@ -1,15 +1,15 @@
 import React from 'react';
-import Header from '../Header';
-import Footer from "../Footer";
-import Faq from "../../pages/Faq";
+import Header from 'components/Header';
+import Footer from 'components/Footer';
+import Faq from 'pages/Faq';
 import './App.scss';
-import Contacts from "../../pages/Contacts";
+import Contacts from 'pages/Contacts';
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
-import QuestList from "../../pages/QuestList";
-import NotFound from "../../pages/NotFound";
-import {Routes} from "../../enums";
-import Rules from "../../pages/Rules";
-import Quest from "../../pages/Quest";
+import QuestList from 'pages/QuestList';
+import NotFound from 'pages/NotFound';
+import {Routes} from 'enums';
+import Rules from 'pages/Rules';
+import Quest from 'pages/Quest';
 
 export default function App(): JSX.Element {
   return (

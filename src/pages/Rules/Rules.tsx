@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './Rules.module.scss'
+import styles from './Rules.module.scss';
 
 export default function Rules(): JSX.Element {
   return (

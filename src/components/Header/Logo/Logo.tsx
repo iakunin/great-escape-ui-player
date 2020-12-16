@@ -1,6 +1,6 @@
 import React from 'react';
-import SocialButtons from "../../SocialButtons";
-import styles from './Logo.module.scss'
+import SocialButtons from '../../SocialButtons';
+import styles from './Logo.module.scss';
 import {sample} from 'lodash';
 
 export default function Logo(): JSX.Element {

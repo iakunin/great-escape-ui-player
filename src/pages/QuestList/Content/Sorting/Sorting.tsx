@@ -1,8 +1,8 @@
-import React, {useState} from "react";
-import styles from "./Sorting.module.scss";
-import {connect, ConnectedProps} from "react-redux";
-import {Direction} from "../../../../api/getQuestList";
-import {setDiscountSort, setMinPriceSort} from "../../../../redux/questListRequest.slice";
+import React, {useState} from 'react';
+import styles from './Sorting.module.scss';
+import {connect, ConnectedProps} from 'react-redux';
+import {Direction} from '../../../../api/getQuestList';
+import {setDiscountSort, setMinPriceSort} from '../../../../redux/questListRequest.slice';
 
 type OptionalDirection = Direction | undefined;
 
@@ -12,7 +12,7 @@ const connector = connect(
     setMinPriceSort: (direction: OptionalDirection) => (setMinPriceSort(direction)),
     setDiscountSort: (direction: OptionalDirection) => (setDiscountSort(direction)),
   }
-)
+);
 
 function Sorting(props: ConnectedProps<typeof connector>): JSX.Element {
 
@@ -23,13 +23,13 @@ function Sorting(props: ConnectedProps<typeof connector>): JSX.Element {
     const direction = nextDirection(priceDirection);
     setPriceDirection(direction);
     props.setMinPriceSort(direction);
-  }
+  };
 
   const handleDiscountClick = (): void => {
     const direction = nextDirection(discountDirection);
     setDiscountDirection(direction);
     props.setDiscountSort(direction);
-  }
+  };
 
   const nextDirection = (current: OptionalDirection): OptionalDirection => {
     switch (current) {
@@ -40,7 +40,7 @@ function Sorting(props: ConnectedProps<typeof connector>): JSX.Element {
       case Direction.ASC:
         return undefined;
     }
-  }
+  };
 
   const className = (direction: OptionalDirection): string => (
     direction !== undefined

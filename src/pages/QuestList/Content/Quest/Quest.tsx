@@ -1,8 +1,8 @@
 import React from 'react';
-import styles from './Quest.module.scss'
-import {Quest as QuestModel} from "../../../../models/Quest";
-import {Quest as QuestRoute} from "../../../../enums/Routes";
-import {Link} from "react-router-dom";
+import styles from './Quest.module.scss';
+import {Quest as QuestModel} from '../../../../models/Quest';
+import {Quest as QuestRoute} from '../../../../enums/Routes';
+import {Link} from 'react-router-dom';
 
 export default function Quest(
   props: { quest: QuestModel; }

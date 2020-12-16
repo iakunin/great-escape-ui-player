@@ -1,21 +1,21 @@
 import React, {useEffect, useState} from 'react';
-import styles from './Content.module.scss'
-import {QuestList} from "../../../models/Quest";
-import {trackPromise, usePromiseTracker} from "react-promise-tracker";
-import {Areas} from "../../../enums";
-import loadingIcon from "./images/loading.png";
-import Sorting from "./Sorting";
-import Quest from "./Quest";
-import notFoundIcon from "./images/notfound.png";
-import {connect, ConnectedProps} from "react-redux";
-import {getQuestList} from "../../../api/getQuestList";
-import {RootState} from "../../../config/store";
+import styles from './Content.module.scss';
+import {QuestList} from 'models/Quest';
+import {trackPromise, usePromiseTracker} from 'react-promise-tracker';
+import {Areas} from 'enums';
+import loadingIcon from './images/loading.png';
+import Sorting from './Sorting';
+import notFoundIcon from './images/notfound.png';
+import {connect, ConnectedProps} from 'react-redux';
+import {getQuestList} from 'api/getQuestList';
+import {RootState} from 'config/store';
+import Quest from './Quest';
 
 const connector = connect(
   (state: RootState) => ({
     request: state.questListRequest
   })
-)
+);
 
 function Content(props: ConnectedProps<typeof connector>): JSX.Element {
 
@@ -28,9 +28,9 @@ function Content(props: ConnectedProps<typeof connector>): JSX.Element {
   useEffect(() => {
     trackPromise(
       getQuestList(request)
-        .then(questList => {setQuestList(questList)}),
+        .then(questList => {setQuestList(questList);}),
       Areas.QuestList
-    )
+    );
   }, [setQuestList, request]);
 
   if (promiseInProgress) {

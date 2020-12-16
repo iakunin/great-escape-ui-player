@@ -1,7 +1,7 @@
 import React, {useRef} from 'react';
 import styles from './Popup.module.scss';
 import ReactPopup from 'reactjs-popup';
-import {PopupActions} from "reactjs-popup/dist/types";
+import {PopupActions} from 'reactjs-popup/dist/types';
 
 export default function Popup(props: {
   title?: string

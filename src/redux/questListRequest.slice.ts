@@ -1,6 +1,6 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
-import {Direction, Request} from "../api/getQuestList";
-import {FearLevel, QuestType} from "../enums";
+import {Direction, Request} from 'api/getQuestList';
+import {FearLevel, QuestType} from 'enums';
 
 const slice = createSlice({
   name: 'questListRequest',

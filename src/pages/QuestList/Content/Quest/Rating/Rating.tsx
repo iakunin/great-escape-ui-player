@@ -1,10 +1,10 @@
-import React from "react";
-import styles from './Rating.module.scss'
+import React from 'react';
+import styles from './Rating.module.scss';
 
 export default function Rating(props: {
   votesCount: number;
   likesPercent: number;
-} ) {
+} ): JSX.Element {
   return (
     <div className={styles.main}>
       <div className={styles.votesCount}>{props.votesCount}</div>

@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './Faq.module.scss';
-import Item from "./Item";
+import Item from './Item';
 
 export default function Faq(): JSX.Element {
   return (

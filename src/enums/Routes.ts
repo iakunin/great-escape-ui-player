@@ -8,7 +8,7 @@ export enum Routes {
 
 export type QuestParams = {
   slug: string
-}
+};
 
 export class Quest extends Object {
   private readonly slug: string;

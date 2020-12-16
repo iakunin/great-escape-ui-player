@@ -1,6 +1,6 @@
 import React from 'react';
-import {useParams} from "react-router-dom";
-import {QuestParams} from "../../enums";
+import {useParams} from 'react-router-dom';
+import {QuestParams} from '../../enums';
 
 export default function Quest(): JSX.Element {
   const { slug } = useParams<QuestParams>();

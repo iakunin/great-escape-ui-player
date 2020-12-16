@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './Footer.module.scss';
-import SocialButtons from "../SocialButtons";
+import SocialButtons from '../SocialButtons';
 
 export default function Footer(): JSX.Element {
   return (

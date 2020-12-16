@@ -1,10 +1,10 @@
 import React, {useState} from 'react';
-import styles from './Criteria.module.scss'
+import styles from './Criteria.module.scss';
 
 type Button = {
   id: string;
   title: string;
-}
+};
 
 export default function Content(props: {
   title: string;

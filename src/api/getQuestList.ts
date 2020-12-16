@@ -1,18 +1,18 @@
-import axios from "axios";
-import {QuestList} from "../models/Quest";
-import {FearLevel, QuestType} from "../enums";
+import axios from 'axios';
+import {QuestList} from 'models/Quest';
+import {FearLevel, QuestType} from 'enums';
 
 export type Request = {
   fearLevel?: FearLevel;
   type?: QuestType;
   minPrice?: number;
   sort?: Sort;
-}
+};
 
 export type Sort = {
   minPrice?: Direction;
   discount?: Direction;
-}
+};
 
 export enum Direction {
   ASC = 'acs',

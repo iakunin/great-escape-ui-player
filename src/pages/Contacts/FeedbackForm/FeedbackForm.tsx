@@ -1,8 +1,8 @@
 import React, {useState} from 'react';
 import styles from './FeedbackForm.module.scss';
-import {useForm} from "react-hook-form";
+import {useForm} from 'react-hook-form';
 import axios from 'axios';
-import Popup from "../../../components/Popup";
+import Popup from 'components/Popup';
 
 // @TODO: add captcha to this feedback form
 
@@ -24,7 +24,7 @@ export default function FeedbackForm(): JSX.Element {
     setPopupTitle('Спасибо за обращение!');
     setPopupContent(<>Мы ответим вам настолько быстро, насколько это возможно.</>);
     setPopupOpen(true);
-  }
+  };
 
   const handleFailure = (): void => {
     reset();
@@ -38,7 +38,7 @@ export default function FeedbackForm(): JSX.Element {
       </>
     );
     setPopupOpen(true);
-  }
+  };
 
   const onSubmit = handleSubmit((data: Inputs) => {
     axios.post(

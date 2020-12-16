@@ -1,6 +1,6 @@
 import React, {Component, MouseEvent} from 'react';
-import styles from './Item.module.scss'
-import Button from "./Button";
+import styles from './Item.module.scss';
+import Button from './Button';
 
 type ComponentProps = {
   question: string;
