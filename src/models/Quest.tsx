@@ -1,3 +1,5 @@
+import {MetroList} from 'models/Metro';
+
 export type Quest = {
   slug: string;
   title: string;
@@ -6,10 +8,10 @@ export type Quest = {
   durationInMinutes: bigint;
   playersMinCount: bigint;
   playersMaxCount: bigint;
-  metro: string;
   minPrice: bigint;
   coverImage: string;
   companyTitle: string;
+  metros: MetroList;
 };
 
 export type QuestList = Array<Quest>;

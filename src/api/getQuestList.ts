@@ -16,7 +16,7 @@ export type Sort = {
 };
 
 export enum Direction {
-  ASC = 'acs',
+  ASC = 'asc',
   DESC = 'desc',
 }
 
@@ -44,7 +44,7 @@ export async function getQuestList(request: Request): Promise<QuestList> {
   }
 
   return (await axios.get(
-    '/api/quests',
+    '/api/quest_aggregations',
     {params}
   )).data;
 }

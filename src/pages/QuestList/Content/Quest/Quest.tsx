@@ -24,7 +24,11 @@ export default function Quest(
           <span className={styles.playersCount}>
             {quest.playersMinCount}-{quest.playersMaxCount} игрока
           </span>
-          <span className={styles.metro}>{quest.metro}</span>
+
+          {quest.metros.map((metro, idx) => (
+            <span key={idx} className={styles.metro}>{metro.title}</span>
+          ))}
+
         </div>
 
         {/* Uncomment me when implementing Rating&Review */}

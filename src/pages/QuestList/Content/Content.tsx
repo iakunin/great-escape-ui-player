@@ -28,26 +28,34 @@ function Content(props: ConnectedProps<typeof connector>): JSX.Element {
   useEffect(() => {
     trackPromise(
       getQuestList(request)
-        .then(questList => {setQuestList(questList);}),
+        .then(questList => {
+          setQuestList(questList);
+        }),
       Areas.QuestList
     );
   }, [setQuestList, request]);
 
   if (promiseInProgress) {
     return (
-      <div className={styles.info}>
-        <img src={loadingIcon} alt="loading"/>
-        <span>Мы подбираем квесты: пожалуйста, подождите</span>
-      </div>
+      <>
+        <Sorting/>
+        <div className={styles.info}>
+          <img src={loadingIcon} alt="loading"/>
+          <span>Мы подбираем квесты: пожалуйста, подождите</span>
+        </div>
+      </>
     );
   }
 
   if (questList.length === 0) {
     return (
-      <div className={styles.info}>
-        <img src={notFoundIcon} alt="not found"/>
-        <span>К сожалению, мы не смогли найти квест под Ваш запрос</span>
-      </div>
+      <>
+        <Sorting/>
+        <div className={styles.info}>
+          <img src={notFoundIcon} alt="not found"/>
+          <span>К сожалению, мы не смогли найти квест под Ваш запрос</span>
+        </div>
+      </>
     );
   }
 
