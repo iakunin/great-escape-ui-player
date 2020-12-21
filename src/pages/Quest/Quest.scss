@@ -1,0 +1,252 @@
+.questinfo {
+  width: 100%;
+  height: auto;
+
+  .info {
+    position: absolute;
+    bottom: 62px;
+    z-index: 2;
+    box-sizing: content-box;
+    margin: 100px 0 0 55px;
+    color: #ffffff;
+
+    .description {
+      width: 565px;
+      float: left;
+
+      .top {
+        .tit {
+          font-size: 32px;
+          margin: 115px 0 0 0;
+          float: left;
+          color: #ffffff;
+          text-shadow: 0 3px 5px rgba(0, 0, 0, 0.84);
+        }
+
+        .theme {
+          font-size: 18px;
+          font-weight: 300;
+          float: right;
+          margin: 22px 0 0;
+        }
+      }
+
+      .price {
+        .from {
+          font-size: 15px;
+          font-weight: 300;
+          float: left;
+          margin: 5px 0 0 0;
+
+          span {
+            color: #ffd940;
+            text-shadow: 0 2px 4px #000;
+            font-weight: bold;
+          }
+        }
+
+        .discount {
+          font-size: 12px;
+          float: left;
+          width: 109px;
+          height: 19px;
+          margin: 5px 0 0 15px;
+          text-align: center;
+          color: #000000;
+          border-radius: 4px;
+          background-color: #ffd940;
+        }
+
+        .procent {
+          font-size: 20px;
+          font-weight: 600;
+          float: left;
+          margin: 0 0 0 7px;
+          color: #ffffff;
+          text-shadow: 0 2px 4px #000;
+        }
+
+        .query {
+          font-size: 14px;
+          font-weight: 600;
+          position: relative;
+          float: left;
+          width: 19px;
+          height: 19px;
+          margin: 5px 0 0 8px;
+          cursor: pointer;
+          text-align: center;
+          color: #000000;
+          border-radius: 50%;
+          background-color: #ffffff;
+
+          &:hover {
+            .pop {
+              display: block;
+            }
+          }
+
+          .pop {
+            position: absolute;
+            top: -5px;
+            left: 19px;
+            display: none;
+            width: 200px;
+            height: auto;
+            padding: 20px 10px;
+            cursor: default;
+            text-align: left;
+            color: #ffffff;
+            border-radius: 5px;
+            background-color: rgb(24, 24, 24);
+
+            &:hover {
+              display: block;
+            }
+          }
+        }
+      }
+
+      .text {
+        font-size: 14px;
+        font-weight: 600;
+        margin: 20px 0 0;
+        text-align: justify;
+        text-shadow: 0 2px 4px #000000;
+      }
+
+      .time, .player {
+        font-size: 16px;
+        font-weight: 400;
+        float: left;
+        margin: 20px 0 0 0;
+        padding: 0 23px 0 25px;
+        text-shadow: 0 2px 4px #000000;
+      }
+
+      .time {
+        background: url('./images/info_time.png') no-repeat 0 50%;
+      }
+
+      .player {
+        background: url('./images/info_player.png') no-repeat 0 50%;
+      }
+    }
+
+    .back_btn {
+      font-size: 14px;
+      font-weight: 300;
+      display: block;
+      float: left;
+      width: 91px;
+      height: 36px;
+      margin: 34px 20px 0 55px;
+      padding: 6px 0 0 35px;
+      cursor: pointer;
+      transition: 0.2s all;
+      text-decoration: none;
+      color: #ffffff;
+      border: 1px solid rgba(58, 58, 58, 0.81);
+      border-radius: 18px;
+      background: rgba(0, 0, 0, 0.2) url('./images/back_btn_arr.png') no-repeat 15px 50%;
+
+      &:hover {
+        color: #ffd940;
+        border-color: #ffd940;
+        background: rgba(0, 0, 0, 0.2) url('./images/back_btn_arr_hov.png') no-repeat 15px 50%;
+      }
+    }
+
+    .bron {
+      font-size: 14px;
+      font-weight: 400;
+      margin: 34px 0 0 0;
+      width: 130px;
+      height: 36px;
+      padding: 6px 0 0 0;
+      color: white;
+    }
+  }
+
+  .moreinfo {
+    position: absolute;
+    right: 112px;
+    bottom: 132px;
+    width: 246px;
+    color: #fff;
+
+    .zagolovok {
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 14px;
+      display: block;
+      text-shadow: 0 2px 4px #000;
+    }
+
+    div {
+      font-size: 13px;
+      margin: 13px 0 0 0;
+      padding: 0 0 0 23px;
+      font-weight: bold;
+      text-shadow: 0 2px 4px #000;
+
+      a {
+        color: white;
+        text-decoration: none;
+        font-weight: bold;
+        text-shadow: 0 2px 4px #000;
+
+        &:hover {
+          color: #ffd940;
+        }
+      }
+
+    }
+
+    .site {
+      background: url('./images/moreinfo_div1_bg.png') no-repeat 0 50%;
+    }
+
+    .phone {
+      background: url('./images/moreinfo_div2_bg.png') no-repeat 3px 50%;
+    }
+
+    .metro {
+      background: url('./images/moreinfo_div3_bg.png') no-repeat 0 50%;
+    }
+
+    .address {
+      background: url('./images/moreinfo_div4_bg.png') no-repeat 0 50%;
+    }
+  }
+
+  &__wrapper {
+    width: 100%;
+    height: 100%;
+    position: relative;
+
+    &:after,
+    &:before {
+      content: '';
+      display: table;
+      clear: both;
+    }
+  }
+}
+
+@media screen and (max-width: 1442px) {
+  .questinfo .info {
+    margin-top: 8%;
+
+    .description {
+      float: left;
+    }
+
+    .moreinfo {
+      float: right;
+
+      width: 260px;
+      margin: 300px 100px 0 0;
+    }
+  }
+}
