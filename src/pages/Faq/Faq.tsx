@@ -1,6 +1,7 @@
 import React from 'react';
 import styles from './Faq.module.scss';
 import Item from './Item';
+import appConfig from 'config/appConfig';
 
 export default function Faq(): JSX.Element {
   return (
@@ -83,16 +84,15 @@ const items: { question: string, answer: string }[] = [
   //   answer: 'Для бронирования понравившегося Вам квеста нужно перейти на сайт организатора.'
   // }, {
     question: 'Как вам написать?',
-    // @TODO: extract email to settings
     answer: 'Мы разместили формы обратной связи в контактах и в личном кабинете. Если Вам\n' +
       'удобнее пользоваться почтой, пишите нам на\n' +
-      '<a href="mailto:info@great-escape.ru">info@great&#8209;escape.ru</a>.\n' +
+      `<a href="mailto:${appConfig.email.info}">${appConfig.email.info}</a>.\n` +
       'Мы стараемся отвечать на письма настолько быстро, насколько это возможно.'
   }, {
     question: 'Как вам позвонить?',
-    // @TODO: extract phone to settings
     answer: 'Для вашего удобства у нас есть телефон горячей линии. Вы всегда можете позвонить\n' +
-      'нам по телефону <a href="tel:+79296051450">+7 (929) 605-14-50</a>, мы с радостью ответим на все\n' +
-      'Ваши вопросы. Мы стараемся быть на связи с нашими клиентами всегда.'
+      `нам по телефону <a href="tel:${appConfig.phoneNormalized}">${appConfig.phone}</a>,\n` +
+      'мы с радостью ответим на все Ваши вопросы.\n' +
+      'Мы стараемся быть на связи с нашими клиентами всегда.'
   },
 ];
