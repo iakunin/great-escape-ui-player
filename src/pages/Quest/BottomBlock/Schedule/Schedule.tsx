@@ -1,7 +1,20 @@
 import React from 'react';
 import styles from './Schedule.module.scss';
 
+const isFound = true;
+
 export default function Schedule(): JSX.Element {
+
+  if (!isFound) {
+    return (
+      <div className={styles.main}>
+        <div className={styles.notFound}>
+          Увы, для данного квеста нет расписания :(
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className={styles.main}>
       <div className={styles.row}>
