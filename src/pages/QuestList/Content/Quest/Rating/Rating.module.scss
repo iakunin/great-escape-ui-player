@@ -6,6 +6,13 @@
   max-width: 220px;
 }
 
+.top,
+.bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
 .votesCount {
   font-size: 12px;
   float: left;
