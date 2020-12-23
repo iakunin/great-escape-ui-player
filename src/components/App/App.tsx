@@ -2,7 +2,7 @@ import React from 'react';
 import Header from 'components/Header';
 import Footer from 'components/Footer';
 import Faq from 'pages/Faq';
-import './App.scss';
+import styles from './App.module.scss';
 import Contacts from 'pages/Contacts';
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
 import QuestList from 'pages/QuestList';
@@ -14,9 +14,7 @@ import Quest from 'pages/Quest';
 export default function App(): JSX.Element {
   return (
     <>
-      {/* @TODO: maybe we can get rid of this `wrapper` and/or `container`? */}
-      <div id="wrapper">
-        <div className="container">
+      <div className={styles.wrapper}>
           <BrowserRouter>
             <Header/>
             <section>
@@ -30,7 +28,6 @@ export default function App(): JSX.Element {
               </Switch>
             </section>
           </BrowserRouter>
-        </div>
       </div>
       <Footer/>
     </>

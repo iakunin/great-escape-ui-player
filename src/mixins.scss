@@ -1,0 +1,9 @@
+// @TODO: get rid of this mixin
+@mixin clearfix {
+  &::before,
+  &::after {
+    display: block;
+    content: '';
+    clear: both;
+  }
+}

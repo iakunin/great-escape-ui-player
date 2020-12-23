@@ -1,3 +1,5 @@
+@import 'mixins';
+
 .main {
   position: relative;
   display: block;
@@ -5,12 +7,7 @@
   min-width: 1100px;
   background-color: #131313;
 
-  &:after,
-  &:before {
-    content: '';
-    display: table;
-    clear: both;
-  }
+  @include clearfix;
 }
 
 .inner {
@@ -22,12 +19,7 @@
   padding: 0 30px;
   text-align: center;
 
-  &:after,
-  &:before {
-    content: '';
-    display: table;
-    clear: both;
-  }
+  @include clearfix;
 }
 
 .copyright {

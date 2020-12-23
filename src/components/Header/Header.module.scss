@@ -1,11 +1,9 @@
+@import 'mixins';
+
 .main {
   position: relative;
   min-height: 126px;
   margin: 0 0 25px 0;
 
-  &:after {
-    content: '';
-    display: table;
-    clear: both;
-  }
+  @include clearfix;
 }
