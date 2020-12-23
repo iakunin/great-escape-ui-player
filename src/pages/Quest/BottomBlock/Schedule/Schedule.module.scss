@@ -1,0 +1,102 @@
+@import 'mixins';
+
+.main {
+  margin: 50px;
+}
+
+.row {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  min-height: 80px;
+  @include clearfix;
+}
+
+.block {
+  float: left;
+  margin-top: 20px;
+  margin-bottom: 20px;
+
+  &:not(:last-child) {
+    margin-right: 40px;
+  }
+
+  .time {
+    display: flex;
+    justify-content: center;
+    height: 40px;
+    padding: 0 10px;
+    background: url('./images/bglfrt.png') no-repeat 0 100%,
+      url('./images/bglfrt.png') no-repeat 100% 100%;
+
+    .box {
+      font-size: 14px;
+      color: #ffffff;
+
+      &:not(:last-child) {
+        margin: 0 20px 0 0;
+      }
+    }
+  }
+}
+
+.day {
+  font-size: 14px;
+  float: left;
+  width: 155px;
+  height: 90px;
+  padding: 25px 0 0 0;
+  text-align: left;
+  color: #ffffff;
+}
+
+.price {
+  margin: -18px 0 0 0;
+
+  .old {
+    line-height: 1;
+    overflow: hidden;
+    width: 100%;
+    text-align: center;
+
+    span {
+      font-size: 12px;
+      position: relative;
+      display: inline-block;
+      padding: 0 17px;
+      text-decoration: line-through;
+      color: #b0b0b0;
+      transition: 0.7s all;
+      background: url('./images/price_bgr.png') no-repeat 0 50%,
+        url('./images/price_bgl.png') no-repeat 100% 50%;
+
+      &:before, &:after {
+        position: absolute;
+        top: 50%;
+        width: 1000px;
+        height: 1px;
+        content: '';
+        background-color: #ffd940;
+      }
+
+      &:before {
+        right: 100%;
+      }
+
+      &:after {
+        left: 100%;
+      }
+    }
+  }
+
+  .new {
+    line-height: 0.5;
+    text-align: center;
+    transition: 0.7s all;
+
+    span {
+      font-size: 13px;
+      display: inline-block;
+      color: #ffd940;
+    }
+  }
+}
