@@ -1,0 +1,142 @@
+.quest {
+  position: absolute;
+  bottom: 62px;
+  z-index: 2;
+  box-sizing: content-box;
+  margin: 100px 0 0 55px;
+  color: #ffffff;
+  width: 565px;
+}
+
+.title {
+  font-size: 32px;
+  margin: 115px 0 0 0;
+  color: #ffffff;
+  text-shadow: 0 3px 5px rgba(0, 0, 0, 0.84);
+}
+
+.price,
+.extraInfo {
+  display: flex;
+}
+
+.minPrice {
+  font-size: 15px;
+  font-weight: 300;
+  margin: 5px 0 0 0;
+
+  span {
+    color: #ffd940;
+    text-shadow: 0 2px 4px #000;
+    font-weight: bold;
+  }
+}
+
+.discount {
+  font-size: 12px;
+  width: 109px;
+  height: 19px;
+  margin: 5px 0 0 15px;
+  text-align: center;
+  color: #000000;
+  border-radius: 4px;
+  background-color: #ffd940;
+  line-height: normal;
+}
+
+.percent {
+  font-size: 20px;
+  font-weight: 600;
+  margin: 0 0 0 7px;
+  color: #ffffff;
+  text-shadow: 0 2px 4px #000;
+}
+
+.query {
+  font-size: 14px;
+  font-weight: 600;
+  position: relative;
+  width: 19px;
+  height: 19px;
+  margin: 3px 0 0 8px;
+  cursor: pointer;
+  text-align: center;
+  color: #000000;
+  border-radius: 50%;
+  background-color: #ffffff;
+
+  &:hover {
+    .pop {
+      display: block;
+    }
+  }
+
+  .pop {
+    position: absolute;
+    top: -5px;
+    left: 19px;
+    display: none;
+    width: 200px;
+    height: auto;
+    padding: 20px 10px;
+    cursor: default;
+    text-align: left;
+    color: #ffffff;
+    border-radius: 5px;
+    background-color: rgb(24, 24, 24);
+
+    &:hover {
+      display: block;
+    }
+  }
+}
+
+.description {
+  font-size: 14px;
+  font-weight: 600;
+  margin: 20px 0 0;
+  text-align: justify;
+  text-shadow: 0 2px 4px #000000;
+}
+
+.duration, .playersCount {
+  font-size: 16px;
+  font-weight: 400;
+  margin: 20px 0 0 0;
+  padding: 0 23px 0 25px;
+  text-shadow: 0 2px 4px #000000;
+}
+
+.duration {
+  background: url('./images/info_time.png') no-repeat 0 50%;
+}
+
+.playersCount {
+  background: url('./images/info_player.png') no-repeat 0 50%;
+}
+
+.goBackButton {
+  font-size: 14px;
+  font-weight: 300;
+  display: block;
+  float: left;
+  width: 92px;
+  height: 36px;
+  margin: 34px 20px 0 55px;
+  padding: 0 0 0 20px;
+  cursor: pointer;
+  transition: 0.2s all;
+  text-decoration: none;
+  color: #ffffff;
+  border: 1px solid rgba(58, 58, 58, 0.2);
+  border-radius: 18px;
+  background: rgba(0, 0, 0, 0.2) url('./images/back_btn_arr.png') no-repeat 15px 50%;
+  box-sizing: border-box;
+  outline: none;
+
+  &:hover {
+    color: #ffd940;
+    border-color: #ffd940;
+    background: rgba(0, 0, 0, 0.2) url('./images/back_btn_arr_hov.png') no-repeat 15px 50%;
+  }
+}

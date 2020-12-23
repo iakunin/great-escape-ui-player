@@ -1,0 +1,49 @@
+.main {
+  position: absolute;
+  right: 112px;
+  bottom: 132px;
+  width: 246px;
+  color: #fff;
+}
+
+.header {
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 14px;
+  display: block;
+  text-shadow: 0 2px 4px #000;
+}
+
+.title,
+.phone,
+.metro,
+.address {
+  font-size: 13px;
+  margin: 13px 0 0 0;
+  padding: 0 0 0 23px;
+  font-weight: bold;
+  text-shadow: 0 2px 4px #000;
+
+  a {
+    color: white;
+    &:hover {
+      color: #ffd940;
+    }
+  }
+}
+
+.title {
+  background: url('./images/moreinfo_div1_bg.png') no-repeat 0 50%;
+}
+
+.phone {
+  background: url('./images/moreinfo_div2_bg.png') no-repeat 3px 50%;
+}
+
+.metro {
+  background: url('./images/moreinfo_div3_bg.png') no-repeat 0 50%;
+}
+
+.address {
+  background: url('./images/moreinfo_div4_bg.png') no-repeat 0 50%;
+}
