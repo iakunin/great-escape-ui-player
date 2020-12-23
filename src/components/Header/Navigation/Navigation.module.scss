@@ -41,6 +41,10 @@
     border-top: 2px solid #ffffff;
     border-bottom: 2px solid #ffffff;
     padding: 14px 45px 12px;
+
+    &:hover {
+      color: #ffd940;
+    }
   }
 }
 
