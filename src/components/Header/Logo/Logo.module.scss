@@ -20,7 +20,6 @@
 
 .text {
   margin: 0 20px;
-  min-width: 102px;
   padding: 0;
   list-style-type: none;
 }
@@ -40,4 +39,16 @@
 
 .socialButtons {
   padding-top: 14px;
+}
+
+@media screen and (max-width: 880px) {
+  .text {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 730px) {
+  .main {
+    display: none;
+  }
 }

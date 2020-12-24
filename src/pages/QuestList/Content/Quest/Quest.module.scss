@@ -24,6 +24,10 @@
   &:hover .hovered {
     opacity: 1;
   }
+
+  * {
+    z-index: 2;
+  }
 }
 
 .title {
@@ -78,11 +82,6 @@
       background: url('images/info_metro.png') no-repeat 0 50%;
     }
   }
-}
-
-* {
-  // @TODO: get rid of this `*` selector
-  z-index: 2;
 }
 
 .background {

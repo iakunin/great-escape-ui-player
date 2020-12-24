@@ -20,7 +20,7 @@ export default function ButtonsBlock(): JSX.Element {
         <Button icon={registrationIcon} text={'Регистрация'} href={'#'}/>,
       ]
       : [
-        <Button icon={subscriptionIcon} text={'Подписка'} href={'#'}/>,
+        <Button icon={subscriptionIcon} text={'Подписаться'} href={'#'}/>,
       ];
 
   return (
