@@ -1,0 +1,28 @@
+.buttons {
+  width: 280px;
+  margin: 25px auto 0;
+  border: 1px solid #c3c3c3;
+  border-radius: 100px;
+}
+
+.button {
+  font-size: 14px;
+  display: table-cell;
+  width: 140px;
+  height: 45px;
+  cursor: pointer;
+  transition: 0.2s all;
+  text-align: center;
+  vertical-align: middle;
+  color: #ffffff;
+
+  &.active {
+    color: #ffd940;
+    box-shadow: 0 0 1px 1px #ffd940;
+    border-radius: 50px;
+  }
+
+  &:hover {
+    color: #ffd940;
+  }
+}
