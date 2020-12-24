@@ -56,8 +56,3 @@ h1 {
   color: #ffffff;
   background: url('./components/App/images/headerUnderline.png') no-repeat 0 100%;
 }
-
-// @TODO: get rid of this class
-.clearfix {
-  @include clearfix;
-}

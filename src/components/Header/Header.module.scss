@@ -1,9 +1,9 @@
-@import 'mixins';
-
 .main {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
   position: relative;
   min-height: 126px;
   margin: 0 0 25px 0;
-
-  @include clearfix;
 }
