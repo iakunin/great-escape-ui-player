@@ -1,10 +1,12 @@
 .main {
   height: 74px;
-  margin: 48px 12px 0;
+  margin: 40px 25px 0;
+
+  ul {
+    display: flex;
+  }
 
   li {
-    float: left;
-
     &:not(:last-child) {
       margin: 0 25px 0 0;
     }

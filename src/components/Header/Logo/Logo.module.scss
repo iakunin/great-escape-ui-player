@@ -1,14 +1,12 @@
 .main {
-  position: relative;
+  display: flex;
   margin: 17px 40px 0 0;
-  width: 230px;
 }
 
 .image {
   width: 113px;
   height: 105px;
   cursor: pointer;
-  float: left;
   background: url('images/logo.png') center top no-repeat;
 
   &:hover {
@@ -21,8 +19,8 @@
 }
 
 .text {
-  float: right;
-  margin: 0;
+  margin: 0 20px;
+  min-width: 102px;
   padding: 0;
   list-style-type: none;
 }

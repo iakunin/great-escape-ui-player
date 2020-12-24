@@ -15,10 +15,11 @@ export default function ButtonsBlock(): JSX.Element {
       [
         <Button icon={cabinetIcon} text={'Кабинет'} href={'/cabinet'}/>,
         <Button icon={logoutIcon} text={'Выход'} href={'#'}/>,
-      ]
-      : [
+
         <Button icon={loginIcon} text={'Вход'} href={'#'}/>,
         <Button icon={registrationIcon} text={'Регистрация'} href={'#'}/>,
+      ]
+      : [
         <Button icon={subscriptionIcon} text={'Подписка'} href={'#'}/>,
       ];
 
