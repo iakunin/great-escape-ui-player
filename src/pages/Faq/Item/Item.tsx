@@ -1,10 +1,10 @@
-import React, {Component, MouseEvent} from 'react';
+import React, {Component} from 'react';
 import styles from './Item.module.scss';
 import Button from './Button';
 
 type ComponentProps = {
   question: string;
-  answer: string;
+  answer: JSX.Element;
 };
 
 type ComponentState = {
@@ -20,8 +20,7 @@ export default class Item extends Component<ComponentProps, ComponentState> {
     this.handleClick = this.handleClick.bind(this);
   }
 
-  private handleClick(e: MouseEvent): void {
-    e.preventDefault();
+  private handleClick(): void {
     this.setState(state => ({
       isOpen: !state.isOpen
     }));
@@ -36,10 +35,9 @@ export default class Item extends Component<ComponentProps, ComponentState> {
 
       {
         this.state.isOpen &&
-        <div
-          className={styles.answer}
-          dangerouslySetInnerHTML={{__html: this.props.answer}}
-        />
+        <div className={styles.answer}>
+          {this.props.answer}
+        </div>
       }
 
       <div className={styles.line}/>
