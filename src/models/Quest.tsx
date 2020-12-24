@@ -1,5 +1,9 @@
 import {MetroList} from 'models/Metro';
 
+export type QuestPhoto = {
+  url: string;
+};
+
 export type Quest = {
   slug: string;
   title: string;
@@ -9,10 +13,11 @@ export type Quest = {
   playersMinCount: number;
   playersMaxCount: number;
   minPrice: number;
-  coverImage: string;
   companyTitle: string;
   metros: MetroList;
   locationAddress: string;
+  coverPhoto: string;
+  photos: Array<QuestPhoto>;
 };
 
 export type QuestList = Array<Quest>;

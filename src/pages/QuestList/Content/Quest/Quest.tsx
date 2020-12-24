@@ -12,7 +12,7 @@ export default function Quest(
   return (
     <div
       className={styles.main}
-      style={{backgroundImage: `url(${quest.coverImage})`}}
+      style={{backgroundImage: `url(${quest.coverPhoto})`}}
     >
 
       <div className={styles.unhovered}>
