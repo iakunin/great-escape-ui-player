@@ -7,7 +7,6 @@ type ComponentProps = {
   text: string;
 };
 
-// @TODO: add onClick behavior
 export default class Button extends Component<ComponentProps> {
   render = (): JSX.Element => (
     <a href={this.props.href} className={styles.main}>

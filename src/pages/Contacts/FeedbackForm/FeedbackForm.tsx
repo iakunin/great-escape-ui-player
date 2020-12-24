@@ -4,8 +4,6 @@ import {useForm} from 'react-hook-form';
 import axios from 'axios';
 import Popup from 'components/Popup';
 
-// @TODO: add captcha to this feedback form
-
 type Inputs = {
   name: string;
   email: string;

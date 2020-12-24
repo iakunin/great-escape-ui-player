@@ -59,7 +59,6 @@ function Content(props: ConnectedProps<typeof connector>): JSX.Element {
     );
   }
 
-  // @TODO: add infinite scroll
   return (
     <>
       <Sorting/>
