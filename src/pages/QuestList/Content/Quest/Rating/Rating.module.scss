@@ -15,7 +15,6 @@
 
 .votesCount {
   font-size: 12px;
-  float: left;
   margin: 0 0 0 20px;
   padding: 0 0 0 22px;
   color: #ffffff;
@@ -24,13 +23,11 @@
 
 .likesPercent {
   font-size: 12px;
-  float: right;
   margin: 0 20px 0 0;
   color: #ffffff;
 }
 
 .minus {
-  float: left;
   width: 11px;
   height: 11px;
   cursor: pointer;
@@ -38,7 +35,6 @@
 }
 
 .plus {
-  float: right;
   width: 11px;
   height: 11px;
   cursor: pointer;
@@ -46,7 +42,6 @@
 }
 
 .scale {
-  float: left;
   overflow: hidden;
   width: 84%;
   height: 4px;
