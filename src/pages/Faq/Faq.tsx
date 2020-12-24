@@ -91,7 +91,7 @@ const items: { question: string, answer: string }[] = [
   }, {
     question: 'Как вам позвонить?',
     answer: 'Для вашего удобства у нас есть телефон горячей линии. Вы всегда можете позвонить\n' +
-      `нам по телефону <a href="tel:${appConfig.phoneNormalized}">${appConfig.phone}</a>,\n` +
+      `нам по телефону <a href="tel:${appConfig.phone.normalized}">${appConfig.phone.pretty}</a>,\n` +
       'мы с радостью ответим на все Ваши вопросы.\n' +
       'Мы стараемся быть на связи с нашими клиентами всегда.'
   },

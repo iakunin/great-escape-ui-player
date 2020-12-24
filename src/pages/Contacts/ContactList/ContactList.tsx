@@ -16,7 +16,7 @@ export default function ContactList(): JSX.Element {
           Жалобы и предложения: <a href={`mailto:${appConfig.email.quality}`}>{appConfig.email.quality}</a>
         </li>
         <li>
-          Телефон: <a href={`tel:${appConfig.phoneNormalized}`}>{appConfig.phone}</a>
+          Телефон: <a href={`tel:${appConfig.phone.normalized}`}>{appConfig.phone.pretty}</a>
         </li>
       </ul>
     </div>

@@ -13,7 +13,7 @@ export default function Company(props: {
       <span className={styles.header}>Организатор:</span>
       <div className={styles.title}>{quest.companyTitle}</div>
       <div className={styles.phone}>
-        <a href={`tel:${appConfig.phoneNormalized}`}>{appConfig.phone}</a>
+        <a href={`tel:${appConfig.phone.normalized}`}>{appConfig.phone.pretty}</a>
       </div>
 
       {quest.metros.map((metro, idx) =>

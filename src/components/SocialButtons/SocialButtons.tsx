@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from './SocialButtons.module.scss';
+import appConfig from 'config/appConfig';
 
 export default function SocialButtons(): JSX.Element {
   return (
@@ -7,7 +8,7 @@ export default function SocialButtons(): JSX.Element {
       <ul>
         <li>
           <a
-            href="https://vk.com/greatescape_project"
+            href={appConfig.socialLinks.vk}
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -16,7 +17,7 @@ export default function SocialButtons(): JSX.Element {
         </li>
         <li>
           <a
-            href="https://instagram.com/greatescape_project"
+            href={appConfig.socialLinks.instagram}
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -25,7 +26,7 @@ export default function SocialButtons(): JSX.Element {
         </li>
         <li>
           <a
-            href="https://www.facebook.com/Great-Escape-Project-844307092273179"
+            href={appConfig.socialLinks.facebook}
             target="_blank"
             rel="noopener noreferrer"
           >
