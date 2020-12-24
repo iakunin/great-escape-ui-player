@@ -7,8 +7,10 @@ export default function Contacts(): JSX.Element {
   return (
     <div className={styles.main}>
       <h1>Контакты и обратная связь</h1>
-      <ContactList/>
-      <FeedbackForm/>
+      <div className={styles.body}>
+        <ContactList/>
+        <FeedbackForm/>
+      </div>
     </div>
   );
 }
