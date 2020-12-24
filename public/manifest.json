@@ -1,11 +1,11 @@
 {
-  "short_name": "ui-player",
-  "name": "Great Escape PlayerUI",
+  "short_name": "Great Escape",
+  "name": "Great Escape: лучшие квесты Москвы",
   "icons": [
     {
       "src": "favicon.ico",
-      "sizes": "64x64 32x32 24x24 16x16",
-      "type": "image/x-icon"
+      "type": "image/x-icon",
+      "sizes": "16x16 24x24 32x32 64x64"
     },
     {
       "src": "logo192.png",
@@ -13,9 +13,9 @@
       "sizes": "192x192"
     },
     {
-      "src": "logo512.png",
+      "src": "logo256.png",
       "type": "image/png",
-      "sizes": "512x512"
+      "sizes": "256x256"
     }
   ],
   "start_url": ".",
