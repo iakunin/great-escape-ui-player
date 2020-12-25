@@ -10,7 +10,7 @@ export default function QuestInfo(props: {
 }): JSX.Element {
   return (
     <div className={styles.main}>
-      <Quest  quest={props.quest} goBack={props.goBack}/>
+      <Quest quest={props.quest} goBack={props.goBack}/>
       <Company quest={props.quest} />
     </div>
   );
