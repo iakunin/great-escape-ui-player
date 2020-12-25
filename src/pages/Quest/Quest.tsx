@@ -8,6 +8,7 @@ import QuestInfo from 'pages/Quest/QuestInfo';
 import styles from './Quest.module.scss';
 import {Quest as QuestModel} from 'models/Quest';
 import {getQuest} from 'api/getQuest';
+import NotFound from 'pages/NotFound';
 
 function Quest(props: RouteComponentProps<QuestParams>): JSX.Element {
 
@@ -15,12 +16,23 @@ function Quest(props: RouteComponentProps<QuestParams>): JSX.Element {
 
   const [quest, setQuest] = useState<QuestModel | undefined>(undefined);
 
+  const [isFound, setFound] = useState<boolean | undefined>(undefined);
+
   useEffect(() => {
     getQuest(slug)
       .then(quest => {
+        setFound(true);
         setQuest(quest);
-      });
-  }, [slug, setQuest]);
+      }).catch(err => {
+        if (err.response.status === 404) {
+          setFound(false);
+        }
+    });
+  }, [slug, setQuest, setFound]);
+
+  if (isFound === false) {
+    return <NotFound/>;
+  }
 
   if (quest === undefined) {
     return <></>;
@@ -28,7 +40,6 @@ function Quest(props: RouteComponentProps<QuestParams>): JSX.Element {
 
   return (
     <>
-
       <div className={styles.main}>
         <Slider urls={quest.photos.map(p => p.url)}/>
         <QuestInfo quest={quest} goBack={props.history.goBack}/>
