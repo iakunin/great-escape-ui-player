@@ -40,7 +40,7 @@ export default function FeedbackForm(): JSX.Element {
 
   const onSubmit = handleSubmit((data: Inputs) => {
     axios.post(
-      '/api/feedback',
+      '/player-api/feedback',
       data
     )
       .then(handleSuccess, handleFailure)
