@@ -3,17 +3,17 @@ import styles from './BottomBlock.module.scss';
 import Schedule from 'pages/Quest/BottomBlock/Schedule';
 import Reviews from 'pages/Quest/BottomBlock/Reviews';
 
-const items = [
-  {
-    component: <Schedule/>,
-    title: 'Расписание'
-  }, {
-    component: <Reviews/>,
-    title: 'Отзывы'
-  },
-];
+export default function BottomBlock(props: {questId: string}): JSX.Element {
 
-export default function BottomBlock(): JSX.Element {
+  const items = [
+    {
+      component: <Schedule questId={props.questId}/>,
+      title: 'Расписание'
+    }, {
+      component: <Reviews/>,
+      title: 'Отзывы'
+    },
+  ];
 
   const [active, setActive] = useState(items[0]);
 

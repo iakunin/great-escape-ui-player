@@ -5,6 +5,7 @@ export type QuestPhoto = {
 };
 
 export type Quest = {
+  id: string;
   slug: string;
   title: string;
   description: string;
