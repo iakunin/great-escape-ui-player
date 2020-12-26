@@ -44,7 +44,7 @@ export async function getQuestList(request: Request): Promise<QuestList> {
   }
 
   return (await axios.get(
-    '/api/quest_aggregations',
+    '/player-api/quests',
     {params}
   )).data;
 }

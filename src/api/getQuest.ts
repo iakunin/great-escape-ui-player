@@ -3,6 +3,6 @@ import {Quest} from 'models/Quest';
 
 export async function getQuest(slug: string): Promise<Quest> {
   return (await axios.get(
-    `/api/quest_aggregations/${slug}`
+    `/player-api/quests/${slug}`
   )).data;
 }
