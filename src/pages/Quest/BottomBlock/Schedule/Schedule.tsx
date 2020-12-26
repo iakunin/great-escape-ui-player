@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import styles from './Schedule.module.scss';
 import {SlotList} from 'models/Slot';
 import {getSlotList} from 'api/getSlotList';
+import {startCase} from 'lodash';
 
 export default function Schedule(props: { questId: string }): JSX.Element {
 
@@ -20,23 +21,23 @@ export default function Schedule(props: { questId: string }): JSX.Element {
     return <></>;
   }
 
+  type PreparedSlot = {
+    timeList: Array<string>;
+    priceWithoutDiscount: number;
+    priceWithDiscount: number;
+    discountInPercents: number;
+  };
+
   type PreparedSlotList = Array<{
     date: string;
     dayOfWeek: string;
-    slotList: Array<{
-      time: string;
-      priceWithoutDiscount: number;
-      priceWithDiscount: number;
-    }>;
+    slotList: Array<PreparedSlot>;
   }>;
 
   function prepareSlotList(list: SlotList): PreparedSlotList {
-    const mapped = list.map(slot => ({...slot, dateTimeLocal: new Date(slot.dateTimeLocal)}));
-    type SlotWithDate = typeof mapped[0];
-
-    const grouped = new Map<string, SlotWithDate[]>();
-    mapped.forEach(slot => {
-      const date = slot.dateTimeLocal.toISOString().split('T')[0];
+    const grouped = new Map<string, SlotList>();
+    list.forEach(slot => {
+      const date = (new Date(slot.dateTimeLocal)).toISOString().split('T')[0];
       const value = grouped.get(date);
       if (value !== undefined) {
         value.push(slot);
@@ -48,19 +49,45 @@ export default function Schedule(props: { questId: string }): JSX.Element {
     const result: PreparedSlotList = [];
 
     grouped.forEach(((slots, key) => {
-      const date = new Date(key + 'T00:00:00Z');
-      result.push({
-        date: date.toLocaleString('ru-RU', {month: 'long', day: 'numeric', timeZone: 'UTC'}),
-        dayOfWeek: date.toLocaleString('ru-RU', {weekday: 'long', timeZone: 'UTC'}),
-        slotList: slots.map(slot => ({
-          time: slot.dateTimeLocal.toLocaleString('ru-RU', {
+      const _slotList = new Array<PreparedSlot>();
+      slots.forEach((s) => {
+        const time = (new Date(s.dateTimeLocal)).toLocaleString(
+          'ru-RU', {
             hour: '2-digit',
             minute: '2-digit',
             timeZone: 'UTC'
-          }),
-          priceWithoutDiscount: slot.price,
-          priceWithDiscount: Math.ceil(slot.price * slot.discountInPercents / 100),
-        })),
+          });
+
+        if (_slotList.length !== 0) {
+          const last = _slotList[_slotList.length - 1];
+          if (
+            last.priceWithoutDiscount === s.price
+            && last.discountInPercents === s.discountInPercents
+          ) {
+            last.timeList.push(time);
+            return;
+          }
+        }
+
+        _slotList.push({
+          timeList: [(new Date(s.dateTimeLocal)).toLocaleString('ru-RU', {
+            hour: '2-digit',
+            minute: '2-digit',
+            timeZone: 'UTC'
+          })],
+          priceWithoutDiscount: s.price,
+          priceWithDiscount: s.price - Math.ceil(s.price * s.discountInPercents / 100),
+          discountInPercents: s.discountInPercents,
+        });
+
+      });
+
+      result.push({
+        date: new Date(key + 'T00:00:00Z')
+          .toLocaleString('ru-RU', {month: 'long', day: 'numeric', timeZone: 'UTC'}),
+        dayOfWeek: new Date(key + 'T00:00:00Z')
+          .toLocaleString('ru-RU', {weekday: 'short', timeZone: 'UTC'}),
+        slotList: _slotList,
       });
     }));
 
@@ -81,12 +108,14 @@ export default function Schedule(props: { questId: string }): JSX.Element {
     <div className={styles.main}>
       {slotList.map((slot, idx) => (
         <div key={idx} className={styles.row}>
-          <span className={styles.day}>{slot.date}, {slot.dayOfWeek}</span>
+          <span className={styles.day}>{slot.date}, {startCase(slot.dayOfWeek)}</span>
 
           {slot.slotList.map((item, ix) => (
             <div key={ix} className={styles.block}>
               <div className={styles.time}>
-                <div className={styles.box}>{item.time}</div>
+                {item.timeList.map((time, i) => (
+                  <div key={i} className={styles.box}>{time}</div>
+                ))}
               </div>
               <div className={styles.price}>
                 <div className={styles.old}><span>{item.priceWithoutDiscount} ₽</span></div>
