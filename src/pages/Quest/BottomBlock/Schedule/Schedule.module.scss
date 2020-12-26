@@ -25,7 +25,7 @@
     margin-right: 40px;
   }
 
-  .time {
+  .timeList {
     display: flex;
     justify-content: center;
     height: 40px;
@@ -33,7 +33,7 @@
     background: url('./images/bglfrt.png') no-repeat 0 100%,
       url('./images/bglfrt.png') no-repeat 100% 100%;
 
-    .box {
+    .time {
       font-size: 14px;
       color: #ffffff;
 

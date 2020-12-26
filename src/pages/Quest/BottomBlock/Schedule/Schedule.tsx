@@ -6,92 +6,19 @@ import {startCase} from 'lodash';
 
 export default function Schedule(props: { questId: string }): JSX.Element {
 
-  const [slotList, setSlotList] = useState<PreparedSlotList | undefined>(undefined);
+  const [slotList, setSlotList] = useState<SlotList | undefined>(undefined);
 
   const {questId} = props;
 
   useEffect(() => {
     getSlotList(questId)
       .then(list => {
-        setSlotList(prepareSlotList(list));
+        setSlotList(list);
       });
   }, [questId, setSlotList]);
 
   if (slotList === undefined) {
     return <></>;
-  }
-
-  type PreparedSlot = {
-    timeList: Array<string>;
-    priceWithoutDiscount: number;
-    priceWithDiscount: number;
-    discountInPercents: number;
-  };
-
-  type PreparedSlotList = Array<{
-    date: string;
-    dayOfWeek: string;
-    slotList: Array<PreparedSlot>;
-  }>;
-
-  function prepareSlotList(list: SlotList): PreparedSlotList {
-    const grouped = new Map<string, SlotList>();
-    list.forEach(slot => {
-      const date = (new Date(slot.dateTimeLocal)).toISOString().split('T')[0];
-      const value = grouped.get(date);
-      if (value !== undefined) {
-        value.push(slot);
-      } else {
-        grouped.set(date, [slot]);
-      }
-    });
-
-    const result: PreparedSlotList = [];
-
-    grouped.forEach(((slots, key) => {
-      const _slotList = new Array<PreparedSlot>();
-      slots.forEach((s) => {
-        const time = (new Date(s.dateTimeLocal)).toLocaleString(
-          'ru-RU', {
-            hour: '2-digit',
-            minute: '2-digit',
-            timeZone: 'UTC'
-          });
-
-        if (_slotList.length !== 0) {
-          const last = _slotList[_slotList.length - 1];
-          if (
-            last.priceWithoutDiscount === s.price
-            && last.discountInPercents === s.discountInPercents
-          ) {
-            last.timeList.push(time);
-            return;
-          }
-        }
-
-        _slotList.push({
-          timeList: [(new Date(s.dateTimeLocal)).toLocaleString('ru-RU', {
-            hour: '2-digit',
-            minute: '2-digit',
-            timeZone: 'UTC'
-          })],
-          priceWithoutDiscount: s.price,
-          priceWithDiscount: s.price - Math.ceil(s.price * s.discountInPercents / 100),
-          discountInPercents: s.discountInPercents,
-        });
-
-      });
-
-      result.push({
-        date: new Date(key + 'T00:00:00Z')
-          .toLocaleString('ru-RU', {month: 'long', day: 'numeric', timeZone: 'UTC'}),
-        dayOfWeek: new Date(key + 'T00:00:00Z')
-          .toLocaleString('ru-RU', {weekday: 'short', timeZone: 'UTC'}),
-        slotList: _slotList,
-      });
-    }));
-
-    return result;
   }
 
   if (slotList?.length === 0) {
@@ -106,20 +33,19 @@ export default function Schedule(props: { questId: string }): JSX.Element {
 
   return (
     <div className={styles.main}>
-      {slotList.map((slot, idx) => (
+      {prepareSlotList(slotList).map((byDateItem, idx) => (
         <div key={idx} className={styles.row}>
-          <span className={styles.day}>{slot.date}, {startCase(slot.dayOfWeek)}</span>
-
-          {slot.slotList.map((item, ix) => (
+          <span className={styles.day}>{formattedDate(byDateItem.date)}</span>
+          {byDateItem.groupedByPrice.map((byPriceItem, ix) => (
             <div key={ix} className={styles.block}>
-              <div className={styles.time}>
-                {item.timeList.map((time, i) => (
-                  <div key={i} className={styles.box}>{time}</div>
+              <div className={styles.timeList}>
+                {byPriceItem.slotList.map((slot, i) => (
+                  <div key={i} className={styles.time}>{formattedTime(slot.dateTimeLocal)}</div>
                 ))}
               </div>
               <div className={styles.price}>
-                <div className={styles.old}><span>{item.priceWithoutDiscount} ₽</span></div>
-                <div className={styles.new}><span>{item.priceWithDiscount} ₽</span></div>
+                <div className={styles.old}><span>{byPriceItem.priceWithoutDiscount} ₽</span></div>
+                <div className={styles.new}><span>{byPriceItem.priceWithDiscount} ₽</span></div>
               </div>
             </div>
           ))}
@@ -128,3 +54,82 @@ export default function Schedule(props: { questId: string }): JSX.Element {
     </div>
   );
 }
+
+type GroupedByPrice = {
+  slotList: SlotList;
+  priceWithoutDiscount: number;
+  priceWithDiscount: number;
+};
+
+type GroupedByDate = Array<{
+  date: string;
+  groupedByPrice: Array<GroupedByPrice>;
+}>;
+
+const prepareSlotList = (list: SlotList): GroupedByDate => {
+  const groupByDate = (lst: SlotList): Map<string, SlotList> => {
+    const groupedByDate = new Map<string, SlotList>();
+    lst.forEach(slot => {
+      const date = (new Date(slot.dateTimeLocal)).toISOString().split('T')[0];
+      const value = groupedByDate.get(date);
+      if (value !== undefined) {
+        value.push(slot);
+      } else {
+        groupedByDate.set(date, [slot]);
+      }
+    });
+
+    return groupedByDate;
+  };
+
+  const result: GroupedByDate = [];
+
+  groupByDate(list).forEach(((slots, date) => {
+    const groupedByPrice = new Array<GroupedByPrice>();
+    slots.forEach((s) => {
+      if (groupedByPrice.length !== 0) {
+        const last = groupedByPrice[groupedByPrice.length - 1];
+        if (
+          last.priceWithoutDiscount === s.priceWithoutDiscount
+          && last.priceWithDiscount === s.priceWithDiscount
+        ) {
+          last.slotList.push(s);
+          return;
+        }
+      }
+
+      groupedByPrice.push({
+        slotList: [s],
+        priceWithoutDiscount: s.priceWithoutDiscount,
+        priceWithDiscount: s.priceWithDiscount
+      });
+    });
+
+    result.push({
+      date: date,
+      groupedByPrice: groupedByPrice,
+    });
+  }));
+
+  return result;
+};
+
+const formattedDate = (date: string): string => {
+  const monthAndDay = new Date(date + 'T00:00:00Z')
+    .toLocaleString('ru-RU', {month: 'long', day: 'numeric', timeZone: 'UTC'});
+  const dayOfWeek = startCase(
+    new Date(date + 'T00:00:00Z')
+      .toLocaleString('ru-RU', {weekday: 'short', timeZone: 'UTC'})
+  );
+
+  return `${monthAndDay}, ${dayOfWeek}`;
+};
+
+const formattedTime = (dateTime: string): string => (
+  new Date(dateTime).toLocaleString(
+    'ru-RU', {
+      hour: '2-digit',
+      minute: '2-digit',
+      timeZone: 'UTC'
+    })
+);
