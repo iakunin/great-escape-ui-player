@@ -44,7 +44,7 @@ export default function Schedule(props: { questId: string }): JSX.Element {
                 ))}
               </div>
               <div className={styles.price}>
-                <div className={styles.old}><span>{byPriceItem.priceWithoutDiscount} ₽</span></div>
+                <div className={styles.old}><span>{byPriceItem.priceOriginal} ₽</span></div>
                 <div className={styles.new}><span>{byPriceItem.priceWithDiscount} ₽</span></div>
               </div>
             </div>
@@ -57,7 +57,7 @@ export default function Schedule(props: { questId: string }): JSX.Element {
 
 type GroupedByPrice = {
   slotList: SlotList;
-  priceWithoutDiscount: number;
+  priceOriginal: number;
   priceWithDiscount: number;
 };
 
@@ -86,22 +86,22 @@ const prepareSlotList = (list: SlotList): GroupedByDate => {
 
   groupByDate(list).forEach(((slots, date) => {
     const groupedByPrice = new Array<GroupedByPrice>();
-    slots.forEach((s) => {
+    slots.forEach((slot) => {
       if (groupedByPrice.length !== 0) {
         const last = groupedByPrice[groupedByPrice.length - 1];
         if (
-          last.priceWithoutDiscount === s.priceWithoutDiscount
-          && last.priceWithDiscount === s.priceWithDiscount
+          last.priceOriginal === slot.priceOriginal
+          && last.priceWithDiscount === slot.priceWithDiscount
         ) {
-          last.slotList.push(s);
+          last.slotList.push(slot);
           return;
         }
       }
 
       groupedByPrice.push({
-        slotList: [s],
-        priceWithoutDiscount: s.priceWithoutDiscount,
-        priceWithDiscount: s.priceWithDiscount
+        slotList: [slot],
+        priceOriginal: slot.priceOriginal,
+        priceWithDiscount: slot.priceWithDiscount
       });
     });
 
