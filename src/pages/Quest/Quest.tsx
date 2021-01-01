@@ -24,7 +24,7 @@ function Quest(props: RouteComponentProps<QuestParams>): JSX.Element {
         setFound(true);
         setQuest(quest);
       }).catch(err => {
-        if (err.response.status === 404) {
+        if (err.response && err.response.status === 404) {
           setFound(false);
         }
     });
