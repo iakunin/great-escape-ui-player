@@ -11,7 +11,15 @@ export default function Schedule(props: { questId: string }): JSX.Element {
   const {questId} = props;
 
   useEffect(() => {
-    getSlotList(questId)
+    const from = new Date();
+    from.setUTCHours(0, 0, 0, 0);
+
+    const FETCH_PERIOD_DAYS = 15;
+    const to = new Date();
+    to.setUTCHours(23, 59, 59, 0);
+    to.setDate(to.getDate() + FETCH_PERIOD_DAYS - 1);
+
+    getSlotList(questId, from, to)
       .then(list => {
         setSlotList(list);
       });
