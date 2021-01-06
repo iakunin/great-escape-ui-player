@@ -2,14 +2,15 @@ import React, {useEffect, useState} from 'react';
 import styles from './Schedule.module.scss';
 import {SlotList} from 'models/Slot';
 import {getSlotList} from 'api/getSlotList';
-import {startCase} from 'lodash';
 import Slot from './Slot';
+import {Quest as QuestModel} from 'models/Quest';
+import {startCase} from 'lodash';
 
-export default function Schedule(props: { questId: string }): JSX.Element {
+export default function Schedule(props: {quest: QuestModel}): JSX.Element {
 
   const [slotList, setSlotList] = useState<SlotList | undefined>(undefined);
 
-  const {questId} = props;
+  const questId = props.quest.id;
 
   useEffect(() => {
     const from = new Date();
@@ -44,12 +45,19 @@ export default function Schedule(props: { questId: string }): JSX.Element {
     <div className={styles.main}>
       {prepareSlotList(slotList).map((byDateItem, idx) => (
         <div key={idx} className={styles.row}>
-          <span className={styles.day}>{formattedDate(byDateItem.date)}</span>
+          <span className={styles.day}>
+            {byDateItem.groupedByPrice[0]?.slotList[0]?.formattedDate}{', '}
+            {
+              startCase(
+                byDateItem.groupedByPrice[0]?.slotList[0]?.weekDayShort
+              )
+            }
+          </span>
           {byDateItem.groupedByPrice.map((byPriceItem, ix) => (
             <div key={ix} className={styles.block}>
               <div className={styles.timeList}>
                 {byPriceItem.slotList.map((slot, i) => (
-                  <Slot key={i} slot={slot}/>
+                  <Slot key={i} slot={slot} quest={props.quest}/>
                 ))}
               </div>
               <div className={styles.price}>
@@ -121,15 +129,4 @@ const prepareSlotList = (list: SlotList): GroupedByDate => {
   }));
 
   return result;
-};
-
-const formattedDate = (date: string): string => {
-  const monthAndDay = new Date(date + 'T00:00:00Z')
-    .toLocaleString('ru-RU', {month: 'long', day: 'numeric', timeZone: 'UTC'});
-  const dayOfWeek = startCase(
-    new Date(date + 'T00:00:00Z')
-      .toLocaleString('ru-RU', {weekday: 'short', timeZone: 'UTC'})
-  );
-
-  return `${monthAndDay}, ${dayOfWeek}`;
 };

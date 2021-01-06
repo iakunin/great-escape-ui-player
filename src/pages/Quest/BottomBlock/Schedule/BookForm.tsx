@@ -8,6 +8,8 @@ import config from 'config/appConfig';
 import TextAreaValidated from 'components/Form/TextAreaValidated';
 import SubmitButton from 'components/Form/SubmitButton';
 import PhoneValidated from 'components/Form/PhoneValidated';
+import {Slot as SlotModel} from 'models/Slot';
+import {Quest as QuestModel} from 'models/Quest';
 
 type Inputs = {
   slotId: string;
@@ -18,7 +20,8 @@ type Inputs = {
 };
 
 export default function BookForm(props: {
-  slotId: string,
+  slot: SlotModel,
+  quest: QuestModel,
   open?: boolean,
   onClose?: () => void
 }): JSX.Element {
@@ -43,10 +46,15 @@ export default function BookForm(props: {
   return (
     <Popup open={props.open} title="Забронировать игру" onClose={props.onClose}>
 
-      {/* @TODO: добавить название квеста */}
-      {/* @TODO: добавить дату и время игры */}
-      {/* @TODO: добавить цену игры + цену со скидкой */}
+      {/* @TODO: add Successfully booked state (from FeedbackForm) */}
 
+      {/* @TODO: add OTP phone verification */}
+
+      <p>Вы бронируете квест "{props.quest.title}".</p>
+      <p>
+        Сеанс {props.slot.formattedDate} ({props.slot.weekDayLong}) в {props.slot.formattedTime}.
+      </p>
+      <p>Стоимость со скидкой: {props.slot.priceWithDiscount}₽.</p>
 
       <Form onSubmit={onSubmit}>
 
@@ -82,7 +90,7 @@ export default function BookForm(props: {
           error={errors.comment?.message}
         />
 
-        <input type="hidden" name="slotId" value={props.slotId} ref={register()}/>
+        <input type="hidden" name="slotId" value={props.slot.id} ref={register()}/>
 
         <SubmitButton text="Забронировать" />
 

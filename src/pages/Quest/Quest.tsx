@@ -45,7 +45,7 @@ function Quest(props: RouteComponentProps<QuestParams>): JSX.Element {
         <QuestInfo quest={quest} goBack={props.history.goBack}/>
       </div>
 
-      <BottomBlock questId={quest.id}/>
+      <BottomBlock quest={quest}/>
     </>
   );
 }
