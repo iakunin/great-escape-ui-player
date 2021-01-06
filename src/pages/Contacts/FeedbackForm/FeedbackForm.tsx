@@ -3,6 +3,11 @@ import styles from './FeedbackForm.module.scss';
 import {useForm} from 'react-hook-form';
 import Popup from 'components/Popup';
 import {createFeedback} from 'api/createFeedback';
+import Form from 'components/Form';
+import InputValidated from 'components/Form/InputValidated';
+import config from 'config/appConfig';
+import TextAreaValidated from 'components/Form/TextAreaValidated';
+import SubmitButton from 'components/Form/SubmitButton';
 
 type Inputs = {
   name: string;
@@ -47,37 +52,30 @@ export default function FeedbackForm(): JSX.Element {
   return (
     <>
       <div className={styles.main}>
-        <form className={styles.form} onSubmit={onSubmit}>
-
-          <div className={styles.fieldGroup}>
-            <input placeholder="Имя" name="name"
-                   ref={register({required: 'Это поле обязательно'})}/>
-            {errors.name && <div className={styles.error}>{errors.name.message}</div>}
-          </div>
-
-          <div className={styles.fieldGroup}>
-            <input placeholder="E-mail" name="email"
-                   ref={register({
-                     required: 'Это поле обязательно',
-                     pattern: {
-                       value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                       message: 'Неверный формат email'
-                     }
-                   })}
-            />
-            {errors.email && <div className={styles.error}>{errors.email.message}</div>}
-          </div>
-
-          <div className={styles.fieldGroup}>
-          <textarea placeholder="Текст сообщения" rows={6} name="text"
-                    ref={register({required: 'Это поле обязательно'})}
+        <Form onSubmit={onSubmit}>
+          <InputValidated
+            placeholder="Имя" name="name" error={errors.name?.message}
+            inputRef={register({required: 'Это поле обязательно'})}
           />
-            {errors.text && <div className={styles.error}>{errors.text.message}</div>}
-          </div>
 
-          <input type="submit" value="Отправить" className={styles.button}/>
+          <InputValidated
+            placeholder="E-mail" name="email" error={errors.email?.message}
+            inputRef={register({
+              required: 'Это поле обязательно',
+              pattern: {
+                value: config.regexp.email,
+                message: 'Неверный формат email'
+              }
+            })}
+          />
 
-        </form>
+          <TextAreaValidated
+            placeholder="Текст сообщения" name="text" rows={6} error={errors.text?.message}
+            inputRef={register({required: 'Это поле обязательно'})}
+          />
+
+          <SubmitButton text="Отправить" />
+        </Form>
       </div>
 
       <Popup open={isPopupOpen} onClose={(): void => setPopupOpen(false)} title={popupTitle}>

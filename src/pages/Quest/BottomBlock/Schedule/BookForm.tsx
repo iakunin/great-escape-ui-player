@@ -1,9 +1,13 @@
 import React from 'react';
 import Popup from 'components/Popup';
 import {useForm} from 'react-hook-form';
-import styles from './BookForm.module.scss';
-import InputMask from 'react-input-mask';
 import {createBooking} from 'api/createBooking';
+import Form from 'components/Form';
+import InputValidated from 'components/Form/InputValidated';
+import config from 'config/appConfig';
+import TextAreaValidated from 'components/Form/TextAreaValidated';
+import SubmitButton from 'components/Form/SubmitButton';
+import PhoneValidated from 'components/Form/PhoneValidated';
 
 type Inputs = {
   slotId: string;
@@ -44,52 +48,45 @@ export default function BookForm(props: {
       {/* @TODO: добавить цену игры + цену со скидкой */}
 
 
-      {/* @TODO: избавиться от копи-пасты стилей форм и полей */}
-      <form className={styles.form} onSubmit={onSubmit}>
+      <Form onSubmit={onSubmit}>
 
-        <div className={styles.fieldGroup}>
-          <input placeholder="Имя" name="name"
-                 ref={register({required: 'Это поле обязательно'})}/>
-          {errors.name && <div className={styles.error}>{errors.name.message}</div>}
-        </div>
+        <InputValidated
+          placeholder="Имя" name="name" error={errors.name?.message}
+          inputRef={register({required: 'Это поле обязательно'})}
+        />
 
-        <div className={styles.fieldGroup}>
-          <input placeholder="E-mail" name="email"
-                 ref={register({
-                   required: 'Это поле обязательно',
-                   pattern: {
-                     value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                     message: 'Неверный формат email'
-                   }
-                 })}
-          />
-          {errors.email && <div className={styles.error}>{errors.email.message}</div>}
-        </div>
+        <InputValidated
+          placeholder="E-mail" name="email" error={errors.email?.message}
+          inputRef={register({
+            required: 'Это поле обязательно',
+            pattern: {
+              value: config.regexp.email,
+              message: 'Неверный формат email'
+            }
+          })}
+        />
 
-        <div className={styles.fieldGroup}>
-          <InputMask
-            mask="+7 999 999-99-99" type="tel" name="phone" placeholder="Телефон"
-            inputRef={(el: HTMLInputElement): void => register(el, {
-              required: 'Это поле обязательно',
-              pattern: {
-                value: /^\+7 \d{3} \d{3}-\d{2}-\d{2}$/i,
-                message: 'Неверный формат телефона'
-              }
-            })}
-          />
-          {errors.phone && <div className={styles.error}>{errors.phone.message}</div>}
-        </div>
+        <PhoneValidated
+          mask="+7 999 999-99-99" name="phone" placeholder="Телефон" error={errors.phone?.message}
+          inputRef={register({
+            required: 'Это поле обязательно',
+            pattern: {
+              value: config.regexp.phone,
+              message: 'Неверный формат телефона'
+            }
+          })}
+        />
 
-        <div className={styles.fieldGroup}>
-          <textarea placeholder="Комментарий" rows={4} name="comment" ref={register()}/>
-          {errors.comment && <div className={styles.error}>{errors.comment.message}</div>}
-        </div>
+        <TextAreaValidated
+          placeholder="Комментарий" name="comment" rows={4} inputRef={register()}
+          error={errors.comment?.message}
+        />
 
         <input type="hidden" name="slotId" value={props.slotId} ref={register()}/>
 
-        <input type="submit" value="Забронировать" className={styles.button}/>
+        <SubmitButton text="Забронировать" />
 
-      </form>
+      </Form>
     </Popup>
   );
 }

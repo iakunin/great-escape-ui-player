@@ -1,0 +1,11 @@
+.button {
+  cursor: pointer;
+  text-align: center;
+  white-space: nowrap;
+  min-width: 150px;
+  border-radius: 22px;
+
+  &:hover {
+    color: #ffd940;
+  }
+}
