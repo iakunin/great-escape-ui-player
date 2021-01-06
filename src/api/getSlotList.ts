@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {SlotList} from 'models/Slot';
+import {SlotImpl, SlotList, SlotRaw} from 'models/Slot';
 
 export async function getSlotList(questId: string, from: Date, to: Date): Promise<SlotList> {
   const params = new URLSearchParams();
@@ -9,8 +9,10 @@ export async function getSlotList(questId: string, from: Date, to: Date): Promis
   params.append('dateTimeLocal.greaterThanOrEqual', from.toISOString());
   params.append('dateTimeLocal.lessThanOrEqual', to.toISOString());
 
-  return (await axios.get(
+  return (await axios.get<Array<SlotRaw>>(
     '/player-api/slots',
     {params}
-  )).data;
+  ))
+    .data
+    .map(slot => Object.assign(new SlotImpl(), slot));
 }
