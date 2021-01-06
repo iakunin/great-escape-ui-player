@@ -13,7 +13,9 @@ export default function Slot(props: {
 
   return (
     <>
-      <div className={timeClassName(props.slot)} onClick={(): void => setOpen(true)}>
+      <div className={timeClassName(props.slot)}
+           onClick={(): void => setOpen(props.slot.isAvailable)}
+      >
         {props.slot.formattedTime}
       </div>
       <BookForm open={isOpen} slot={props.slot} quest={props.quest}
