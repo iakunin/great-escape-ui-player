@@ -1,8 +1,8 @@
 import React, {useState} from 'react';
 import styles from './FeedbackForm.module.scss';
 import {useForm} from 'react-hook-form';
-import axios from 'axios';
 import Popup from 'components/Popup';
+import {createFeedback} from 'api/createFeedback';
 
 type Inputs = {
   name: string;
@@ -39,10 +39,7 @@ export default function FeedbackForm(): JSX.Element {
   };
 
   const onSubmit = handleSubmit((data: Inputs) => {
-    axios.post(
-      '/player-api/feedback',
-      data
-    )
+    createFeedback(data)
       .then(handleSuccess, handleFailure)
       .catch(handleFailure);
   });

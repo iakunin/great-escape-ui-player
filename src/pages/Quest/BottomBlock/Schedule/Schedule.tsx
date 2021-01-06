@@ -1,8 +1,9 @@
 import React, {useEffect, useState} from 'react';
 import styles from './Schedule.module.scss';
-import {Slot, SlotList} from 'models/Slot';
+import {SlotList} from 'models/Slot';
 import {getSlotList} from 'api/getSlotList';
 import {startCase} from 'lodash';
+import Slot from './Slot';
 
 export default function Schedule(props: { questId: string }): JSX.Element {
 
@@ -48,9 +49,7 @@ export default function Schedule(props: { questId: string }): JSX.Element {
             <div key={ix} className={styles.block}>
               <div className={styles.timeList}>
                 {byPriceItem.slotList.map((slot, i) => (
-                  <div key={i} className={timeClassName(slot)}>
-                    {formattedTime(slot.dateTimeLocal)}
-                  </div>
+                  <Slot key={i} slot={slot}/>
                 ))}
               </div>
               <div className={styles.price}>
@@ -133,21 +132,4 @@ const formattedDate = (date: string): string => {
   );
 
   return `${monthAndDay}, ${dayOfWeek}`;
-};
-
-const formattedTime = (dateTime: string): string => (
-  new Date(dateTime).toLocaleString(
-    'ru-RU', {
-      hour: '2-digit',
-      minute: '2-digit',
-      timeZone: 'UTC'
-    })
-);
-
-const timeClassName = (slot: Slot): string => {
-  if (slot.isAvailable) {
-    return `${styles.time}`;
-  }
-
-  return `${styles.time} ${styles.notAvailable}`;
 };
