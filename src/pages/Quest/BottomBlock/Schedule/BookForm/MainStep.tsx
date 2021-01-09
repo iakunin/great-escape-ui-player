@@ -56,7 +56,7 @@ export default function MainStep(props: {
       />
 
       <TextAreaValidated
-        placeholder="Комментарий" name="comment" rows={4} inputRef={register()}
+        placeholder="Комментарий (необязательно)" name="comment" rows={4} inputRef={register()}
         error={errors.comment?.message}
       />
 
