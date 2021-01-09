@@ -9,7 +9,9 @@ import InputValidated from 'components/Form/InputValidated';
 import config from 'config/appConfig';
 import TextAreaValidated from 'components/Form/TextAreaValidated';
 import SubmitButton from 'components/Form/SubmitButton';
-import {Request as BookingRequest} from 'api/createBooking';
+import {createBooking, Request as BookingRequest} from 'api/createBooking';
+import {AxiosError} from 'axios';
+import {ErroneousResponse, ErrorKey} from 'api/common';
 
 export default function MainStep(props: {
   slot: SlotModel,
@@ -17,14 +19,25 @@ export default function MainStep(props: {
   onSubmit: (inputs: BookingRequest) => void,
 }): JSX.Element {
 
-  const {register, handleSubmit, errors} = useForm<BookingRequest>();
+  const {register, handleSubmit, errors, setError} = useForm<BookingRequest>();
 
-  // @TODO: здесь нужно сделать pre-flight запрос на /booking, чтобы гарантировать,
-  //   что на втором шаге не будет ошибок по полям из первого шага (name/email/phone)
-  //   и если пришли ошибки, то необходимо разложить их по соответствующим полям
+  const onSubmit = (inputs: BookingRequest): void => {
+    const FAKE_OTP = 'fakeOtp';
+
+    createBooking({...inputs, dryRun: true, otp: FAKE_OTP})
+      .then((): void => {
+        props.onSubmit(inputs);
+      })
+      .catch((err: AxiosError<ErroneousResponse>) => {
+        if (err.response && err.response.data.errorKey === ErrorKey.EmailExists) {
+          setError('email', {message: 'Такой email уже зарегистрирован в системе'});
+          return;
+        }
+      });
+  };
 
   return (
-    <Form onSubmit={handleSubmit(props.onSubmit)}>
+    <Form onSubmit={handleSubmit(onSubmit)}>
 
       <BookingInfo slot={props.slot} quest={props.quest}/>
 

@@ -7,6 +7,7 @@ export type Request = {
   phone: string;
   comment: string;
   otp: string;
+  dryRun?: boolean;
 };
 
 export async function createBooking(request: Request): Promise<void> {

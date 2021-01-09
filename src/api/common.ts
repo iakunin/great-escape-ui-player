@@ -1,5 +1,6 @@
 export enum ErrorKey {
-  WrongOtp = 'wrongotp',
+  WrongOtp = 'wrongOtp',
+  EmailExists = 'emailExists',
 }
 
 export type ErroneousResponse = {
