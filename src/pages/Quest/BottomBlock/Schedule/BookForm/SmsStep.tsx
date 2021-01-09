@@ -7,12 +7,15 @@ export default function SmsStep(props: {
   slot: SlotModel,
   quest: QuestModel,
   onSubmit: (otp: string) => void,
+  onChange: () => void,
+  error?: string,
 }): JSX.Element {
 
-  const MASK_PLACEHOLDER = '_';
-
   const onChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
+    const MASK_PLACEHOLDER = '_';
     const otp = e.target.value;
+
+    props.onChange();
 
     if (otp && !otp.includes(MASK_PLACEHOLDER)) {
       props.onSubmit(otp);
@@ -26,7 +29,7 @@ export default function SmsStep(props: {
       {/* @TODO: add resend OTP with countdown timer */}
 
       <InputMaskedAndValidated
-        mask="999-999" name="otp" placeholder="Код из SMS" onChange={onChange}
+        mask="999-999" name="otp" placeholder="Код из SMS" onChange={onChange} error={props.error}
       />
     </>
   );

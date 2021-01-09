@@ -9,6 +9,8 @@ import SmsStep from './BookForm/SmsStep';
 import BookingInfo from './BookForm/BookingInfo';
 import MainStep from './BookForm/MainStep';
 import FailureStep from './BookForm/FailureStep';
+import {AxiosError} from 'axios';
+import {ErroneousResponse, ErrorKey} from 'api/common';
 
 enum Step {
   Main,
@@ -27,22 +29,19 @@ export default function BookForm(props: {
   const [step, setStep] = useState(Step.Main);
   const [request, setRequest] = useState<BookingRequest>();
   const [error, setError] = useState<string>();
+  const [otpError, setOtpError] = useState<string>();
 
-  const mainStepSubmit = (r: BookingRequest): void => {
-    setRequest(r);
+  const mainStepSubmit = (bookingRequest: BookingRequest): void => {
+    setRequest(bookingRequest);
 
-    const handleSuccess = (): void => {
-      setStep(Step.Sms);
-    };
-
-    const handleFailure = (): void => {
-      setError('Возникла проблема при отправке SMS с кодом подтверждения.');
-      setStep(Step.Failure);
-    };
-
-    sendOtp({phone: r.phone})
-      .then(handleSuccess)
-      .catch(handleFailure);
+    sendOtp({phone: bookingRequest.phone})
+      .then((): void => {
+        setStep(Step.Sms);
+      })
+      .catch((): void => {
+        setError('Возникла проблема при отправке SMS с кодом подтверждения.');
+        setStep(Step.Failure);
+      });
   };
 
   const smsStepSubmit = (otp: string): void => {
@@ -50,19 +49,18 @@ export default function BookForm(props: {
       throw new Error('Request must never be empty here!');
     }
 
-    const handleSuccess = (): void => {
-      setStep(Step.Success);
-    };
-
-    const handleFailure = (): void => {
-      setStep(Step.Failure);
-    };
-
-    // @TODO: ошибку неверного OTP обрабатывать отдельно
-
     createBooking({...request, otp: otp})
-      .then(handleSuccess)
-      .catch(handleFailure);
+      .then((): void => {
+        setStep(Step.Success);
+      })
+      .catch((err: AxiosError<ErroneousResponse>) => {
+        if (err.response && err.response.data.errorKey === ErrorKey.WrongOtp) {
+          setOtpError('Упс, неверный код: попробуйте, пожалуйста, ещё раз');
+          return;
+        }
+
+        setStep(Step.Failure);
+      });
   };
 
   const title = (step: Step): string => {
@@ -85,7 +83,9 @@ export default function BookForm(props: {
       case Step.Main:
         return <MainStep slot={props.slot} quest={props.quest} onSubmit={mainStepSubmit}/>;
       case Step.Sms:
-        return <SmsStep slot={props.slot} quest={props.quest} onSubmit={smsStepSubmit}/>;
+        return <SmsStep slot={props.slot} quest={props.quest}
+                        onSubmit={smsStepSubmit} error={otpError}
+                        onChange={(): void => setOtpError(undefined)}/>;
       case Step.Success:
         return <BookingInfo slot={props.slot} quest={props.quest}/>;
       case Step.Failure:
