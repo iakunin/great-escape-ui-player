@@ -8,6 +8,7 @@ import assertUnreachable from 'utils/assertUnreachable';
 import SmsStep from './BookForm/SmsStep';
 import BookingInfo from './BookForm/BookingInfo';
 import MainStep from './BookForm/MainStep';
+import FailureStep from './BookForm/FailureStep';
 
 enum Step {
   Main,
@@ -25,30 +26,43 @@ export default function BookForm(props: {
 
   const [step, setStep] = useState(Step.Main);
   const [request, setRequest] = useState<BookingRequest>();
+  const [error, setError] = useState<string>();
 
-  const mainStepSubmit = (rq: BookingRequest): void => {
-    sendOtp({phone: rq.phone})
-      .then()
-      .catch()
-    ;
+  const mainStepSubmit = (r: BookingRequest): void => {
+    setRequest(r);
 
-    // @TODO: show this step only if no errors
-    setRequest(rq);
-    setStep(Step.Sms);
+    const handleSuccess = (): void => {
+      setStep(Step.Sms);
+    };
+
+    const handleFailure = (): void => {
+      setError('Возникла проблема при отправке SMS с кодом подтверждения.');
+      setStep(Step.Failure);
+    };
+
+    sendOtp({phone: r.phone})
+      .then(handleSuccess)
+      .catch(handleFailure);
   };
 
   const smsStepSubmit = (otp: string): void => {
-    if (request !== undefined) {
-      createBooking({...request, otp: otp})
-        .then()
-        .catch()
-      ;
-
-      // @TODO: show this step only if there are no errors
-      setStep(Step.Success);
-
-      // @TODO: refresh slot list for quest (to disable booking for the same time)
+    if (request === undefined) {
+      throw new Error('Request must never be empty here!');
     }
+
+    const handleSuccess = (): void => {
+      setStep(Step.Success);
+    };
+
+    const handleFailure = (): void => {
+      setStep(Step.Failure);
+    };
+
+    // @TODO: ошибку неверного OTP обрабатывать отдельно
+
+    createBooking({...request, otp: otp})
+      .then(handleSuccess)
+      .catch(handleFailure);
   };
 
   const title = (step: Step): string => {
@@ -60,7 +74,7 @@ export default function BookForm(props: {
       case Step.Success:
         return 'Бронирование успешно!';
       case Step.Failure:
-        return 'Упс, что-то пошло не так';
+        return 'К сожалению, произошла ошибка';
       default:
         assertUnreachable(step);
     }
@@ -75,15 +89,25 @@ export default function BookForm(props: {
       case Step.Success:
         return <BookingInfo slot={props.slot} quest={props.quest}/>;
       case Step.Failure:
-        // @TODO: show some error info
-        return <BookingInfo slot={props.slot} quest={props.quest}/>;
+        return <FailureStep details={error}/>;
       default:
         assertUnreachable(step);
     }
   };
 
+  const onClose = (): void => {
+    props.onClose?.();
+
+    // @TODO: instead of this spike refresh slot list for quest
+    //   (to disable booking for the same slot)
+    if (step === Step.Success) {
+      // eslint-disable-next-line no-restricted-globals
+      location.reload();
+    }
+  };
+
   return (
-    <Popup open={props.open} title={title(step)} onClose={props.onClose}>
+    <Popup open={props.open} title={title(step)} onClose={onClose}>
       {child(step)}
     </Popup>
   );
