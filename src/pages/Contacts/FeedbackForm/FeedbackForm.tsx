@@ -37,7 +37,7 @@ export default function FeedbackForm(): JSX.Element {
         <p>Увы, мы не смогли отправить Ваше обращение.</p>
         <p>Попробуте повторить попытку через некоторое время.</p>
         <br/>
-        <p>Если и это не помогло &mdash; обязательно позвоните нам.</p>
+        <p>Если и это не помогло &mdash; обязательно сообщите нам об этом.</p>
       </>
     );
     setPopupOpen(true);
@@ -45,7 +45,7 @@ export default function FeedbackForm(): JSX.Element {
 
   const onSubmit = handleSubmit((data: Inputs) => {
     createFeedback(data)
-      .then(handleSuccess, handleFailure)
+      .then(handleSuccess)
       .catch(handleFailure);
   });
 
