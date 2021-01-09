@@ -5,6 +5,8 @@ WORKDIR /app
 #COPY ./package.json /app/
 #RUN yarn --silent
 COPY . /app
+
+ENV REACT_APP_SERVER_API_URL 'https://foo.com'
 RUN npm install
 RUN npm run build
 
@@ -15,3 +17,6 @@ RUN rm /etc/nginx/conf.d/default.conf
 COPY .deploy/nginx.conf /etc/nginx/conf.d
 EXPOSE 80
 CMD ["nginx", "-g", "daemon off;"]
+
+
+# @TODO: expose port 8080
