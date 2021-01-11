@@ -33,6 +33,9 @@ export default function MainStep(props: {
           setError('email', {message: 'Такой email уже зарегистрирован в системе'});
           return;
         }
+
+        // Ignoring all other errors: "this is fine"
+        props.onSubmit(inputs);
       });
   };
 
