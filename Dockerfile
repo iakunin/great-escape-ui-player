@@ -1,12 +1,10 @@
 # stage1 - build react app first
 FROM node:14.14-alpine as build
 WORKDIR /app
-#ENV PATH /app/node_modules/.bin:$PATH
-#COPY ./package.json /app/
-#RUN yarn --silent
 COPY . /app
 
-ENV REACT_APP_SERVER_API_URL 'https://foo.com'
+# TODO: extract this env to build scripts in CI
+ENV REACT_APP_SERVER_API_URL 'https://api.great-escape.ru'
 RUN npm install
 RUN npm run build
 
