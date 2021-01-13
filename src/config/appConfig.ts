@@ -12,7 +12,7 @@ const config = {
   apiUrl: requireValue(process.env.REACT_APP_SERVER_API_URL, 'REACT_APP_SERVER_API_URL'),
   phone: {
     pretty: phone,
-    normalized: phone.replaceAll(/[^\d+]/g, ''),
+    normalized: phone.replace(/[^\d+]/g, ''),
   },
   email: {
     info: 'info@great-escape.ru',
