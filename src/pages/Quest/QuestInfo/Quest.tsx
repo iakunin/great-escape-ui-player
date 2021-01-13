@@ -6,7 +6,7 @@ export default function Quest(props: {
   quest: QuestModel,
   goBack(): void,
 }): JSX.Element {
-  const {quest} = props;
+  const {quest, goBack} = props;
 
   return (
     <div className={styles.quest}>
@@ -40,7 +40,9 @@ export default function Quest(props: {
       </div>
 
       {/* @TODO: use styles.goBackButton in Schedule.BookForm */}
-      {/*<button className={styles.goBackButton} onClick={goBack}>Назад</button>*/}
+
+      {/* @TODO: get rid of this button, but with fixing layout */}
+      <button className={styles.goBackButton} onClick={goBack}>Назад</button>
     </div>
   );
 }
