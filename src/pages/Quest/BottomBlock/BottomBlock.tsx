@@ -1,7 +1,6 @@
 import React, {useState} from 'react';
 import styles from './BottomBlock.module.scss';
 import Schedule from 'pages/Quest/BottomBlock/Schedule';
-import Reviews from 'pages/Quest/BottomBlock/Reviews';
 import {Quest as QuestModel} from 'models/Quest';
 
 export default function BottomBlock(props: {quest: QuestModel}): JSX.Element {
@@ -10,9 +9,9 @@ export default function BottomBlock(props: {quest: QuestModel}): JSX.Element {
     {
       component: <Schedule quest={props.quest}/>,
       title: 'Расписание'
-    }, {
-      component: <Reviews/>,
-      title: 'Отзывы'
+    // }, {
+    //   component: <Reviews/>,
+    //   title: 'Отзывы'
     },
   ];
 
