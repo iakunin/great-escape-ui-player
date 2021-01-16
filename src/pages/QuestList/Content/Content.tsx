@@ -23,7 +23,7 @@ function Content(props: ConnectedProps<typeof connector>): JSX.Element {
 
   const {request} = props;
 
-  const [questList, setQuestList] = useState<QuestList>([]);
+  const [questList, setQuestList] = useState<QuestList | undefined>(undefined);
 
   useEffect(() => {
     trackPromise(
@@ -35,7 +35,7 @@ function Content(props: ConnectedProps<typeof connector>): JSX.Element {
     );
   }, [setQuestList, request]);
 
-  if (promiseInProgress) {
+  if (promiseInProgress || questList === undefined) {
     return (
       <>
         <Sorting/>
