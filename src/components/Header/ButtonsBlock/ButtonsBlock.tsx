@@ -18,10 +18,10 @@ export default function ButtonsBlock(): JSX.Element {
 
         <Button icon={loginIcon} text={'Вход'} href={'#'}/>,
         <Button icon={registrationIcon} text={'Регистрация'} href={'#'}/>,
-      ]
-      : [
+
         <Button icon={subscriptionIcon} text={'Подписаться'} href={'#'}/>,
-      ];
+      ]
+      : [];
 
   return (
     <nav className={styles.main}>
