@@ -20,12 +20,18 @@ function Sorting(props: ConnectedProps<typeof connector>): JSX.Element {
   const [discountDirection, setDiscountDirection] = useState<OptionalDirection>(undefined);
 
   const handlePriceClick = (): void => {
+    setDiscountDirection(undefined);
+    props.setDiscountSort(undefined);
+
     const direction = nextDirection(priceDirection);
     setPriceDirection(direction);
     props.setMinPriceSort(direction);
   };
 
   const handleDiscountClick = (): void => {
+    setPriceDirection(undefined);
+    props.setMinPriceSort(undefined);
+
     const direction = nextDirection(discountDirection);
     setDiscountDirection(direction);
     props.setDiscountSort(direction);
