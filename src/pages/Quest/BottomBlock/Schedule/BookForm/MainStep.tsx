@@ -12,6 +12,8 @@ import SubmitButton from 'components/Form/SubmitButton';
 import {createBooking, Request as BookingRequest} from 'api/createBooking';
 import {AxiosError} from 'axios';
 import {ErroneousResponse, ErrorKey} from 'api/common';
+import {trackPromise, usePromiseTracker} from 'react-promise-tracker';
+import {Areas} from 'enums/Areas';
 
 export default function MainStep(props: {
   slot: SlotModel,
@@ -21,22 +23,26 @@ export default function MainStep(props: {
 
   const {register, handleSubmit, errors, setError} = useForm<BookingRequest>();
 
+  const {promiseInProgress} = usePromiseTracker({area: Areas.BookFormDryRun, delay: 100});
+
   const onSubmit = (inputs: BookingRequest): void => {
     const FAKE_OTP = 'fakeOtp';
+    trackPromise(
+      createBooking({...inputs, dryRun: true, otp: FAKE_OTP})
+        .then((): void => {
+          props.onSubmit(inputs);
+        })
+        .catch((err: AxiosError<ErroneousResponse>) => {
+          if (err.response && err.response.data.errorKey === ErrorKey.EmailExists) {
+            setError('email', {message: 'Такой email уже зарегистрирован в системе'});
+            return;
+          }
 
-    createBooking({...inputs, dryRun: true, otp: FAKE_OTP})
-      .then((): void => {
-        props.onSubmit(inputs);
-      })
-      .catch((err: AxiosError<ErroneousResponse>) => {
-        if (err.response && err.response.data.errorKey === ErrorKey.EmailExists) {
-          setError('email', {message: 'Такой email уже зарегистрирован в системе'});
-          return;
-        }
-
-        // Ignoring all other errors: "this is fine"
-        props.onSubmit(inputs);
-      });
+          // Ignoring all other errors: "this is fine" for now
+          props.onSubmit(inputs);
+        }),
+      Areas.BookFormDryRun
+    );
   };
 
   return (
@@ -78,7 +84,7 @@ export default function MainStep(props: {
 
       <input type="hidden" name="slotId" value={props.slot.id} ref={register()}/>
 
-      <SubmitButton text="Забронировать"/>
+      <SubmitButton text="Забронировать" inProgress={promiseInProgress}/>
     </Form>
   );
 }
