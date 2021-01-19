@@ -1,40 +1,27 @@
-import React, {useState} from 'react';
+import React from 'react';
 import styles from './Sorting.module.scss';
-import {connect, ConnectedProps} from 'react-redux';
 import {Direction} from 'api/getQuestList';
-import {setDiscountSort, setMinPriceSort} from 'redux/questListRequest.slice';
+import {questListConfigMap, QuestListProps} from 'state/questList';
+import {withQueryParams} from 'use-query-params';
 
 type OptionalDirection = Direction | undefined;
 
-const connector = connect(
-  null,
-  {
-    setMinPriceSort: (direction: OptionalDirection) => (setMinPriceSort(direction)),
-    setDiscountSort: (direction: OptionalDirection) => (setDiscountSort(direction)),
-  }
-);
-
-function Sorting(props: ConnectedProps<typeof connector>): JSX.Element {
-
-  const [priceDirection, setPriceDirection] = useState<OptionalDirection>(undefined);
-  const [discountDirection, setDiscountDirection] = useState<OptionalDirection>(undefined);
+function Sorting(props: QuestListProps): JSX.Element {
 
   const handlePriceClick = (): void => {
-    setDiscountDirection(undefined);
-    props.setDiscountSort(undefined);
-
-    const direction = nextDirection(priceDirection);
-    setPriceDirection(direction);
-    props.setMinPriceSort(direction);
+    const direction = nextDirection(props.query.sort?.minPrice);
+    props.setQuery(direction !== undefined
+      ? {sort: {minPrice: direction}}
+      : {sort: undefined}
+    );
   };
 
   const handleDiscountClick = (): void => {
-    setPriceDirection(undefined);
-    props.setMinPriceSort(undefined);
-
-    const direction = nextDirection(discountDirection);
-    setDiscountDirection(direction);
-    props.setDiscountSort(direction);
+    const direction = nextDirection(props.query.sort?.discount);
+    props.setQuery(direction !== undefined
+      ? {sort: {discount: direction}}
+      : {sort: undefined}
+    );
   };
 
   const nextDirection = (current: OptionalDirection): OptionalDirection => {
@@ -56,15 +43,15 @@ function Sorting(props: ConnectedProps<typeof connector>): JSX.Element {
 
   return (
     <div className={styles.sort}><span>Сортировать по:</span>
-      <div className={className(priceDirection)} onClick={handlePriceClick}>
+      <div className={className(props.query.sort?.minPrice)} onClick={handlePriceClick}>
         Цене
       </div>
 
-      <div className={className(discountDirection)} onClick={handleDiscountClick}>
+      <div className={className(props.query.sort?.discount)} onClick={handleDiscountClick}>
         Размеру скидки
       </div>
     </div>
   );
 }
 
-export default connector(Sorting);
+export default withQueryParams(questListConfigMap, Sorting);

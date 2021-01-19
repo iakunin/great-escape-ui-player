@@ -6,19 +6,12 @@ import {Areas} from 'enums/Areas';
 import loadingIcon from './images/loading.png';
 import Sorting from './Sorting';
 import notFoundIcon from './images/notfound.png';
-import {getQuestList, Request, Sort} from 'api/getQuestList';
+import {getQuestList} from 'api/getQuestList';
 import Quest from './Quest';
-import {
-  createEnumParam,
-  NumberParam,
-  ObjectParam,
-  withDefault,
-  withQueryParams
-} from 'use-query-params';
-import {QuestType} from 'enums/QuestType';
-import {FearLevel} from 'enums/FearLevel';
+import {withQueryParams} from 'use-query-params';
+import {questListConfigMap, QuestListProps} from 'state/questList';
 
-function Content(props: { query: Request }): JSX.Element {
+function Content(props: QuestListProps): JSX.Element {
 
   const {promiseInProgress} = usePromiseTracker({area: Areas.QuestList, delay: 100});
 
@@ -72,13 +65,4 @@ function Content(props: { query: Request }): JSX.Element {
   );
 }
 
-export default withQueryParams({
-  fearLevel: createEnumParam<FearLevel>(Object.values(FearLevel)),
-  type: createEnumParam<QuestType>(Object.values(QuestType)),
-  minPrice: NumberParam,
-  sort: withDefault<Sort | null | undefined, Sort | null | undefined>(
-    ObjectParam,
-    {},
-    false
-  ),
-}, Content);
+export default withQueryParams(questListConfigMap, Content);

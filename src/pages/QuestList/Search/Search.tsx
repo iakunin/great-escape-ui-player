@@ -3,30 +3,10 @@ import styles from './Search.module.scss';
 import {FearLevel} from 'enums/FearLevel';
 import {QuestType} from 'enums/QuestType';
 import Criteria from './Criteria';
-import {
-  createEnumParam,
-  NumberParam,
-  ObjectParam,
-  withDefault,
-  withQueryParams
-} from 'use-query-params';
-import {Request, Sort} from 'api/getQuestList';
-import {SetQuery} from 'use-query-params/lib/types';
+import {withQueryParams} from 'use-query-params';
+import {questListConfigMap, QuestListProps} from 'state/questList';
 
-const paramConfigMap = {
-  fearLevel: createEnumParam<FearLevel>(Object.values(FearLevel)),
-  type: createEnumParam<QuestType>(Object.values(QuestType)),
-  minPrice: NumberParam,
-  sort: withDefault<Sort | null | undefined, Sort | null | undefined>(
-    ObjectParam,
-    {},
-    false
-  ),
-};
-
-function Search(
-  props: { query: Request, setQuery: SetQuery<typeof paramConfigMap> }
-): JSX.Element {
+function Search(props: QuestListProps): JSX.Element {
 
   const onQuestTypeChange = (id?: string): void => {
     props.setQuery({type: QuestType[id as keyof typeof QuestType]});
@@ -84,4 +64,4 @@ function Search(
   );
 }
 
-export default withQueryParams(paramConfigMap, Search);
+export default withQueryParams(questListConfigMap, Search);
