@@ -6,34 +6,35 @@ import {Areas} from 'enums/Areas';
 import loadingIcon from './images/loading.png';
 import Sorting from './Sorting';
 import notFoundIcon from './images/notfound.png';
-import {connect, ConnectedProps} from 'react-redux';
-import {getQuestList} from 'api/getQuestList';
-import {RootState} from 'config/store';
+import {getQuestList, Request, Sort} from 'api/getQuestList';
 import Quest from './Quest';
+import {
+  createEnumParam,
+  NumberParam,
+  ObjectParam,
+  withDefault,
+  withQueryParams
+} from 'use-query-params';
+import {QuestType} from 'enums/QuestType';
+import {FearLevel} from 'enums/FearLevel';
 
-const connector = connect(
-  (state: RootState) => ({
-    request: state.questListRequest
-  })
-);
-
-function Content(props: ConnectedProps<typeof connector>): JSX.Element {
+function Content(props: { query: Request }): JSX.Element {
 
   const {promiseInProgress} = usePromiseTracker({area: Areas.QuestList, delay: 100});
 
-  const {request} = props;
+  const {query} = props;
 
   const [questList, setQuestList] = useState<QuestList | undefined>(undefined);
 
   useEffect(() => {
     trackPromise(
-      getQuestList(request)
+      getQuestList(query)
         .then(questList => {
           setQuestList(questList);
         }),
       Areas.QuestList
     );
-  }, [setQuestList, request]);
+  }, [setQuestList, query]);
 
   if (promiseInProgress || questList === undefined) {
     return (
@@ -71,4 +72,13 @@ function Content(props: ConnectedProps<typeof connector>): JSX.Element {
   );
 }
 
-export default connector(Content);
+export default withQueryParams({
+  fearLevel: createEnumParam<FearLevel>(Object.values(FearLevel)),
+  type: createEnumParam<QuestType>(Object.values(QuestType)),
+  minPrice: NumberParam,
+  sort: withDefault<Sort | null | undefined, Sort | null | undefined>(
+    ObjectParam,
+    {},
+    false
+  ),
+}, Content);

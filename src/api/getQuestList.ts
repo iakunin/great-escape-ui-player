@@ -4,10 +4,10 @@ import {FearLevel} from 'enums/FearLevel';
 import {QuestType} from 'enums/QuestType';
 
 export type Request = {
-  fearLevel?: FearLevel;
-  type?: QuestType;
-  minPrice?: number;
-  sort?: Sort;
+  fearLevel: FearLevel | null | undefined;
+  type: QuestType | null | undefined;
+  minPrice: number | null | undefined;
+  sort: Sort | null | undefined;
 };
 
 export type Sort = {

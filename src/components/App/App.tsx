@@ -10,12 +10,14 @@ import NotFound from 'pages/NotFound';
 import {Routes} from 'enums/Routes';
 import Rules from 'pages/Rules';
 import Quest from 'pages/Quest';
+import {QueryParamProvider} from 'use-query-params';
 
 export default function App(): JSX.Element {
   return (
     <>
       <div className={styles.wrapper}>
           <BrowserRouter>
+            <QueryParamProvider ReactRouterRoute={Route}>
             <Header/>
             <section>
               <Switch>
@@ -27,6 +29,7 @@ export default function App(): JSX.Element {
                 <Route component={NotFound}/>
               </Switch>
             </section>
+            </QueryParamProvider>
           </BrowserRouter>
       </div>
       <Footer/>
