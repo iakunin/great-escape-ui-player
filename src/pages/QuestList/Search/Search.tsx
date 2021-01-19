@@ -3,25 +3,41 @@ import styles from './Search.module.scss';
 import {FearLevel} from 'enums/FearLevel';
 import {QuestType} from 'enums/QuestType';
 import Criteria from './Criteria';
-import {setFearLevel, setMinPrice, setQuestType} from 'redux/questListRequest.slice';
-import {connect, ConnectedProps} from 'react-redux';
+import {
+  createEnumParam,
+  NumberParam,
+  ObjectParam,
+  withDefault,
+  withQueryParams
+} from 'use-query-params';
+import {Request, Sort} from 'api/getQuestList';
+import {SetQuery} from 'use-query-params/lib/types';
 
-const connector = connect();
+const paramConfigMap = {
+  fearLevel: createEnumParam<FearLevel>(Object.values(FearLevel)),
+  type: createEnumParam<QuestType>(Object.values(QuestType)),
+  minPrice: NumberParam,
+  sort: withDefault<Sort | null | undefined, Sort | null | undefined>(
+    ObjectParam,
+    {},
+    false
+  ),
+};
 
 function Search(
-  props: ConnectedProps<typeof connector>
+  props: { query: Request, setQuery: SetQuery<typeof paramConfigMap> }
 ): JSX.Element {
 
   const onQuestTypeChange = (id?: string): void => {
-    props.dispatch(setQuestType(QuestType[id as keyof typeof QuestType]));
+    props.setQuery({type: QuestType[id as keyof typeof QuestType]});
   };
 
   const onFearLevelChange = (id?: string): void => {
-    props.dispatch(setFearLevel(FearLevel[id as keyof typeof FearLevel]));
+    props.setQuery({fearLevel: FearLevel[id as keyof typeof FearLevel]});
   };
 
   const onMinPriceChange = (id?: string): void => {
-    props.dispatch(setMinPrice(id !== undefined ? Number(id) : undefined));
+    props.setQuery({minPrice: id !== undefined ? Number(id) : undefined});
   };
 
   return (
@@ -33,6 +49,7 @@ function Search(
           {id: QuestType.ESCAPE.toString(), title: 'Квест в реальности'},
           {id: QuestType.PERFORMANCE.toString(), title: 'Перформанс'},
         ]}
+        activeButtonId={props.query.type?.toString()}
       />
 
       <Criteria
@@ -43,6 +60,7 @@ function Search(
           {id: FearLevel.MODERATE.toString(), title: 'Умеренно'},
           {id: FearLevel.EXTREME.toString(), title: 'Экстримально'},
         ]}
+        activeButtonId={props.query.fearLevel?.toString()}
       />
 
       <Criteria
@@ -59,10 +77,11 @@ function Search(
           {id: '9000', title: '9000 ₽'},
           {id: '999999', title: 'Больше'},
         ]}
+        activeButtonId={props.query.minPrice?.toString()}
       />
 
     </div>
   );
 }
 
-export default connector(Search);
+export default withQueryParams(paramConfigMap, Search);

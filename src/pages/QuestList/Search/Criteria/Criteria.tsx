@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import styles from './Criteria.module.scss';
 
 type Button = {
@@ -8,20 +8,18 @@ type Button = {
 
 export default function Content(props: {
   title: string;
+  activeButtonId?: string;
   buttons: ReadonlyArray<Button>;
   onChange: (id?: string) => void;
 }): JSX.Element {
 
-  const [activeButton, setActiveButton] = useState<Button | undefined>(undefined);
-
   const handleClick = (button: Button): void => {
-    const newValue = activeButton?.id !== button.id ? button : undefined;
-    setActiveButton(newValue);
+    const newValue = props.activeButtonId !== button.id ? button : undefined;
     props.onChange(newValue?.id);
   };
 
   const className = (button: Button): string => (
-    button.id === activeButton?.id
+    button.id === props.activeButtonId
       ? `${styles.button} ${styles.active}`
       : styles.button
   );
