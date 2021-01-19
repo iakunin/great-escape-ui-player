@@ -4,16 +4,12 @@ import './index.scss';
 import App from './components/App';
 import reportWebVitals from './reportWebVitals';
 import setupAxios from './config/axios';
-import {Provider} from 'react-redux';
-import store from './config/store';
 
 setupAxios();
 
 ReactDOM.render(
   <React.StrictMode>
-    <Provider store={store}>
-    <App />
-    </Provider>
+    <App/>
   </React.StrictMode>,
   document.getElementById('root')
 );
