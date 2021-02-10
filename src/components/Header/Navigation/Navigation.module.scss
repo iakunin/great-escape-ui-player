@@ -56,3 +56,31 @@
 .active {
   @include active;
 }
+
+.burger {
+  background: none;
+  border: none;
+  display: none;
+}
+
+@media screen and (max-width: 800px) {
+  .main {
+    display: none;
+  }
+
+  .burger {
+    display: block;
+    margin-left: auto;
+    margin-right: 15px;
+    margin-top: 10px;
+    cursor: pointer;
+    width: 43px;
+    height: 43px;
+    background: url(./images/burger_normal.svg) no-repeat center;
+    background-size: contain;
+
+    &:hover {
+      background: url(./images/burger_hovered.svg) no-repeat center;
+    }
+  }
+}
