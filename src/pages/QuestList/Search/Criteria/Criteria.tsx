@@ -28,13 +28,15 @@ export default function Content(props: {
     <div className={styles.criteria}>
       <div className={styles.title}>{props.title}</div>
 
-      {props.buttons.map((button, idx) =>
-        <div key={idx} className={className(button)}
-             onClick={(): void => handleClick(button)}
-        >
-          {button.title}
-        </div>
-      )}
+      <div className={styles.buttonList}>
+        {props.buttons.map((button, idx) =>
+          <div key={idx} className={className(button)}
+               onClick={(): void => handleClick(button)}
+          >
+            {button.title}
+          </div>
+        )}
+      </div>
     </div>
   );
 }

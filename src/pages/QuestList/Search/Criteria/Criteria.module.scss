@@ -1,16 +1,32 @@
 .criteria {
-  padding: 0 24px;
+  flex: 1 1 49%;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 0 5px;
+  max-width: 100%;
 }
 
 .title {
   font-size: 14px;
-  padding: 12px 0;
   color: #ffd940;
+  text-align: center;
+  min-height: 30px;
+  padding: 0;
+  display: flex;
+  align-items: flex-end;
+  margin-bottom: 20px;
+}
+
+.buttonList {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
 }
 
 .button {
-  display: inline-block;
-  margin: 0 0 10px 0;
+  margin: 0 0 10px;
   padding: 2px 8px;
   cursor: pointer;
   transition: 0.1s all;
@@ -18,9 +34,16 @@
   border: 1px solid rgba(255, 255, 255, 0.75);
   border-radius: 50px;
   font-size: 13px;
+  display: flex;
+  flex: 1 1;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  min-height: 30px;
+  min-width: 100px;
 
   &:not(:last-child) {
-    margin-right: 9px;
+    margin-right: 0;
   }
 
   &:hover {

@@ -179,3 +179,15 @@
     padding: 18px;
   }
 }
+
+@media screen and (max-width: 1550px) {
+  .main {
+    width: 48%;
+  }
+}
+
+@media screen and (max-width: 1050px) {
+  .main {
+    width: 95%;
+  }
+}
