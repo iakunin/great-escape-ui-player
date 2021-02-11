@@ -20,7 +20,9 @@ export default function Navigation(): JSX.Element {
           </NavLink>
         </ul>
       </nav>
+
       {/* @TODO: при клике на бургер показывать боковое меню (как у https://quest.haus/) */}
+
       <button className={styles.burger}/>
     </>
   );
