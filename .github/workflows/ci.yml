@@ -30,18 +30,6 @@ jobs:
         run: |-
           gcloud --quiet auth configure-docker
 
-      - name: Echo env
-        run: |-
-          env
-
-      - name: Echo $GITHUB_SHA
-        run: |-
-          echo $GITHUB_SHA
-
-      - name: Echo $PROJECT_ID
-        run: |-
-          echo $PROJECT_ID
-
       - name: Docker build
         run: |-
           docker build \
