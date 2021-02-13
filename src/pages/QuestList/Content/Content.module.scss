@@ -21,8 +21,10 @@
 }
 
 .quests {
-  text-align: justify;
-  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 auto;
+  justify-content: center;
 
   &:after {
     display: inline-block;

@@ -2,6 +2,9 @@
   font-size: 14px;
   margin: 20px 0 22px 20px;
   color: #ffffff;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
 
   span {
     display: inline-block;
