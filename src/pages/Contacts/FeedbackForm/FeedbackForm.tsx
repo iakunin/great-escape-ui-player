@@ -3,7 +3,6 @@ import styles from './FeedbackForm.module.scss';
 import {useForm} from 'react-hook-form';
 import Popup from 'components/Popup';
 import {createFeedback} from 'api/createFeedback';
-import Form from 'components/Form';
 import InputValidated from 'components/Form/InputValidated';
 import config from 'config/appConfig';
 import TextAreaValidated from 'components/Form/TextAreaValidated';
@@ -52,7 +51,7 @@ export default function FeedbackForm(): JSX.Element {
   return (
     <>
       <div className={styles.main}>
-        <Form onSubmit={onSubmit}>
+        <form className={styles.form} onSubmit={onSubmit}>
           <InputValidated
             placeholder="Имя" name="name" error={errors.name?.message}
             inputRef={register({required: 'Это поле обязательно'})}
@@ -75,7 +74,7 @@ export default function FeedbackForm(): JSX.Element {
           />
 
           <SubmitButton text="Отправить" />
-        </Form>
+        </form>
       </div>
 
       <Popup open={isPopupOpen} onClose={(): void => setPopupOpen(false)} title={popupTitle}>
