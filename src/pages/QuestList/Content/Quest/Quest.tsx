@@ -14,38 +14,43 @@ export default function Quest(
       className={styles.main}
       style={{backgroundImage: `url(${quest.coverPhoto})`}}
     >
+      <Link to={(new QuestRoute(quest.slug)).toString()}>
 
-      <div className={styles.unhovered}>
-        <div className={styles.title}>{quest.title}</div>
-        <div className={styles.discountLabel}>клубная скидка</div>
-        <div className={styles.discountAmount}>{quest.discountInPercents}%</div>
-        <div className={styles.info}>
-          <span className={styles.duration}>{quest.durationInMinutes} мин.</span>
-          <span className={styles.playersCount}>
+        <div className={styles.unhovered}>
+          <div className={styles.title}>{quest.title}</div>
+          <div className={styles.discountLabel}>клубная скидка</div>
+          <div className={styles.discountAmount}>{quest.discountInPercents}%</div>
+          <div className={styles.info}>
+            <span className={styles.duration}>{quest.durationInMinutes} мин.</span>
+            <span className={styles.playersCount}>
             {quest.playersMinCount}-{quest.playersMaxCount} игрока
           </span>
 
-          {quest.metros.map((metro, idx) => (
-            <span key={idx} className={styles.metro}>{metro.title}</span>
-          ))}
+            {quest.metros.map((metro, idx) => (
+              <span key={idx} className={styles.metro}>{metro.title}</span>
+            ))}
 
+          </div>
+
+          {/* Uncomment me when implementing Rating&Review */}
+          {/* <Rating votesCount={233} likesPercent={83}/> */}
+
+          <div className={styles.background}/>
         </div>
 
-        {/* Uncomment me when implementing Rating&Review */}
-        {/* <Rating votesCount={233} likesPercent={83}/> */}
+        <div className={styles.hovered}>
+          <div className={styles.top}>
+            <div className={styles.title}>{quest.title}</div>
+            <div className={styles.price}>
+              от <span>{quest.minPrice} ₽</span>
+            </div>
+          </div>
 
-        <div className={styles.background}/>
-      </div>
-
-      <div className={styles.hovered}>
-        <div className={styles.title}>{quest.title}</div>
-        <div className={styles.price}>
-          от <span>{quest.minPrice} ₽</span>
+          <div className={styles.companyTitle}>{quest.companyTitle}</div>
+          <div className={styles.description}>{quest.description}</div>
         </div>
-        <div className={styles.companyTitle}>{quest.companyTitle}</div>
-        <div className={styles.description}>{quest.description}</div>
-        <Link to={(new QuestRoute(quest.slug)).toString()}>Подробнее</Link>
-      </div>
+
+      </Link>
 
     </div>
   );

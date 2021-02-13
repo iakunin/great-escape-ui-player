@@ -31,9 +31,6 @@
 }
 
 .title {
-  width: 80%;
-  position: relative;
-  float: left;
   color: #ffffff;
   line-height: 1.6em;
 }
@@ -95,6 +92,10 @@
 }
 
 .hovered {
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-start;
+
   position: absolute;
   opacity: 0;
   top: 0;
@@ -127,11 +128,15 @@
   }
 }
 
+.top {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
 .price {
   font-size: 15px;
   font-weight: 300;
-  float: right;
-  padding: 0;
   color: #ffffff;
 
   span {
@@ -142,8 +147,6 @@
 .companyTitle {
   font-size: 14px;
   font-weight: 300;
-  float: left;
-  clear: both;
   color: #a6a6a6;
 }
 
@@ -151,9 +154,10 @@
   font-size: 13px;
   font-weight: 300;
   line-height: 1.2;
-  float: left;
   margin: 20px 0 0 0;
   color: #ffffff;
+  overflow: hidden;
+  height: 65%;
 }
 
 @media screen and (max-width: 1270px) {
