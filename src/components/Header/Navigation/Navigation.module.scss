@@ -53,6 +53,41 @@
   display: flex;
 }
 
+.mainPopup {
+  li {
+    display: block;
+    min-width: 160px;
+    margin: 10px 0;
+
+    &:active {
+      @include active;
+    }
+  }
+
+  a {
+    width: 100%;
+    font-size: 14px;
+    display: block;
+    color: #ffffff;
+    padding: 14px 45px 12px;
+
+    border-radius: 5px;
+    border-top: 2px solid #ffffff;
+    border-bottom: 2px solid #ffffff;
+    border-left: 2px solid #ffffff;
+    border-right: 2px solid #ffffff;
+
+    &:hover {
+      color: #ffd940;
+    }
+  }
+}
+
+.listPopup {
+  display: block;
+  text-align: center;
+}
+
 .active {
   @include active;
 }

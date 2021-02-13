@@ -49,7 +49,6 @@
       "@typescript-eslint"
     ],
     "rules": {
-      "@typescript-eslint/explicit-function-return-type": "error",
       "quotes": [
         "error",
         "single",
