@@ -6,11 +6,10 @@ import Company from './Company';
 
 export default function QuestInfo(props: {
   quest: QuestModel,
-  goBack(): void,
 }): JSX.Element {
   return (
     <div className={styles.main}>
-      <Quest quest={props.quest} goBack={props.goBack}/>
+      <Quest quest={props.quest} />
       <Company quest={props.quest} />
     </div>
   );

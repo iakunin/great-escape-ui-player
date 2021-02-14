@@ -4,9 +4,8 @@ import styles from './Quest.module.scss';
 
 export default function Quest(props: {
   quest: QuestModel,
-  goBack(): void,
 }): JSX.Element {
-  const {quest, goBack} = props;
+  const {quest} = props;
 
   return (
     <div className={styles.quest}>
@@ -38,9 +37,6 @@ export default function Quest(props: {
           {quest.playersMinCount}-{quest.playersMaxCount} игрока
         </div>
       </div>
-
-      {/* @TODO: get rid of this button, but with fixing layout */}
-      <button className={styles.goBackButton} onClick={goBack}>Назад</button>
     </div>
   );
 }

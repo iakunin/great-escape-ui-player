@@ -42,7 +42,7 @@ function Quest(props: RouteComponentProps<QuestParams>): JSX.Element {
     <>
       <div className={styles.main}>
         <Slider urls={quest.photos.map(p => p.url)}/>
-        <QuestInfo quest={quest} goBack={props.history.goBack}/>
+        <QuestInfo quest={quest} />
       </div>
 
       <BottomBlock quest={quest}/>

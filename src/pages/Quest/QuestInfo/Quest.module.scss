@@ -3,7 +3,7 @@
   z-index: 2;
   bottom: 62px;
   box-sizing: content-box;
-  margin: 100px 0 0 55px;
+  margin: 100px 0 90px 55px;
   color: #ffffff;
   width: 565px;
 }
@@ -113,29 +113,4 @@
 
 .playersCount {
   background: url('./images/info_player.png') no-repeat 0 50%;
-}
-
-.goBackButton {
-  font-size: 14px;
-  font-weight: 300;
-  display: block;
-  width: 92px;
-  height: 36px;
-  margin: 34px 20px 0 55px;
-  padding: 0 0 0 20px;
-  cursor: pointer;
-  transition: 0.2s all;
-  text-decoration: none;
-  color: #ffffff;
-  border: 1px solid rgba(58, 58, 58, 0.2);
-  border-radius: 18px;
-  background: rgba(0, 0, 0, 0.2) url('./images/back_btn_arr.png') no-repeat 15px 50%;
-  box-sizing: border-box;
-  outline: none;
-
-  &:hover {
-    color: #ffd940;
-    border-color: #ffd940;
-    background: rgba(0, 0, 0, 0.2) url('./images/back_btn_arr_hov.png') no-repeat 15px 50%;
-  }
 }
