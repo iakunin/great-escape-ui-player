@@ -39,8 +39,6 @@ export default function Quest(props: {
         </div>
       </div>
 
-      {/* @TODO: use styles.goBackButton in Schedule.BookForm */}
-
       {/* @TODO: get rid of this button, but with fixing layout */}
       <button className={styles.goBackButton} onClick={goBack}>Назад</button>
     </div>

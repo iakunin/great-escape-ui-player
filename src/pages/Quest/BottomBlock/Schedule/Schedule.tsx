@@ -46,83 +46,43 @@ export default function Schedule(props: { quest: QuestModel }): JSX.Element {
       {prepareSlotList(slotList).map((byDateItem, idx) => (
         <div key={idx} className={styles.row}>
           <span className={styles.day}>
-            {byDateItem.groupedByPrice[0]?.slotList[0]?.formattedDate}{', '}
-            {
-              startCase(
-                byDateItem.groupedByPrice[0]?.slotList[0]?.weekDayShort
-              )
-            }
+            {byDateItem.slotList[0]?.formattedDate}{', '}
+            {startCase(byDateItem.slotList[0]?.weekDayShort)}
           </span>
-          {byDateItem.groupedByPrice.map((byPriceItem, ix) => (
-            <div key={ix} className={styles.timeList}>
-              {byPriceItem.slotList.map((slot, i) => (
-                <Slot key={i} slot={slot} quest={props.quest}/>
-              ))}
-            </div>
-          ))}
+          <div className={styles.timeList}>
+            {byDateItem.slotList.map((slot, i) => (
+              <Slot key={i} slot={slot} quest={props.quest}/>
+            ))}
+          </div>
         </div>
       ))}
     </div>
   );
 }
 
-// @TODO: remove `byPrice` grouping
-
-type GroupedByPrice = {
-  slotList: SlotList;
-  priceOriginal: number;
-  priceWithDiscount: number;
-};
-
 type GroupedByDate = Array<{
   date: string;
-  groupedByPrice: Array<GroupedByPrice>;
+  slotList: SlotList;
 }>;
 
 const prepareSlotList = (list: SlotList): GroupedByDate => {
-  const groupByDate = (lst: SlotList): Map<string, SlotList> => {
-    const groupedByDate = new Map<string, SlotList>();
-    lst.forEach(slot => {
-      const date = (new Date(slot.dateTimeLocal)).toISOString().split('T')[0];
-      const value = groupedByDate.get(date);
-      if (value !== undefined) {
-        value.push(slot);
-      } else {
-        groupedByDate.set(date, [slot]);
-      }
-    });
+  const byDate = new Map<string, SlotList>();
 
-    return groupedByDate;
-  };
+  list.forEach(slot => {
+    const date = (new Date(slot.dateTimeLocal)).toISOString().split('T')[0];
+    const value = byDate.get(date);
+    if (value !== undefined) {
+      value.push(slot);
+    } else {
+      byDate.set(date, [slot]);
+    }
+  });
 
-  const result: GroupedByDate = [];
-
-  groupByDate(list).forEach(((slots, date) => {
-    const groupedByPrice = new Array<GroupedByPrice>();
-    slots.forEach((slot) => {
-      if (groupedByPrice.length !== 0) {
-        const last = groupedByPrice[groupedByPrice.length - 1];
-        if (
-          last.priceOriginal === slot.priceOriginal
-          && last.priceWithDiscount === slot.priceWithDiscount
-        ) {
-          last.slotList.push(slot);
-          return;
-        }
-      }
-
-      groupedByPrice.push({
-        slotList: [slot],
-        priceOriginal: slot.priceOriginal,
-        priceWithDiscount: slot.priceWithDiscount
-      });
-    });
-
-    result.push({
+  return Array.from(
+    byDate,
+    ([date, slots]) => ({
       date: date,
-      groupedByPrice: groupedByPrice,
-    });
-  }));
-
-  return result;
+      slotList: slots,
+    })
+  );
 };
