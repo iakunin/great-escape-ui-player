@@ -13,22 +13,31 @@ export default function Slot(props: {
 
   return (
     <>
-      <div className={timeClassName(props.slot)}
-           onClick={(): void => setOpen(props.slot.isAvailable)}
-      >
-        {props.slot.formattedTime}
+      <div className={mainClassName(props.slot)} onClick={() => setOpen(props.slot.isAvailable)}>
+        <div className={styles.time}>
+          {props.slot.formattedTime}
+        </div>
+
+        {
+          props.slot.isAvailable &&
+          <div className={styles.price}>
+            <div className={styles.old}><span>{props.slot.priceOriginal} ₽</span></div>
+            <div className={styles.new}><span>{props.slot.priceWithDiscount} ₽</span></div>
+          </div>
+        }
+
       </div>
       <BookForm open={isOpen} slot={props.slot} quest={props.quest}
-                onClose={(): void => setOpen(false)}
+                onClose={() => setOpen(false)}
       />
     </>
   );
 }
 
-const timeClassName = (slot: SlotModel): string => {
+const mainClassName = (slot: SlotModel): string => {
   if (slot.isAvailable) {
-    return `${styles.time}`;
+    return `${styles.main}`;
   }
 
-  return `${styles.time} ${styles.notAvailable}`;
+  return `${styles.main} ${styles.notAvailable}`;
 };

@@ -6,7 +6,7 @@ import Slot from './Slot';
 import {Quest as QuestModel} from 'models/Quest';
 import {startCase} from 'lodash';
 
-export default function Schedule(props: {quest: QuestModel}): JSX.Element {
+export default function Schedule(props: { quest: QuestModel }): JSX.Element {
 
   const [slotList, setSlotList] = useState<SlotList | undefined>(undefined);
 
@@ -54,16 +54,10 @@ export default function Schedule(props: {quest: QuestModel}): JSX.Element {
             }
           </span>
           {byDateItem.groupedByPrice.map((byPriceItem, ix) => (
-            <div key={ix} className={styles.block}>
-              <div className={styles.timeList}>
-                {byPriceItem.slotList.map((slot, i) => (
-                  <Slot key={i} slot={slot} quest={props.quest}/>
-                ))}
-              </div>
-              <div className={styles.price}>
-                <div className={styles.old}><span>{byPriceItem.priceOriginal} ₽</span></div>
-                <div className={styles.new}><span>{byPriceItem.priceWithDiscount} ₽</span></div>
-              </div>
+            <div key={ix} className={styles.timeList}>
+              {byPriceItem.slotList.map((slot, i) => (
+                <Slot key={i} slot={slot} quest={props.quest}/>
+              ))}
             </div>
           ))}
         </div>
@@ -71,6 +65,8 @@ export default function Schedule(props: {quest: QuestModel}): JSX.Element {
     </div>
   );
 }
+
+// @TODO: remove `byPrice` grouping
 
 type GroupedByPrice = {
   slotList: SlotList;
