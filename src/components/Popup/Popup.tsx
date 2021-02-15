@@ -6,6 +6,7 @@ import {PopupActions} from 'reactjs-popup/dist/types';
 export default function Popup(props: {
   title?: string
   open?: boolean;
+  closeOnDocumentClick?: boolean;
   onClose?: () => void;
   children: React.ReactNode;
 }): JSX.Element {
@@ -13,8 +14,8 @@ export default function Popup(props: {
   const ref = useRef<PopupActions>(null);
 
   return (
-    <ReactPopup ref={ref} open={props.open} closeOnDocumentClick onClose={props.onClose}
-                overlayStyle={{background: 'rgba(0,0,0,0.7)'}}
+    <ReactPopup ref={ref} open={props.open} closeOnDocumentClick={props.closeOnDocumentClick}
+                onClose={props.onClose} overlayStyle={{background: 'rgba(0,0,0,0.7)'}}
     >
       <div className={styles.main}>
         <div className={styles.closeButton} onClick={(): void => ref.current?.close()}/>

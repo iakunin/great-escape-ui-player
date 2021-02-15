@@ -126,7 +126,7 @@ export default function BookForm(props: {
   };
 
   return (
-    <Popup open={props.open} title={title(step)} onClose={onClose}>
+    <Popup open={props.open} title={title(step)} onClose={onClose} closeOnDocumentClick={false}>
       {child(step)}
     </Popup>
   );
