@@ -4,7 +4,6 @@
 
 .images {
   position: relative;
-  z-index: 1;
 
   img {
     display: none;
@@ -19,14 +18,10 @@
 
 .controls {
   position: relative;
-  width: 100%;
-  height: 100%;
-  z-index: 1000;
 }
 
 .next {
   position: absolute;
-  z-index: 5;
   bottom: 45px;
   right: 70px;
   width: 29px;
@@ -45,7 +40,6 @@
   position: absolute;
   bottom: 45px;
   left: 70px;
-  z-index: 5;
   width: 29px;
   height: 29px;
   cursor: pointer;
