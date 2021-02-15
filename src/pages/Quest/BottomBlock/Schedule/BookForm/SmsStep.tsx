@@ -15,7 +15,9 @@ export default function SmsStep(props: {
     const otp = e.target.value;
     props.onChange();
 
-    if (otp && otp.length === 6) {
+    const EXPECTED_OTP_LENGTH = 6;
+
+    if (otp && otp.length === EXPECTED_OTP_LENGTH) {
       props.onSubmit(otp);
     }
   };
@@ -31,10 +33,6 @@ export default function SmsStep(props: {
         autoComplete="one-time-code" type="tel"
       />
 
-      {/*<InputMaskedAndValidated*/}
-      {/*  mask="999999" name="otp" placeholder="Код из SMS" onChange={onChange} error={props.error}*/}
-      {/*  autoComplete="one-time-code"*/}
-      {/*/>*/}
     </>
   );
 }
