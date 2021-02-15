@@ -1,7 +1,7 @@
 import React from 'react';
 import {Slot as SlotModel} from 'models/Slot';
 import {Quest as QuestModel} from 'models/Quest';
-import InputMaskedAndValidated from 'components/Form/InputMaskedAndValidated';
+import InputValidated from 'components/Form/InputValidated';
 
 export default function SmsStep(props: {
   slot: SlotModel,
@@ -12,12 +12,10 @@ export default function SmsStep(props: {
 }): JSX.Element {
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
-    const MASK_PLACEHOLDER = '_';
     const otp = e.target.value;
-
     props.onChange();
 
-    if (otp && !otp.includes(MASK_PLACEHOLDER)) {
+    if (otp && otp.length === 6) {
       props.onSubmit(otp);
     }
   };
@@ -28,15 +26,15 @@ export default function SmsStep(props: {
 
       {/* @TODO: add resend OTP with countdown timer */}
 
-      {/*<InputValidated*/}
-      {/*  name="otp" placeholder="Код из SMS" onChange={onChange} error={props.error}*/}
+      <InputValidated
+        name="otp" placeholder="Код из SMS" onChange={onChange} error={props.error}
+        autoComplete="one-time-code" type="tel"
+      />
+
+      {/*<InputMaskedAndValidated*/}
+      {/*  mask="999999" name="otp" placeholder="Код из SMS" onChange={onChange} error={props.error}*/}
       {/*  autoComplete="one-time-code"*/}
       {/*/>*/}
-
-      <InputMaskedAndValidated
-        mask="999999" name="otp" placeholder="Код из SMS" onChange={onChange} error={props.error}
-        autoComplete="one-time-code"
-      />
     </>
   );
 }
