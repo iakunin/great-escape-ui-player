@@ -29,7 +29,7 @@ export default function SmsStep(props: {
       {/* @TODO: add resend OTP with countdown timer */}
 
       <InputMaskedAndValidated
-        mask="999-999" name="otp" placeholder="Код из SMS" onChange={onChange} error={props.error}
+        mask="999999" name="otp" placeholder="Код из SMS" onChange={onChange} error={props.error}
       />
     </>
   );
