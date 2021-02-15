@@ -30,6 +30,7 @@ export default function SmsStep(props: {
 
       <InputMaskedAndValidated
         mask="999999" name="otp" placeholder="Код из SMS" onChange={onChange} error={props.error}
+        autoComplete="one-time-code"
       />
     </>
   );
