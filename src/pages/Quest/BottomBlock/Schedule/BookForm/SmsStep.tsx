@@ -1,7 +1,7 @@
 import React from 'react';
-import InputMaskedAndValidated from 'components/Form/InputMaskedAndValidated';
 import {Slot as SlotModel} from 'models/Slot';
 import {Quest as QuestModel} from 'models/Quest';
+import InputValidated from 'components/Form/InputValidated';
 
 export default function SmsStep(props: {
   slot: SlotModel,
@@ -28,9 +28,9 @@ export default function SmsStep(props: {
 
       {/* @TODO: add resend OTP with countdown timer */}
 
-      <InputMaskedAndValidated
-        mask="999999" name="otp" placeholder="Код из SMS" onChange={onChange} error={props.error}
-        autoComplete="one-time-code"
+      <InputValidated
+        name="otp" placeholder="Код из SMS" onChange={onChange} error={props.error}
+        autoComplete="one-time-code" type="number"
       />
     </>
   );
