@@ -5,7 +5,6 @@ import {RouteComponentProps} from 'react-router';
 import {QuestParams} from 'enums/Routes';
 import BottomBlock from 'pages/Quest/BottomBlock';
 import QuestInfo from 'pages/Quest/QuestInfo';
-import styles from './Quest.module.scss';
 import {Quest as QuestModel} from 'models/Quest';
 import {getQuest} from 'api/getQuest';
 import NotFound from 'pages/NotFound';
@@ -40,12 +39,9 @@ function Quest(props: RouteComponentProps<QuestParams>): JSX.Element {
 
   return (
     <>
-      <div className={styles.main}>
-        <Slider urls={quest.photos.map(p => p.url)}/>
-        <QuestInfo quest={quest} />
-      </div>
-
-      <BottomBlock quest={quest}/>
+      <Slider urls={quest.photos.map(p => p.url)} />
+      <QuestInfo quest={quest} />
+      <BottomBlock quest={quest} />
     </>
   );
 }

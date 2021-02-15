@@ -1,10 +1,7 @@
 .main {
-  position: absolute;
-  z-index: 2;
-  right: 112px;
-  bottom: 132px;
   width: 246px;
   color: #fff;
+  margin: 40px 20px 20px;
 }
 
 .header {
@@ -22,7 +19,6 @@
   font-size: 13px;
   margin: 13px 0 0 0;
   padding: 0 0 0 23px;
-  font-weight: bold;
   text-shadow: 0 2px 4px #000;
 
   a {

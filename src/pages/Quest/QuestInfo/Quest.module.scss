@@ -1,16 +1,12 @@
 .quest {
-  position: absolute;
-  z-index: 2;
-  bottom: 62px;
   box-sizing: content-box;
-  margin: 100px 0 90px 55px;
   color: #ffffff;
-  width: 565px;
+  max-width: 565px;
+  margin: 10px 20px;
 }
 
 .title {
   font-size: 32px;
-  margin: 115px 0 0 0;
   color: #ffffff;
   text-shadow: 0 3px 5px rgba(0, 0, 0, 0.84);
 }
@@ -92,15 +88,14 @@
 }
 
 .description {
-  font-size: 14px;
-  font-weight: 600;
+  font-size: 13px;
   margin: 20px 0 0;
   text-align: justify;
   text-shadow: 0 2px 4px #000000;
 }
 
 .duration, .playersCount {
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 400;
   margin: 20px 0 0 0;
   padding: 0 23px 0 25px;

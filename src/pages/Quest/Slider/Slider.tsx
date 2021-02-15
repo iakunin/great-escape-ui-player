@@ -26,8 +26,8 @@ export default function Slider(params: {urls: Array<string>}): JSX.Element {
   };
 
   return (
-    <>
-      <div className={styles.slider}>
+    <div className={styles.main}>
+      <div className={styles.images}>
         {params.urls.map((url, idx) =>
           <img key={idx} src={url} alt="" className={className(idx)}/>
         )}
@@ -36,6 +36,6 @@ export default function Slider(params: {urls: Array<string>}): JSX.Element {
         <div className={styles.next} onClick={next}/>
         <div className={styles.prev} onClick={prev}/>
       </div>
-    </>
+    </div>
   );
 }
