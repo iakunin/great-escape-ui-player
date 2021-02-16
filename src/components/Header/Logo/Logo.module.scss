@@ -45,9 +45,24 @@
   .text {
     display: none;
   }
+
+  .image {
+    width: 56.5px;
+    height: 52.5px;
+    background-size: 100%;
+    margin-left: 20px;
+
+    &:hover {
+      background-position: center -52.5px;
+    }
+
+    &:active {
+      background-position: center -105px;
+    }
+  }
 }
 
-@media screen and (max-width: 265px) {
+@media screen and (max-width: 200px) {
   .main {
     display: none;
   }

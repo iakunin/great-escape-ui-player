@@ -7,3 +7,10 @@
   min-height: 126px;
   margin: 0 0 25px 0;
 }
+
+@media screen and (max-width: 880px) {
+  .main {
+    min-height: 63px;
+    margin: 0 0 15px 0;
+  }
+}
