@@ -31,6 +31,7 @@ export default function SmsStep(props: {
       <InputValidated
         name="otp" placeholder="Код из SMS" onChange={onChange} error={props.error}
         autoComplete="one-time-code" type="tel" autoFocus={true}
+        inputRef={input => input && input.focus()}
       />
 
     </>
