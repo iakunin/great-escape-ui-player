@@ -6,6 +6,7 @@ export default function InputValidated(props: {
   name?: string;
   type?: string;
   autoComplete?: string;
+  autoFocus?: boolean;
   error?: string;
   inputRef?: React.Ref<HTMLInputElement>;
   onChange?: React.ChangeEventHandler<HTMLInputElement>;
@@ -14,7 +15,7 @@ export default function InputValidated(props: {
     <div className={styles.fieldGroup}>
       <input className={styles.input} placeholder={props.placeholder} onChange={props.onChange}
              name={props.name} ref={props.inputRef} autoComplete={props.autoComplete}
-             type={props.type}
+             type={props.type} autoFocus={props.autoFocus}
       />
 
       {
