@@ -6,7 +6,7 @@ const requireValue = <T>(value: T | null | undefined, name: string): T => {
   return value;
 };
 
-const phone = '+7 (929) 605-14-50';
+const phone = '+7 (499) 112-40-77';
 
 const config = {
   apiUrl: requireValue(process.env.REACT_APP_SERVER_API_URL, 'REACT_APP_SERVER_API_URL'),
