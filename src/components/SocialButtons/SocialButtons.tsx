@@ -24,15 +24,15 @@ export default function SocialButtons(): JSX.Element {
             <span className={styles.instagram}/>
           </a>
         </li>
-        <li>
-          <a
-            href={appConfig.socialLinks.facebook}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <span className={styles.facebook}/>
-          </a>
-        </li>
+        {/*<li>*/}
+        {/*  <a*/}
+        {/*    href={appConfig.socialLinks.facebook}*/}
+        {/*    target="_blank"*/}
+        {/*    rel="noopener noreferrer"*/}
+        {/*  >*/}
+        {/*    <span className={styles.facebook}/>*/}
+        {/*  </a>*/}
+        {/*</li>*/}
       </ul>
     </div>
   );
