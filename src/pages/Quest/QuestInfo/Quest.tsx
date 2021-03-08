@@ -24,12 +24,15 @@ export default function Quest(props: {
         </div>
       </div>
 
-      <div className={styles.description}>
-        {quest.description
-          .split('\n')
-          .map((item, key) => (<span key={key}>{item}<br/></span>))
-        }
-      </div>
+      {
+        quest.description &&
+        <div className={styles.description}>
+          {quest.description
+            .split('\n')
+            .map((item, key) => (<span key={key}>{item}<br/></span>))
+          }
+        </div>
+      }
 
       <div className={styles.extraInfo}>
         <div className={styles.duration}>{quest.durationInMinutes} мин.</div>
@@ -38,12 +41,16 @@ export default function Quest(props: {
         </div>
       </div>
 
-      <div className={styles.details}>
-        {quest.details
-          .split('\n')
-          .map((item, key) => (<span key={key}>{item}<br/></span>))
-        }
-      </div>
+      {
+        quest.details &&
+        <div className={styles.details}>
+          {quest.details
+            .split('\n')
+            .map((item, key) => (<span key={key}>{item}<br/></span>))
+          }
+        </div>
+      }
+
     </div>
   );
 }
