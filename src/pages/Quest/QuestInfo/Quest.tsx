@@ -37,6 +37,13 @@ export default function Quest(props: {
           {quest.playersMinCount}-{quest.playersMaxCount} игрока
         </div>
       </div>
+
+      <div className={styles.details}>
+        {quest.details
+          .split('\n')
+          .map((item, key) => (<span key={key}>{item}<br/></span>))
+        }
+      </div>
     </div>
   );
 }

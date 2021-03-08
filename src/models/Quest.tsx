@@ -9,6 +9,7 @@ export type Quest = {
   slug: string;
   title: string;
   description: string;
+  details: string;
   discountInPercents: number;
   durationInMinutes: number;
   playersMinCount: number;
