@@ -61,12 +61,28 @@ export default function BookForm(props: {
       })
       .catch((err: AxiosError<ErroneousResponse>) => {
         if (err.response && err.response.data.errorKey === ErrorKey.WrongOtp) {
-          setStep(Step.Otp);
           setOtpError('Упс, неверный код: попробуйте, пожалуйста, ещё раз');
+          setStep(Step.Otp);
           return;
         }
 
-        // @TODO: handle other errors from backend
+        if (err.response && err.response.data.errorKey === ErrorKey.SlotTimeAlreadyPassed) {
+          setError('Мы прекратили принимать бронирования на этот слот.');
+          setStep(Step.Failure);
+          return;
+        }
+
+        if (err.response && err.response.data.errorKey === ErrorKey.SlotUnavailableForBooking) {
+          setError('Мы прекратили принимать бронирования на этот слот.');
+          setStep(Step.Failure);
+          return;
+        }
+
+        if (err.response && err.response.data.errorKey === ErrorKey.SlotAlreadyBooked) {
+          setError('Данный слот был забронирован другим игроком.');
+          setStep(Step.Failure);
+          return;
+        }
 
         setStep(Step.Failure);
       });

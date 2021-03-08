@@ -1,5 +1,8 @@
 export enum ErrorKey {
   WrongOtp = 'wrongOtp',
+  SlotTimeAlreadyPassed = 'slotTimeAlreadyPassed',
+  SlotAlreadyBooked = 'slotAlreadyBooked',
+  SlotUnavailableForBooking = 'slotUnavailableForBooking',
   EmailExists = 'emailExists',
 }
 
