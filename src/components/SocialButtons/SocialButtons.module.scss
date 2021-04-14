@@ -27,12 +27,19 @@
   background-position: 0 0;
 }
 
-.vk {
-  @include iconBase;
-  background-position: right 0;
-}
-
 .instagram {
   @include iconBase;
   background-position: -36px 0;
+}
+
+.vk {
+  background: url('images/vk.png') no-repeat 0 0;
+  background-size: 20px 20px;
+  width: 20px;
+  height: 20px;
+  display: inline-block;
+
+  &:hover {
+    transform: scale(1.3);
+  }
 }
