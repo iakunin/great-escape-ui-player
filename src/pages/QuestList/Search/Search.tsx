@@ -38,7 +38,7 @@ function Search(props: QuestListProps): JSX.Element {
           {id: FearLevel.ABSENT.toString(), title: 'Вообще не страшно'},
           {id: FearLevel.MINIMAL.toString(), title: 'Чуть-чуть'},
           {id: FearLevel.MODERATE.toString(), title: 'Умеренно'},
-          {id: FearLevel.EXTREME.toString(), title: 'Экстримально'},
+          {id: FearLevel.EXTREME.toString(), title: 'Экстремально'},
         ]}
         activeButtonId={props.query.fearLevel?.toString()}
       />
