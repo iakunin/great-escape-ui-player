@@ -6,9 +6,17 @@ export type Request = {
   text: string;
 };
 
-export async function createFeedback(request: Request): Promise<void> {
+export async function createFeedback(
+  request: Request,
+  reCaptchaPromise?: Promise<string>
+): Promise<void> {
   return await axios.post(
     '/player-api/feedback',
-    request
+    {
+      ...request,
+      reCaptchaToken: reCaptchaPromise !== undefined
+        ? await reCaptchaPromise
+        : undefined
+    }
   );
 }

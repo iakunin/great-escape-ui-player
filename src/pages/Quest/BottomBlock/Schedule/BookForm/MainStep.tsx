@@ -14,6 +14,7 @@ import {AxiosError} from 'axios';
 import {ErroneousResponse, ErrorKey} from 'api/common';
 import {trackPromise, usePromiseTracker} from 'react-promise-tracker';
 import {Areas} from 'enums/Areas';
+import {useGoogleReCaptcha} from 'react-google-recaptcha-v3';
 
 export default function MainStep(props: {
   slot: SlotModel,
@@ -23,12 +24,19 @@ export default function MainStep(props: {
 
   const {register, handleSubmit, errors, setError} = useForm<BookingRequest>();
 
+  const { executeRecaptcha } = useGoogleReCaptcha();
+
   const {promiseInProgress} = usePromiseTracker({area: Areas.BookFormDryRun, delay: 100});
 
   const onSubmit = (inputs: BookingRequest): void => {
     const FAKE_OTP = 'fakeOtp';
     trackPromise(
-      createBooking({...inputs, dryRun: true, otp: FAKE_OTP})
+      createBooking(
+        {...inputs, dryRun: true, otp: FAKE_OTP},
+        executeRecaptcha !== undefined
+          ? executeRecaptcha('BookForm_dryRun')
+          : undefined
+      )
         .then((): void => {
           props.onSubmit(inputs);
         })

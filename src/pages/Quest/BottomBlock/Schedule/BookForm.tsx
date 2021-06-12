@@ -12,6 +12,7 @@ import FailureStep from './BookForm/FailureStep';
 import {AxiosError} from 'axios';
 import {ErroneousResponse, ErrorKey} from 'api/common';
 import Spinner from 'components/Spinner';
+import {useGoogleReCaptcha} from 'react-google-recaptcha-v3';
 
 enum Step {
   Main,
@@ -34,11 +35,18 @@ export default function BookForm(props: {
   const [error, setError] = useState<string>();
   const [otpError, setOtpError] = useState<string>();
 
+  const { executeRecaptcha } = useGoogleReCaptcha();
+
   const mainStepSubmit = (bookingRequest: BookingRequest): void => {
     setRequest(bookingRequest);
     setStep(Step.SendingOtp);
 
-    sendOtp({phone: bookingRequest.phone})
+    sendOtp(
+      {phone: bookingRequest.phone},
+      executeRecaptcha !== undefined
+        ? executeRecaptcha('Otp')
+        : undefined
+    )
       .then((): void => {
         setStep(Step.Otp);
       })
@@ -55,7 +63,12 @@ export default function BookForm(props: {
 
     setStep(Step.SendingMain);
 
-    createBooking({...request, otp: otp})
+    createBooking(
+      {...request, otp: otp},
+      executeRecaptcha !== undefined
+        ? executeRecaptcha('BookForm_main')
+        : undefined
+    )
       .then((): void => {
         setStep(Step.Success);
       })

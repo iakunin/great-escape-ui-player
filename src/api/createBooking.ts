@@ -10,13 +10,21 @@ export type Request = {
   dryRun?: boolean;
 };
 
-export async function createBooking(request: Request): Promise<void> {
+export async function createBooking(
+  request: Request,
+  reCaptchaPromise?: Promise<string>
+): Promise<void> {
   if (request.phone) {
     request.phone = request.phone.replace(/\D/g, '');
   }
 
   return await axios.post(
     '/player-api/bookings',
-    request
+    {
+      ...request,
+      reCaptchaToken: reCaptchaPromise !== undefined
+        ? await reCaptchaPromise
+        : undefined
+    }
   );
 }

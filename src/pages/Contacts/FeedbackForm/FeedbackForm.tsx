@@ -7,6 +7,7 @@ import InputValidated from 'components/Form/InputValidated';
 import config from 'config/appConfig';
 import TextAreaValidated from 'components/Form/TextAreaValidated';
 import SubmitButton from 'components/Form/SubmitButton';
+import {useGoogleReCaptcha} from 'react-google-recaptcha-v3';
 
 type Inputs = {
   name: string;
@@ -20,6 +21,8 @@ export default function FeedbackForm(): JSX.Element {
   const [popupTitle, setPopupTitle] = useState('');
 
   const {register, handleSubmit, errors, reset} = useForm<Inputs>();
+
+  const { executeRecaptcha } = useGoogleReCaptcha();
 
   const handleSuccess = (): void => {
     reset();
@@ -42,8 +45,13 @@ export default function FeedbackForm(): JSX.Element {
     setPopupOpen(true);
   };
 
-  const onSubmit = handleSubmit((data: Inputs) => {
-    createFeedback(data)
+  const onSubmit = handleSubmit((inputs: Inputs) => {
+    createFeedback(
+      inputs,
+      executeRecaptcha !== undefined
+        ? executeRecaptcha('FeedbackForm')
+        : undefined
+    )
       .then(handleSuccess)
       .catch(handleFailure);
   });

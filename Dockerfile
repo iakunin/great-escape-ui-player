@@ -5,6 +5,7 @@ COPY . /app
 
 # TODO: extract this env to build scripts in CI
 ENV REACT_APP_SERVER_API_URL 'https://api.great-escape.ru'
+ENV REACT_APP_RE_CAPTCHA_KEY '6LeHeCsbAAAAAFuJRDBh6Uz_HmZjs2Vxx2BSZdKx'
 RUN npm install
 RUN npm run build
 

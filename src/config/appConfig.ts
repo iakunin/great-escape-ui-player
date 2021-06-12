@@ -27,7 +27,8 @@ const config = {
   regexp: {
     email: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
     phone: /^\+7 \d{3} \d{3}-\d{2}-\d{2}$/i,
-  }
+  },
+  reCaptchaKey: requireValue(process.env.REACT_APP_RE_CAPTCHA_KEY, 'REACT_APP_RE_CAPTCHA_KEY'),
 };
 
 export default config;

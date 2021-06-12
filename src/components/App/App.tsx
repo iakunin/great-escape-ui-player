@@ -11,26 +11,30 @@ import {Routes} from 'enums/Routes';
 import Rules from 'pages/Rules';
 import Quest from 'pages/Quest';
 import {QueryParamProvider} from 'use-query-params';
+import {GoogleReCaptchaProvider} from 'react-google-recaptcha-v3';
+import appConfig from 'config/appConfig';
 
 export default function App(): JSX.Element {
   return (
     <>
       <div className={styles.wrapper}>
-          <BrowserRouter>
+        <BrowserRouter>
+          <GoogleReCaptchaProvider reCaptchaKey={appConfig.reCaptchaKey}>
             <QueryParamProvider ReactRouterRoute={Route}>
-            <Header/>
-            <section>
-              <Switch>
-                <Route exact path={Routes.Home} component={QuestList}/>
-                <Route exact path={Routes.Faq} component={Faq}/>
-                <Route exact path={Routes.Contacts} component={Contacts}/>
-                <Route exact path={Routes.Rules} component={Rules}/>
-                <Route exact path={Routes.Quest} component={Quest}/>
-                <Route component={NotFound}/>
-              </Switch>
-            </section>
+              <Header/>
+              <section>
+                <Switch>
+                  <Route exact path={Routes.Home} component={QuestList}/>
+                  <Route exact path={Routes.Faq} component={Faq}/>
+                  <Route exact path={Routes.Contacts} component={Contacts}/>
+                  <Route exact path={Routes.Rules} component={Rules}/>
+                  <Route exact path={Routes.Quest} component={Quest}/>
+                  <Route component={NotFound}/>
+                </Switch>
+              </section>
             </QueryParamProvider>
-          </BrowserRouter>
+          </GoogleReCaptchaProvider>
+        </BrowserRouter>
       </div>
       <Footer/>
     </>
