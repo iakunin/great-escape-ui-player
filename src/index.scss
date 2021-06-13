@@ -11,6 +11,7 @@
 html {
   box-sizing: border-box;
 }
+
 *, *::before, *::after {
   box-sizing: inherit;
 }
@@ -51,4 +52,9 @@ h1 {
   margin: 25px 0 25px 30px;
   color: #ffffff;
   background: url('./components/App/images/headerUnderline.png') no-repeat 0 100%;
+}
+
+// hiding Google ReCaptcha badge
+.grecaptcha-badge {
+  visibility: hidden;
 }
