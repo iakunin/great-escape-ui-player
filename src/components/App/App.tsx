@@ -13,6 +13,7 @@ import Quest from 'pages/Quest';
 import {QueryParamProvider} from 'use-query-params';
 import {GoogleReCaptchaProvider} from 'react-google-recaptcha-v3';
 import appConfig from 'config/appConfig';
+import Privacy from 'pages/Privacy';
 
 export default function App(): JSX.Element {
   return (
@@ -28,6 +29,7 @@ export default function App(): JSX.Element {
                   <Route exact path={Routes.Faq} component={Faq}/>
                   <Route exact path={Routes.Contacts} component={Contacts}/>
                   <Route exact path={Routes.Rules} component={Rules}/>
+                  <Route exact path={Routes.Privacy} component={Privacy}/>
                   <Route exact path={Routes.Quest} component={Quest}/>
                   <Route component={NotFound}/>
                 </Switch>

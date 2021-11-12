@@ -7,17 +7,19 @@ const requireValue = <T>(value: T | null | undefined, name: string): T => {
 };
 
 const phone = '+7 (499) 112-40-77';
+const domainName = 'great-escape.ru';
 
 const config = {
   apiUrl: requireValue(process.env.REACT_APP_SERVER_API_URL, 'REACT_APP_SERVER_API_URL'),
+  baseUrl: 'https://' + domainName,
   phone: {
     pretty: phone,
     normalized: phone.replace(/[^\d+]/g, ''),
   },
   email: {
-    info: 'info@great-escape.ru',
-    partners: 'partners@great-escape.ru',
-    quality: 'quality@great-escape.ru',
+    info: 'info@' + domainName,
+    partners: 'partners@' + domainName,
+    quality: 'quality@' + domainName,
   },
   socialLinks: {
     vk: 'https://vk.com/greatescape_project',

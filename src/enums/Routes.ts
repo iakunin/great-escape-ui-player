@@ -3,6 +3,7 @@ export enum Routes {
   Faq = '/faq',
   Contacts = '/contacts',
   Rules = '/rules',
+  Privacy = '/privacy',
   Quest = '/quests/:slug',
 }
 
