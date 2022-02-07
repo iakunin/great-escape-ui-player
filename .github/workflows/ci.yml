@@ -72,5 +72,6 @@ jobs:
           gcloud components install beta --quiet
 
       - name: Trigger deployment GCP workflow
+        if: ${{ github.event_name != 'pull_request' }}
         run: |-
           gcloud beta workflows execute "${IMAGE}-delivery" --data "{ \"image\": \"$IMAGE\", \"tag\": \"$GITHUB_SHA\", \"service\": \"$IMAGE\"  }"
