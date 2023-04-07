@@ -75,6 +75,6 @@
   },
   "devDependencies": {
     "react-scripts": "^4.0.3",
-    "sass": "^1.60.0"
+    "sass": "^1.61.0"
   }
 }
