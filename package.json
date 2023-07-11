@@ -28,7 +28,7 @@
     "reactjs-popup": "^2.0.5",
     "typescript": "^5.1.6",
     "use-query-params": "^1.2.3",
-    "web-vitals": "^3.3.2"
+    "web-vitals": "^3.4.0"
   },
   "scripts": {
     "start": "react-scripts start",
