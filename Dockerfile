@@ -1,5 +1,5 @@
 # stage1 - build react app first
-FROM node:16.13.0-alpine as build
+FROM node:20.12.2-alpine as build
 WORKDIR /app
 COPY . /app
 
