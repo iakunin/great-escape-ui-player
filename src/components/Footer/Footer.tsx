@@ -6,7 +6,7 @@ import appConfig from 'config/appConfig';
 export default function Footer(): JSX.Element {
   return (
     <footer className={styles.main}>
-      <div className={styles.copyright}>© 2021, Great Escape</div>
+      <div className={styles.copyright}>© 2021-2024, Great Escape</div>
       <div className={styles.support}>
         Ответим на любые вопросы (c 9:00 до 22:00) — <a href={`tel:${appConfig.phone.normalized}`}>
           {appConfig.phone.pretty}
